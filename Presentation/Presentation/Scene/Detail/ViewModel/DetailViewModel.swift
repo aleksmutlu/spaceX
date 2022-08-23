@@ -13,4 +13,7 @@ public protocol DetailViewModel: AnyObject {
 
 public final class DefaultDetailViewModel: DetailViewModel {
     
+    public init() {
+        
+    }
 }
