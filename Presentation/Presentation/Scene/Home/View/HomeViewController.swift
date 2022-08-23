@@ -29,5 +29,11 @@ public final class HomeViewController: BaseViewController {
         super.viewDidLoad()
             
         view.backgroundColor = .red
+        bindViewModel()
+        viewModel.inputs.viewDidLoad()
+    }
+    
+    private func bindViewModel() {
+        
     }
 }
