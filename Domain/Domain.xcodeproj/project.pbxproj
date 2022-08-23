@@ -11,6 +11,9 @@
 		5916BCC228B3FC4800F51AF6 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BCB728B3FC4800F51AF6 /* Domain.framework */; };
 		5916BCC728B3FC4800F51AF6 /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCC628B3FC4800F51AF6 /* DomainTests.swift */; };
 		5916BCC828B3FC4800F51AF6 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5916BCBA28B3FC4800F51AF6 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		593158E528B5049F000D2DCC /* FetchLaunchesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */; };
+		593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E728B50502000D2DCC /* LaunchRepository.swift */; };
+		593158EB28B5062F000D2DCC /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158EA28B5062F000D2DCC /* Launch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -29,6 +32,9 @@
 		5916BCBB28B3FC4800F51AF6 /* Domain.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Domain.docc; sourceTree = "<group>"; };
 		5916BCC128B3FC4800F51AF6 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BCC628B3FC4800F51AF6 /* DomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
+		593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLaunchesUseCase.swift; sourceTree = "<group>"; };
+		593158E728B50502000D2DCC /* LaunchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRepository.swift; sourceTree = "<group>"; };
+		593158EA28B5062F000D2DCC /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -71,6 +77,9 @@
 		5916BCB928B3FC4800F51AF6 /* Domain */ = {
 			isa = PBXGroup;
 			children = (
+				593158E928B50625000D2DCC /* Entity */,
+				593158E328B50485000D2DCC /* UseCase */,
+				593158E628B504D9000D2DCC /* Repository */,
 				5916BCBA28B3FC4800F51AF6 /* Domain.h */,
 				5916BCBB28B3FC4800F51AF6 /* Domain.docc */,
 			);
@@ -83,6 +92,30 @@
 				5916BCC628B3FC4800F51AF6 /* DomainTests.swift */,
 			);
 			path = DomainTests;
+			sourceTree = "<group>";
+		};
+		593158E328B50485000D2DCC /* UseCase */ = {
+			isa = PBXGroup;
+			children = (
+				593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */,
+			);
+			path = UseCase;
+			sourceTree = "<group>";
+		};
+		593158E628B504D9000D2DCC /* Repository */ = {
+			isa = PBXGroup;
+			children = (
+				593158E728B50502000D2DCC /* LaunchRepository.swift */,
+			);
+			path = Repository;
+			sourceTree = "<group>";
+		};
+		593158E928B50625000D2DCC /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				593158EA28B5062F000D2DCC /* Launch.swift */,
+			);
+			path = Entity;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -194,7 +227,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */,
 				5916BCBC28B3FC4800F51AF6 /* Domain.docc in Sources */,
+				593158EB28B5062F000D2DCC /* Launch.swift in Sources */,
+				593158E528B5049F000D2DCC /* FetchLaunchesUseCase.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -396,6 +432,7 @@
 		5916BCCF28B3FC4800F51AF6 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;
@@ -412,6 +449,7 @@
 		5916BCD028B3FC4800F51AF6 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 54F54H9Y8X;

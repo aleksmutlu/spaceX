@@ -1,18 +1,17 @@
 //
-//  HomeViewModel.swift
-//  Presentation
+//  FetchLaunchesUseCase.swift
+//  Domain
 //
 //  Created by Aleks Mutlu on 23.08.2022.
 //
 
-import Domain
 import Foundation
 
-public protocol HomeViewModel: AnyObject {
-    
+public protocol FetchLaunchesUseCase {
+    func execute()
 }
 
-public final class DefaultHomeViewModel: HomeViewModel {
+public final class DefaultFetchLaunchesUseCase: FetchLaunchesUseCase {
     
     private let launchRepository: LaunchRepository
     
@@ -20,4 +19,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
         self.launchRepository = launchRepository
     }
     
+    public func execute() {
+        
+    }
 }
