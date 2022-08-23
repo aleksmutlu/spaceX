@@ -5,17 +5,19 @@
 //  Created by Aleks Mutlu on 23.08.2022.
 //
 
+import Data
 import Domain
 import Presentation
 
 final class DIContainer {
     
+    private lazy var remoteLaunchDataStore: LaunchDataStore = RemoteLaunchDataStore()
     
     // MARK: - Repository
     
-    func makeLaunchRepository() -> LaunchRepository {
-        // TODO:
-        fatalError()
+    func makeLaunchRepository() -> some LaunchRepository {
+        let launchRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteLaunchDataStore)
+        return launchRepository
     }
     
     // MARK: - Use Case
