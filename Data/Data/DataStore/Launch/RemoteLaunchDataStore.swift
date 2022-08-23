@@ -7,9 +7,6 @@
 
 import Foundation
 
-public final class RemoteLaunchDataStore: LaunchDataStore {
-    
-    public init() {
-        
-    }
+public protocol RemoteLaunchDataStore {
+    func fetchLaunches(onCompletion: @escaping (Result<FetchLaunchesResponse, Error>) -> Void)
 }

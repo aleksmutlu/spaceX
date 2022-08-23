@@ -7,6 +7,10 @@
 
 import Foundation
 
-struct Launch {
+public struct Launch {
+    public let missionName: String?
     
+    public init(missionName: String?) {
+        self.missionName = missionName
+    }
 }

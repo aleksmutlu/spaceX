@@ -11,7 +11,7 @@ import Presentation
 
 final class DIContainer {
     
-    private lazy var remoteLaunchDataStore: LaunchDataStore = RemoteLaunchDataStore()
+    private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = GraphQLLaunchDataStore()
     
     // MARK: - Repository
     
@@ -31,14 +31,14 @@ final class DIContainer {
     // MARK: - Home
 
     func makeHomeScene() -> HomeViewController {
-        let launchRepository = makeLaunchRepository()
-        let homeViewModel = makeHomeViewModel(launchRepository: launchRepository)
+        let homeViewModel = makeHomeViewModel()
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         return homeViewController
     }
     
-    private func makeHomeViewModel(launchRepository: LaunchRepository) -> some HomeViewModel {
-        let homeViewModel = DefaultHomeViewModel(launchRepository: launchRepository)
+    private func makeHomeViewModel() -> some HomeViewModel {
+        let fetchLaunchesUseCase = makeFetchLaunchesUseCase()
+        let homeViewModel = DefaultHomeViewModel(fetchLaunchesUseCase: fetchLaunchesUseCase)
         return homeViewModel
     }
     

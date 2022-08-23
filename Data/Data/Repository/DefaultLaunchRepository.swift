@@ -9,18 +9,25 @@ import Domain
 
 public final class DefaultLaunchRepository: LaunchRepository {
     
-    private let remoteLaunchDataStore: LaunchDataStore
+    private let remoteLaunchDataStore: RemoteLaunchDataStore
     
-    public init(remoteLaunchDataStore: LaunchDataStore) {
+    public init(remoteLaunchDataStore: RemoteLaunchDataStore) {
         self.remoteLaunchDataStore = remoteLaunchDataStore
     }
     
-    public func fetchLaunch(by id: String) {
-        
+    public func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void) {
+        remoteLaunchDataStore.fetchLaunches { result in
+            switch result {
+            case .success(let response):
+                let launches = response.toDomain()
+                onCompletion(.success(launches))
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
     }
     
-    public func fetchLaunches() {
-        
+    public func fetchLaunch(by id: String) {
+        // TODO:
     }
 }
-

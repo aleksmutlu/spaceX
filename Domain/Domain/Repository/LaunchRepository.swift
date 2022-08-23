@@ -8,6 +8,6 @@
 import Foundation
 
 public protocol LaunchRepository {
-    func fetchLaunches()
+    func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void)
     func fetchLaunch(by id: String)
 }

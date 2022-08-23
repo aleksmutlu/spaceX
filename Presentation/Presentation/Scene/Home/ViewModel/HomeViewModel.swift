@@ -14,10 +14,21 @@ public protocol HomeViewModel: AnyObject {
 
 public final class DefaultHomeViewModel: HomeViewModel {
     
-    private let launchRepository: LaunchRepository
+    private let fetchLaunchesUseCase: FetchLaunchesUseCase
     
-    public init(launchRepository: LaunchRepository) {
-        self.launchRepository = launchRepository
+    public init(fetchLaunchesUseCase: FetchLaunchesUseCase) {
+        self.fetchLaunchesUseCase = fetchLaunchesUseCase
+        
+        fetchLaunchesUseCase.execute { result in
+            switch result {
+            case .success(let launches):
+                print(launches)
+                break
+            case .failure(let error):
+            // TODO: Handle error
+                break
+            }
+        }
     }
     
 }
