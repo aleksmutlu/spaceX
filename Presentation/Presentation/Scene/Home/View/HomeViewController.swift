@@ -14,24 +14,13 @@ public final class HomeViewController: BaseViewController {
     
     // MARK: - Views
     
-    lazy var tableView: UITableView = {
-        let tableView = UITableView()
-        tableView.translatesAutoresizingMaskIntoConstraints = false
-        tableView.delegate = self
-        tableView.registerCell(typed: UITableViewCell.self)
-        view.addSubview(tableView)
-        tableView.leadingAnchor.constraint(equalTo: view.leadingAnchor).isActive = true
-        tableView.trailingAnchor.constraint(equalTo: view.trailingAnchor).isActive = true
-        tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
-        tableView.topAnchor.constraint(equalTo: view.topAnchor).isActive = true
-        return tableView
-    }()
+    private var homeView = HomeView(frame: UIScreen.main.bounds)
     
     // MARK: - Properties
     
     private let viewModel: HomeViewModel
     private lazy var dataSource: LaunchesDataSource = {
-        let dataSource = LaunchesDataSource(tableView: tableView) { tableView, indexPath, item in
+        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, item in
             let cell = tableView.dequeueCell(typed: UITableViewCell.self, indexPath: indexPath)
             var config = cell.defaultContentConfiguration()
             config.text = item.missionName
@@ -54,10 +43,15 @@ public final class HomeViewController: BaseViewController {
         fatalError("init(coder:) has not been implemented")
     }
     
+    public override func loadView() {
+        view = homeView
+    }
+    
     public override func viewDidLoad() {
         super.viewDidLoad()
         
-        setTableViewDataSource()
+        setTableViewUp()
+        
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
@@ -74,8 +68,10 @@ public final class HomeViewController: BaseViewController {
             .disposed(by: disposeBag)
     }
     
-    private func setTableViewDataSource() {
-        tableView.dataSource = dataSource
+    private func setTableViewUp() {
+        homeView.tableView.registerCell(typed: UITableViewCell.self)
+        homeView.tableView.dataSource = dataSource
+        homeView.tableView.delegate = self
     }
     
     // MARK: - Helpers

@@ -9,6 +9,7 @@ import Data
 import Domain
 import Presentation
 
+///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
 final class DIContainer {
     
     private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = GraphQLLaunchDataStore()
