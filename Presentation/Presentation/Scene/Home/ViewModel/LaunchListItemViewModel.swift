@@ -8,7 +8,7 @@
 import Domain
 import Foundation
 
-public struct LaunchListItemViewModel {
+public struct LaunchListItemViewModel: Hashable {
     
     public let missionName: String
 }

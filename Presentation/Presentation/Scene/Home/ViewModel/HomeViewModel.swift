@@ -7,6 +7,8 @@
 
 import Domain
 import Foundation
+import RxCocoa
+import RxSwift
 
 public protocol HomeViewModel: AnyObject {
     var inputs: HomeViewModelInputs { get }
@@ -20,8 +22,8 @@ public final class DefaultHomeViewModel: HomeViewModel {
     public var inputs: HomeViewModelInputs { self }
     public var outputs: HomeViewModelOutputs { self }
     
+    private let launchItemsInput: BehaviorRelay<[LaunchListItemViewModel]> = .init(value: [])
     private let fetchLaunchesUseCase: FetchLaunchesUseCase
-    public var onLaunchListRetreived: (([LaunchListItemViewModel]) -> Void)?
     
     public init(fetchLaunchesUseCase: FetchLaunchesUseCase) {
         self.fetchLaunchesUseCase = fetchLaunchesUseCase
@@ -40,6 +42,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
 
 public protocol HomeViewModelInputs {
     func viewDidLoad()
+    func didSelectItem(at index: Int)
 }
 
 extension DefaultHomeViewModel: HomeViewModelInputs {
@@ -48,21 +51,28 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         fetchLaunchesUseCase.execute { [weak self] result in
             switch result {
             case .success(let launches):
-                self?.onLaunchListRetreived?(self!.generateLaunchListItemViewModels(from: launches))
+                let l = self!.generateLaunchListItemViewModels(from: launches)
+                self?.launchItemsInput.accept(l)
             case .failure(let error):
             // TODO: Handle error
                 break
             }
         }
     }
+    
+    public func didSelectItem(at index: Int) {
+        print("Navigate to launch: \(launchItemsInput.value[index].missionName)")
+    }
 }
 
 // MARK: - HomeViewModelOutputs
 
 public protocol HomeViewModelOutputs {
-    var onLaunchListRetreived: (([LaunchListItemViewModel]) -> Void)? { get set }
+    var launchItems: Observable<[LaunchListItemViewModel]> { get }
 }
 
 extension DefaultHomeViewModel: HomeViewModelOutputs {
-    
+    public var launchItems: Observable<[LaunchListItemViewModel]> {
+        launchItemsInput.asObservable()
+    }
 }
