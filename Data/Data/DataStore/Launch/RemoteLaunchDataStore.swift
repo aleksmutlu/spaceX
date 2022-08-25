@@ -8,5 +8,5 @@
 import Foundation
 
 public protocol RemoteLaunchDataStore {
-    func fetchLaunches(onCompletion: @escaping (Result<FetchLaunchesResponse, Error>) -> Void)
+    func fetchLaunches(onCompletion: @escaping (Result<FetchLaunchesResponseDTO, Error>) -> Void)
 }

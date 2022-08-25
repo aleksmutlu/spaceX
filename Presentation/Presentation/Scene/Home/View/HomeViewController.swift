@@ -20,11 +20,9 @@ public final class HomeViewController: BaseViewController {
     
     private let viewModel: HomeViewModel
     private lazy var dataSource: LaunchesDataSource = {
-        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, item in
-            let cell = tableView.dequeueCell(typed: UITableViewCell.self, indexPath: indexPath)
-            var config = cell.defaultContentConfiguration()
-            config.text = item.missionName
-            cell.contentConfiguration = config
+        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, viewModel in
+            let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
+            cell.populate(with: viewModel)
             return cell
         }
         return dataSource
@@ -69,14 +67,14 @@ public final class HomeViewController: BaseViewController {
     }
     
     private func setTableViewUp() {
-        homeView.tableView.registerCell(typed: UITableViewCell.self)
+        homeView.tableView.registerNibCell(typed: LaunchTableViewCell.self)
         homeView.tableView.dataSource = dataSource
         homeView.tableView.delegate = self
     }
     
     // MARK: - Helpers
     
-    func display(launchList: [LaunchListItemViewModel]) {
+    private func display(launchList: [LaunchListItemViewModel]) {
         var snapshot = NSDiffableDataSourceSnapshot<Int, LaunchListItemViewModel>()
         snapshot.appendSections([1])
         snapshot.appendItems(launchList, toSection: 1)

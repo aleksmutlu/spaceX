@@ -8,9 +8,41 @@
 import Foundation
 
 public struct Launch {
+    public let id: String?
     public let missionName: String?
+    public let date: Date?
+    public let rocketName: String?
+    public let patchImageURL: URL?
     
-    public init(missionName: String?) {
+    public init(
+        id: String?,
+        missionName: String?,
+        dateString: String?,
+        rocketName: String?,
+        patchImageURLString: String?
+    ) {
+        self.id = id
         self.missionName = missionName
+        if let dateString = dateString {
+            self.date = dateFormatter.date(from: dateString)
+        } else {
+            self.date = nil
+        }
+        self.rocketName = rocketName
+        if let patchImageURLString = patchImageURLString {
+            self.patchImageURL = URL(string: patchImageURLString)
+        } else {
+            self.patchImageURL = nil
+        }
     }
 }
+
+
+// TODO: Move this formatter into a class with other formatters
+private let dateFormatter: DateFormatter = {
+    let dateFormatter = DateFormatter()
+    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
+        dateFormatter.timeZone = TimeZone.current
+        dateFormatter.locale = Locale.current
+    return dateFormatter
+}()

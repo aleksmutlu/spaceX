@@ -21,6 +21,14 @@
 		5930676128B5561A004913B7 /* RxTest in Frameworks */ = {isa = PBXBuildFile; productRef = 5930676028B5561A004913B7 /* RxTest */; };
 		5930676628B62C5C004913B7 /* UITableView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930676528B62C5C004913B7 /* UITableView+Extensions.swift */; };
 		5930676828B636BA004913B7 /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930676728B636BA004913B7 /* HomeView.swift */; };
+		5930676E28B66D9A004913B7 /* LaunchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930676C28B66D9A004913B7 /* LaunchTableViewCell.swift */; };
+		5930676F28B66D9A004913B7 /* LaunchTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5930676D28B66D9A004913B7 /* LaunchTableViewCell.xib */; };
+		5930677228B695E3004913B7 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5930677128B695E3004913B7 /* Colors.xcassets */; };
+		5930677428B696AB004913B7 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930677328B696AB004913B7 /* Theme.swift */; };
+		5930677628B6ACBB004913B7 /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930677528B6ACBB004913B7 /* UIColor+Extensions.swift */; };
+		5930677828B6AD32004913B7 /* Bundle+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930677728B6AD32004913B7 /* Bundle+Extensions.swift */; };
+		5930677B28B6B0D1004913B7 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 5930677A28B6B0D1004913B7 /* Kingfisher */; };
+		5930677D28B76406004913B7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5930677C28B76406004913B7 /* Assets.xcassets */; };
 		593158D928B4E95E000D2DCC /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158D828B4E95E000D2DCC /* HomeViewModel.swift */; };
 		593158DC28B4EBA9000D2DCC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158DB28B4EBA9000D2DCC /* BaseViewController.swift */; };
 		593158DE28B4F0DA000D2DCC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158DD28B4F0DA000D2DCC /* DetailViewController.swift */; };
@@ -48,6 +56,13 @@
 		5930673128B54B3B004913B7 /* LaunchListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchListItemViewModel.swift; sourceTree = "<group>"; };
 		5930676528B62C5C004913B7 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
 		5930676728B636BA004913B7 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		5930676C28B66D9A004913B7 /* LaunchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchTableViewCell.swift; sourceTree = "<group>"; };
+		5930676D28B66D9A004913B7 /* LaunchTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LaunchTableViewCell.xib; sourceTree = "<group>"; };
+		5930677128B695E3004913B7 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		5930677328B696AB004913B7 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		5930677528B6ACBB004913B7 /* UIColor+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
+		5930677728B6AD32004913B7 /* Bundle+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Bundle+Extensions.swift"; sourceTree = "<group>"; };
+		5930677C28B76406004913B7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		593158D828B4E95E000D2DCC /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		593158DB28B4EBA9000D2DCC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		593158DD28B4F0DA000D2DCC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -63,6 +78,7 @@
 				5916BD0228B403AD00F51AF6 /* Domain.framework in Frameworks */,
 				5930675B28B554D7004913B7 /* RxSwift in Frameworks */,
 				5930675928B554D7004913B7 /* RxRelay in Frameworks */,
+				5930677B28B6B0D1004913B7 /* Kingfisher in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +125,7 @@
 		5901E00F28B4E57500FAD243 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				5930676B28B66D81004913B7 /* LaunchCell */,
 				5930676728B636BA004913B7 /* HomeView.swift */,
 				5901E01328B4E59600FAD243 /* HomeViewController.swift */,
 			);
@@ -162,6 +179,7 @@
 		5916BC9528B3FC2400F51AF6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5930677028B695C1004913B7 /* Assets */,
 				593158DA28B4EB9D000D2DCC /* Utils */,
 				5901E00C28B4E55700FAD243 /* Scene */,
 				5916BC9628B3FC2400F51AF6 /* Presentation.h */,
@@ -198,8 +216,28 @@
 			isa = PBXGroup;
 			children = (
 				5930676528B62C5C004913B7 /* UITableView+Extensions.swift */,
+				5930677528B6ACBB004913B7 /* UIColor+Extensions.swift */,
+				5930677728B6AD32004913B7 /* Bundle+Extensions.swift */,
 			);
 			path = Extensions;
+			sourceTree = "<group>";
+		};
+		5930676B28B66D81004913B7 /* LaunchCell */ = {
+			isa = PBXGroup;
+			children = (
+				5930676C28B66D9A004913B7 /* LaunchTableViewCell.swift */,
+				5930676D28B66D9A004913B7 /* LaunchTableViewCell.xib */,
+			);
+			path = LaunchCell;
+			sourceTree = "<group>";
+		};
+		5930677028B695C1004913B7 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				5930677128B695E3004913B7 /* Colors.xcassets */,
+				5930677C28B76406004913B7 /* Assets.xcassets */,
+			);
+			path = Assets;
 			sourceTree = "<group>";
 		};
 		593158DA28B4EB9D000D2DCC /* Utils */ = {
@@ -207,6 +245,7 @@
 			children = (
 				5930676428B62C51004913B7 /* Extensions */,
 				5930676328B62C38004913B7 /* Base */,
+				5930677328B696AB004913B7 /* Theme.swift */,
 			);
 			path = Utils;
 			sourceTree = "<group>";
@@ -243,6 +282,7 @@
 				5930675628B554D7004913B7 /* RxCocoa */,
 				5930675828B554D7004913B7 /* RxRelay */,
 				5930675A28B554D7004913B7 /* RxSwift */,
+				5930677A28B6B0D1004913B7 /* Kingfisher */,
 			);
 			productName = Presentation;
 			productReference = 5916BC9328B3FC2400F51AF6 /* Presentation.framework */;
@@ -299,6 +339,7 @@
 			mainGroup = 5916BC8928B3FC2400F51AF6;
 			packageReferences = (
 				5930675328B554D7004913B7 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				5930677928B6B0D1004913B7 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 5916BC9428B3FC2400F51AF6 /* Products */;
 			projectDirPath = "";
@@ -315,6 +356,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5930677228B695E3004913B7 /* Colors.xcassets in Resources */,
+				5930677D28B76406004913B7 /* Assets.xcassets in Resources */,
+				5930676F28B66D9A004913B7 /* LaunchTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -333,11 +377,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				5930676828B636BA004913B7 /* HomeView.swift in Sources */,
+				5930677428B696AB004913B7 /* Theme.swift in Sources */,
 				5916BC9828B3FC2400F51AF6 /* Presentation.docc in Sources */,
+				5930677828B6AD32004913B7 /* Bundle+Extensions.swift in Sources */,
+				5930677628B6ACBB004913B7 /* UIColor+Extensions.swift in Sources */,
 				593158E028B4F0FB000D2DCC /* DetailViewModel.swift in Sources */,
 				593158DC28B4EBA9000D2DCC /* BaseViewController.swift in Sources */,
 				5930676628B62C5C004913B7 /* UITableView+Extensions.swift in Sources */,
 				5930673228B54B3B004913B7 /* LaunchListItemViewModel.swift in Sources */,
+				5930676E28B66D9A004913B7 /* LaunchTableViewCell.swift in Sources */,
 				593158DE28B4F0DA000D2DCC /* DetailViewController.swift in Sources */,
 				593158D928B4E95E000D2DCC /* HomeViewModel.swift in Sources */,
 				5901E01428B4E59600FAD243 /* HomeViewController.swift in Sources */,
@@ -618,6 +666,14 @@
 				kind = branch;
 			};
 		};
+		5930677928B6B0D1004913B7 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 7.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -645,6 +701,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5930675328B554D7004913B7 /* XCRemoteSwiftPackageReference "RxSwift" */;
 			productName = RxTest;
+		};
+		5930677A28B6B0D1004913B7 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5930677928B6B0D1004913B7 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
