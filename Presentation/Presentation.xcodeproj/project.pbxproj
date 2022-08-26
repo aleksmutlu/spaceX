@@ -13,6 +13,8 @@
 		5902A65028B8E2650074087A /* ErrorView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 5902A64F28B8E2650074087A /* ErrorView.xib */; };
 		5902A65228B8E30B0074087A /* NibView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5902A65128B8E30B0074087A /* NibView.swift */; };
 		5902A65428B907890074087A /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5902A65328B907890074087A /* UIView+Extensions.swift */; };
+		5902A65C28B92A390074087A /* MainCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5902A65B28B92A390074087A /* MainCoordinator.swift */; };
+		5902A65F28B92CA80074087A /* Coordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5902A65E28B92CA80074087A /* Coordinator.swift */; };
 		5916BC9828B3FC2400F51AF6 /* Presentation.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5916BC9728B3FC2400F51AF6 /* Presentation.docc */; };
 		5916BC9E28B3FC2400F51AF6 /* Presentation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BC9328B3FC2400F51AF6 /* Presentation.framework */; };
 		5916BCA328B3FC2400F51AF6 /* PresentationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCA228B3FC2400F51AF6 /* PresentationTests.swift */; };
@@ -55,6 +57,8 @@
 		5902A64F28B8E2650074087A /* ErrorView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ErrorView.xib; sourceTree = "<group>"; };
 		5902A65128B8E30B0074087A /* NibView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NibView.swift; sourceTree = "<group>"; };
 		5902A65328B907890074087A /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		5902A65B28B92A390074087A /* MainCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainCoordinator.swift; sourceTree = "<group>"; };
+		5902A65E28B92CA80074087A /* Coordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Coordinator.swift; sourceTree = "<group>"; };
 		5916BC9328B3FC2400F51AF6 /* Presentation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Presentation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BC9628B3FC2400F51AF6 /* Presentation.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Presentation.h; sourceTree = "<group>"; };
 		5916BC9728B3FC2400F51AF6 /* Presentation.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Presentation.docc; sourceTree = "<group>"; };
@@ -183,6 +187,23 @@
 			path = SharedViews;
 			sourceTree = "<group>";
 		};
+		5902A65A28B92A2D0074087A /* Coordinator */ = {
+			isa = PBXGroup;
+			children = (
+				5902A65D28B92CA10074087A /* Base */,
+				5902A65B28B92A390074087A /* MainCoordinator.swift */,
+			);
+			path = Coordinator;
+			sourceTree = "<group>";
+		};
+		5902A65D28B92CA10074087A /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				5902A65E28B92CA80074087A /* Coordinator.swift */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
 		5916BC8928B3FC2400F51AF6 = {
 			isa = PBXGroup;
 			children = (
@@ -205,6 +226,7 @@
 		5916BC9528B3FC2400F51AF6 /* Presentation */ = {
 			isa = PBXGroup;
 			children = (
+				5902A65A28B92A2D0074087A /* Coordinator */,
 				5930677028B695C1004913B7 /* Assets */,
 				5902A64C28B8A6FF0074087A /* SharedViews */,
 				593158DA28B4EB9D000D2DCC /* Utils */,
@@ -409,9 +431,11 @@
 				5930677428B696AB004913B7 /* Theme.swift in Sources */,
 				5916BC9828B3FC2400F51AF6 /* Presentation.docc in Sources */,
 				5930677828B6AD32004913B7 /* Bundle+Extensions.swift in Sources */,
+				5902A65C28B92A390074087A /* MainCoordinator.swift in Sources */,
 				5930677628B6ACBB004913B7 /* UIColor+Extensions.swift in Sources */,
 				593158E028B4F0FB000D2DCC /* DetailViewModel.swift in Sources */,
 				5902A65428B907890074087A /* UIView+Extensions.swift in Sources */,
+				5902A65F28B92CA80074087A /* Coordinator.swift in Sources */,
 				593158DC28B4EBA9000D2DCC /* BaseViewController.swift in Sources */,
 				5930676628B62C5C004913B7 /* UITableView+Extensions.swift in Sources */,
 				5930673228B54B3B004913B7 /* LaunchListItemViewModel.swift in Sources */,

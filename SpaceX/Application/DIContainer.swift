@@ -8,11 +8,22 @@
 import Data
 import Domain
 import Presentation
+import UIKit
 
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
-final class DIContainer {
+final class DIContainer: MainCoordinatorDependencies {
     
     private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = DummyLaunchDataStore() //GraphQLLaunchDataStore()
+    
+    // MARK: - Coordinator
+    
+    func makeMainCoordinator(navigationController: UINavigationController) -> MainCoordinator {
+        let mainCoordinator = MainCoordinator(
+            dependencies: self,
+            navigationController: navigationController
+        )
+        return mainCoordinator
+    }
     
     // MARK: - Repository
     

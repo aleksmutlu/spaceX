@@ -17,7 +17,9 @@ public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
         
     }
     
-    public func fetchLaunches(onCompletion: @escaping (Result<FetchLaunchesResponseDTO, Error>) -> Void) {
+    public func fetchLaunches(
+        onCompletion: @escaping (Result<FetchLaunchesResponseDTO, Error>) -> Void
+    ) {
         cl.fetch(query: LaunchesQuery()) { result in
             switch result {
             case .success(let queryResult):
