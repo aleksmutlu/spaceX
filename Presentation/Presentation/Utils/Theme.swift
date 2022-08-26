@@ -8,8 +8,8 @@
 import UIKit
 
 enum Theme {   
-    static let dimmedBackgroundColor = UIColor.fromPresentationBundle(named: "DimmedBackground")
-    static let highlightedBackgroundColor = UIColor.fromPresentationBundle(named: "HighlightedBackground")
+    static let mainBackgroundColor = UIColor.fromPresentationBundle(named: "MainBackground")
+    static let contentBackgroundColor = UIColor.fromPresentationBundle(named: "ContentBackground")
     static let primaryText = UIColor.fromPresentationBundle(named: "PrimaryText")
     static let secondaryText = UIColor.fromPresentationBundle(named: "SecondaryText")
 }

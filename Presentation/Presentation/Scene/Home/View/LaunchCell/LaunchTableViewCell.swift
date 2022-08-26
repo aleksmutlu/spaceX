@@ -45,18 +45,15 @@ final class LaunchTableViewCell: UITableViewCell {
     }
     
     private func setDateContainerViewUp() {
-        dateContainerView.layer.cornerRadius = 8
-        dateContainerView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
-        dateContainerView.layer.cornerCurve = .circular
-        dateContainerView.backgroundColor = Theme.highlightedBackgroundColor
+        dateContainerView.backgroundColor = Theme.contentBackgroundColor
     }
     
     private func setContentViewUp() {
-        contentView.backgroundColor = Theme.dimmedBackgroundColor
+        contentView.backgroundColor = Theme.mainBackgroundColor
     }
     
     private func setBottomContainerViewUp() {
-        bottomContainerView.backgroundColor = Theme.highlightedBackgroundColor
+        bottomContainerView.backgroundColor = Theme.contentBackgroundColor
     }
     
     private func setContainerViewUp() {

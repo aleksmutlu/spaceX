@@ -22,8 +22,12 @@ public final class DefaultHomeViewModel: HomeViewModel {
     public var inputs: HomeViewModelInputs { self }
     public var outputs: HomeViewModelOutputs { self }
     
-    private let launchItemsInput: BehaviorRelay<[LaunchListItemViewModel]> = .init(value: [])
+    private let navigationBarTitleInput: PublishSubject<String?> = .init()
+    private let stateInput: BehaviorSubject<HomeState> = .init(value: .idle)
+    
     private let fetchLaunchesUseCase: FetchLaunchesUseCase
+    
+    private var launches: [Launch] = []
     
     public init(fetchLaunchesUseCase: FetchLaunchesUseCase) {
         self.fetchLaunchesUseCase = fetchLaunchesUseCase
@@ -43,6 +47,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
 public protocol HomeViewModelInputs {
     func viewDidLoad()
     func didSelectItem(at index: Int)
+    func refetchTapped()
 }
 
 extension DefaultHomeViewModel: HomeViewModelInputs {
@@ -51,28 +56,37 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         fetchLaunchesUseCase.execute { [weak self] result in
             switch result {
             case .success(let launches):
-                let l = self!.generateLaunchListItemViewModels(from: launches)
-                self?.launchItemsInput.accept(l)
+                self?.launches = launches
+                let l = self?.generateLaunchListItemViewModels(from: launches) ?? []
+                self?.stateInput.onNext(.display(launches: l, animated: true, shouldResetOld: false))
             case .failure(let error):
-            // TODO: Handle error
-                break
+                self?.stateInput.onNext(.error(title: "Oops! Something went wrong..."))
             }
         }
+        
+        // TODO: Unnecessary Reactivity
+        navigationBarTitleInput.onNext("SpaceX Launches")
+
+        stateInput.onNext(.idle)
     }
     
     public func didSelectItem(at index: Int) {
-        print("Navigate to launch: \(launchItemsInput.value[index].missionName)")
+        print("Navigate to launch: \(launches[index].missionName)")
+    }
+    
+    public func refetchTapped() {
+        print("Refetch")
     }
 }
 
 // MARK: - HomeViewModelOutputs
 
 public protocol HomeViewModelOutputs {
-    var launchItems: Observable<[LaunchListItemViewModel]> { get }
+    var navigationBarTitle: Observable<String?>? { get }
+    var state: Observable<HomeState> { get }
 }
 
 extension DefaultHomeViewModel: HomeViewModelOutputs {
-    public var launchItems: Observable<[LaunchListItemViewModel]> {
-        launchItemsInput.asObservable()
-    }
+    public var navigationBarTitle: Observable<String?>? { navigationBarTitleInput.asObservable() }
+    public var state: Observable<HomeState> { stateInput.asObservable() }
 }
