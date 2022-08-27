@@ -8,15 +8,29 @@
 import UIKit
 import RxSwift
 
+class GenericTableDataSource: UITableViewDiffableDataSource<ContinentListItemViewModel, CountryListItemViewModel> {
+  init(tableView: UITableView) {
+    super.init(tableView: tableView) { tableView, indexPath, item in
+        let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
+        cell.populate(with: item)
+      return cell
+    }
+  }
+  
+  override func tableView(_ tableView: UITableView,  titleForHeaderInSection section: Int) -> String? {
+      return snapshot().sectionIdentifiers[section].title
+  }
+}
+
 public enum HomeState {
     case idle
     case loading
     case loadMore
-    case display(launches: [LaunchListItemViewModel], animated: Bool, shouldResetOld: Bool)
+    case display(continents: [ContinentListItemViewModel], animated: Bool, shouldResetOld: Bool)
     case error(title: String)
 }
 
-private typealias LaunchesDataSource = UITableViewDiffableDataSource<Int, LaunchListItemViewModel>
+private typealias LaunchesDataSource = UITableViewDiffableDataSource<String, CountryListItemViewModel>
 private let parallaxSpeed: CGFloat = 10
 
 public final class HomeViewController: BaseViewController {
@@ -28,16 +42,20 @@ public final class HomeViewController: BaseViewController {
     // MARK: - Properties
     
     private let viewModel: HomeViewModel
-    private lazy var dataSource: LaunchesDataSource = {
-        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, viewModel in
-            let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
-            cell.populate(with: viewModel)
-            cell.headerView.imageViewBackground.image = UIImage(named: "bg\(indexPath.row % 4 + 1)", in: .presentation, compatibleWith: nil)
-            // TODO: image population
-            return cell
-        }
-        return dataSource
-    }()
+//    private lazy var dataSource: LaunchesDataSource = {
+//        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, viewModel in
+//
+//
+//
+//            let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
+//            cell.populate(with: viewModel)
+////            cell.headerView.imageViewBackground.image = UIImage(named: "bg\(indexPath.row % 4 + 1)", in: .presentation, compatibleWith: nil)
+//            // TODO: image population
+//            return cell
+//        }
+//        return dataSource
+//    }()
+    private var dataSource: GenericTableDataSource!
     
     
     // MARK: - Life cycle
@@ -61,9 +79,12 @@ public final class HomeViewController: BaseViewController {
         
         setTableViewUp()
         
+        dataSource = GenericTableDataSource(tableView: homeView.tableView)
+        
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
+        
         
         navigationController?.transitioningDelegate = self
     }
@@ -105,8 +126,8 @@ public final class HomeViewController: BaseViewController {
         case .loadMore:
             fatalError()
             
-        case .display(let launches, let animated, let shouldResetOld):
-            display(launchList: launches, animated: animated, shouldResetOld: shouldResetOld)
+        case .display(let continents, let animated, let shouldResetOld):
+            display(continents: continents, animated: animated, shouldResetOld: shouldResetOld)
         case .error(let title):
             displayError(with: title)
         }
@@ -118,13 +139,17 @@ public final class HomeViewController: BaseViewController {
     }
     
     private func display(
-        launchList: [LaunchListItemViewModel],
+        continents: [ContinentListItemViewModel],
         animated: Bool,
         shouldResetOld: Bool
     ) {
-        var snapshot = NSDiffableDataSourceSnapshot<Int, LaunchListItemViewModel>()
-        snapshot.appendSections([1])
-        snapshot.appendItems(launchList, toSection: 1)
+        var snapshot = NSDiffableDataSourceSnapshot<ContinentListItemViewModel, CountryListItemViewModel>()
+        
+        for continent in continents {
+            snapshot.appendSections([continent])
+            snapshot.appendItems(continent.countryListItems, toSection: continent)
+        }
+        
         dataSource.apply(snapshot, animatingDifferences: animated) {
             self.updateParallaxOffsets()
         }
@@ -164,7 +189,7 @@ public final class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.inputs.didSelectItem(at: indexPath.row)
+        viewModel.inputs.didSelectItem(at: indexPath.row, in: indexPath.section)
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {

@@ -22,14 +22,14 @@ public final class DefaultDetailViewModel: DetailViewModel {
     public var inputs: DetailViewModelInputs { self }
     public var outputs: DetailViewModelOutputs { self }
     
-    private let detailSectionInput = PublishSubject<DetailSectionViewModel?>()
+    private let detailSectionInput = PublishSubject<[DetailSectionViewModel]>()
     
     private let fetchLaunchUseCase: FetchLaunchUseCase
-    private var launch: Launch
+    private var launch: Country
     
     // MARK: - Life cycle
     
-    public init(fetchLaunchUseCase: FetchLaunchUseCase, launch: Launch) {
+    public init(fetchLaunchUseCase: FetchLaunchUseCase, launch: Country) {
         self.fetchLaunchUseCase = fetchLaunchUseCase
         self.launch = launch
     }
@@ -44,43 +44,48 @@ public protocol DetailViewModelInputs {
 extension DefaultDetailViewModel: DetailViewModelInputs {
     
     public func viewDidLoad() {
-        fetchLaunchUseCase.execute(launchID: launch.id!) { [weak self] result in
+        fetchLaunchUseCase.execute(countryCode: launch.code) { [weak self] result in
             switch result {
-            case .success(let launch):
-                if let detail = launch.detail {
-                    self?.launch.detail = launch.detail
-                    self?.detailSectionInput.onNext(
+            case .success(let countryDetails):
+                var sectionViewModels = [DetailSectionViewModel]()
+                if !countryDetails.languages.isEmpty {
+                    sectionViewModels.append(
                         DetailSectionViewModel(
-                            sectionTitle: "Details",
-                            detail: detail
+                            sectionTitle: "Languages",
+                            detail: countryDetails.languages.joined(separator: ", ")
                         )
                     )
-                } else {
-                    self?.detailSectionInput.onNext(nil)
                 }
-                
+                if !countryDetails.states.isEmpty {
+                    sectionViewModels.append(
+                        DetailSectionViewModel(
+                            sectionTitle: "States",
+                            detail: countryDetails.states.joined(separator: "\n")
+                        )
+                    )
+                }
+                self?.detailSectionInput.onNext(sectionViewModels)
             case .failure(let error):
-                self?.detailSectionInput.onNext(nil)
+                self?.detailSectionInput.onNext([])
             }
         }
-        
     }
 }
 
 // MARK: - DetailViewModelOutputs
 
 public protocol DetailViewModelOutputs {
-    var headerData: LaunchListItemViewModel { get }
-    var detailSection: Observable<DetailSectionViewModel?> { get }
+    var headerData: CountryListItemViewModel { get }
+    var detailSection: Observable<[DetailSectionViewModel]> { get }
 }
 
 extension DefaultDetailViewModel: DetailViewModelOutputs {
     
-    public var headerData: LaunchListItemViewModel {
-        LaunchListItemViewModel(launch: launch)
+    public var headerData: CountryListItemViewModel {
+        CountryListItemViewModel(launch: launch)
     }
     
-    public var detailSection: Observable<DetailSectionViewModel?> {
+    public var detailSection: Observable<[DetailSectionViewModel]> {
         detailSectionInput.asObservable()
     }
 }

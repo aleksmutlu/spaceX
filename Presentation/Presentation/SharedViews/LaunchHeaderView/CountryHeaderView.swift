@@ -1,5 +1,5 @@
 //
-//  LaunchHeaderView.swift
+//  CountryHeaderView.swift
 //  Presentation
 //
 //  Created by Aleks Mutlu on 26.08.2022.
@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class LaunchHeaderView: NibView {
+final class CountryHeaderView: NibView {
  
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageViewPatch: UIImageView!
@@ -18,6 +18,7 @@ final class LaunchHeaderView: NibView {
     @IBOutlet weak var dateContainerView: UIView!
     @IBOutlet weak var bottomContainerView: UIView!
     @IBOutlet weak var constraintImageViewBackgroundHeight: NSLayoutConstraint!
+    @IBOutlet weak var labelFlag: UILabel!
     
     // MARK: - Life cycle
     

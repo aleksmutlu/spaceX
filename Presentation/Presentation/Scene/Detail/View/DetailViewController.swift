@@ -46,22 +46,27 @@ public final class DetailViewController: BaseViewController {
     private func bindViewModel() {
         viewModel.outputs.detailSection
             .observe(on: MainScheduler.instance)
-            .bind { [weak self] viewModel in
-                if let viewModel = viewModel {
-                    self?.detailView.detailSectionView.popuplate(with: viewModel)
-                } else {
-                    self?.detailView.detailSectionView.isHidden = true
-                }
+            .bind { [weak self] viewModels in
+                self?.populateDetailSections(with: viewModels)
             }
             .disposed(by: disposeBag)
     }
     
     private func populateHeaderView() {
-        detailView.headerView.labelMissionName.text = viewModel.outputs.headerData.missionName
-        detailView.headerView.labelDate.text = viewModel.outputs.headerData.dateString
-        detailView.headerView.labelRocketName.text = viewModel.outputs.headerData.rocketName
-        detailView.headerView.imageViewPatch.kf.setImage(
-            with: viewModel.outputs.headerData.patchImageURL
-        )
+        detailView.headerView.labelMissionName.text = viewModel.outputs.headerData.name
+        detailView.headerView.labelDate.text = viewModel.outputs.headerData.phone
+        detailView.headerView.labelRocketName.text = viewModel.outputs.headerData.capital
+//        detailView.headerView.imageViewPatch.kf.setImage(
+//            with: viewModel.outputs.headerData.patchImageURL
+//        )
+    }
+    
+    private func populateDetailSections(with viewModels: [DetailSectionViewModel]) {
+        for viewModel in viewModels {
+            let detailSectionView = DetailSectionView()
+            detailSectionView.translatesAutoresizingMaskIntoConstraints = false
+            detailSectionView.popuplate(with: viewModel)
+            detailView.stackViewDetailSections.addArrangedSubview(detailSectionView)
+        }
     }
 }

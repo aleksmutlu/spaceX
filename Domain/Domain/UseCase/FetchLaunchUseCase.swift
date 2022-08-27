@@ -8,7 +8,7 @@
 import Foundation
 
 public protocol FetchLaunchUseCase {
-    func execute(launchID: String, onCompletion: @escaping (Result<Launch, Error>) -> Void)
+    func execute(countryCode: String, onCompletion: @escaping (Result<CountryDetails, Error>) -> Void)
 }
 
 public final class DefaultFetchLaunchUseCase: FetchLaunchUseCase {
@@ -19,8 +19,11 @@ public final class DefaultFetchLaunchUseCase: FetchLaunchUseCase {
         self.launchRepository = launchRepository
     }
     
-    public func execute(launchID: String, onCompletion: @escaping (Result<Launch, Error>) -> Void) {
-        launchRepository.fetchLaunch(by: launchID) { result in
+    public func execute(
+        countryCode: String,
+        onCompletion: @escaping (Result<CountryDetails, Error>) -> Void
+    ) {
+        launchRepository.fetchCountry(by: countryCode) { result in
             switch result {
             case .success(let launch):
                 onCompletion(.success(launch))

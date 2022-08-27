@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 public enum HomeViewCoordinatorActions {
-    case select(launch: Launch)
+    case select(launch: Country)
 }
 
 public protocol HomeViewModel: AnyObject {
@@ -29,25 +29,25 @@ public final class DefaultHomeViewModel: HomeViewModel {
     private let navigationBarTitleInput: PublishSubject<String?> = .init()
     private let stateInput: BehaviorSubject<HomeState> = .init(value: .idle)
     
-    private let fetchLaunchesUseCase: FetchLaunchesUseCase
+    private let fetchContinentsUseCase: FetchContinentsUseCase
     
-    private var launches: [Launch] = []
+    private var continents: [Continent] = []
     private let onCoordinatorActionTrigger: (HomeViewCoordinatorActions) -> Void
     
     public init(
-        fetchLaunchesUseCase: FetchLaunchesUseCase,
+        fetchContinentsUseCase: FetchContinentsUseCase,
         onCoordinatorActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
     ) {
-        self.fetchLaunchesUseCase = fetchLaunchesUseCase
+        self.fetchContinentsUseCase = fetchContinentsUseCase
         self.onCoordinatorActionTrigger = onCoordinatorActionTrigger
     }
     
     // MARK: - Helpers
     
     private func generateLaunchListItemViewModels(
-        from launches: [Launch]
-    ) -> [LaunchListItemViewModel] {
-        launches.map(LaunchListItemViewModel.init)
+        from continents: [Continent]
+    ) -> [ContinentListItemViewModel] {
+        continents.map(ContinentListItemViewModel.init)
     }
 }
 
@@ -55,19 +55,19 @@ public final class DefaultHomeViewModel: HomeViewModel {
 
 public protocol HomeViewModelInputs {
     func viewDidLoad()
-    func didSelectItem(at index: Int)
+    func didSelectItem(at index: Int, in section: Int)
     func refetchTapped()
 }
 
 extension DefaultHomeViewModel: HomeViewModelInputs {
     
     public func viewDidLoad() {
-        fetchLaunchesUseCase.execute { [weak self] result in
+        fetchContinentsUseCase.execute { [weak self] result in
             switch result {
-            case .success(let launches):
-                self?.launches = launches
-                let l = self?.generateLaunchListItemViewModels(from: launches) ?? []
-                self?.stateInput.onNext(.display(launches: l, animated: true, shouldResetOld: false))
+            case .success(let continents):
+                self?.continents = continents
+                let viewModels = self?.generateLaunchListItemViewModels(from: continents) ?? []
+                self?.stateInput.onNext(.display(continents: viewModels, animated: false, shouldResetOld: false))
             case .failure(let error):
                 self?.stateInput.onNext(.error(title: "Oops! Something went wrong..."))
             }
@@ -79,9 +79,10 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         stateInput.onNext(.idle)
     }
     
-    public func didSelectItem(at index: Int) {
-        let launch = launches[index]
-        onCoordinatorActionTrigger(.select(launch: launch))
+    public func didSelectItem(at index: Int, in section: Int) {
+        let continent = continents[section]
+        let country = continent.countries[index]
+        onCoordinatorActionTrigger(.select(launch: country))
     }
     
     public func refetchTapped() {

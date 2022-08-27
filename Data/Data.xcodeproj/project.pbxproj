@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5902A65728B90B860074087A /* DummyLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5902A65628B90B860074087A /* DummyLaunchDataStore.swift */; };
 		5916BCE028B3FC5C00F51AF6 /* Data.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCDF28B3FC5C00F51AF6 /* Data.docc */; };
 		5916BCE628B3FC5C00F51AF6 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BCDB28B3FC5C00F51AF6 /* Data.framework */; };
 		5916BCEB28B3FC5C00F51AF6 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCEA28B3FC5C00F51AF6 /* DataTests.swift */; };
@@ -18,15 +17,12 @@
 		5930672728B51F44004913B7 /* ApolloCodegenLib in Frameworks */ = {isa = PBXBuildFile; productRef = 5930672628B51F44004913B7 /* ApolloCodegenLib */; };
 		5930672928B51F44004913B7 /* ApolloUtils in Frameworks */ = {isa = PBXBuildFile; productRef = 5930672828B51F44004913B7 /* ApolloUtils */; };
 		5930672B28B51FA7004913B7 /* Queries.graphql in Resources */ = {isa = PBXBuildFile; fileRef = 5930672A28B51FA7004913B7 /* Queries.graphql */; };
-		5930672E28B5274E004913B7 /* FetchLaunchesReponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930672D28B5274E004913B7 /* FetchLaunchesReponseDTO.swift */; };
 		5930673028B53C90004913B7 /* SpaceXAPI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */; };
 		5930676A28B65D92004913B7 /* SpaceXAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930676928B65D92004913B7 /* SpaceXAPI.swift */; };
 		593158EF28B5085B000D2DCC /* DefaultLaunchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158EE28B5085B000D2DCC /* DefaultLaunchRepository.swift */; };
 		593158F128B508E4000D2DCC /* RemoteLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */; };
 		593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */; };
 		5931590D28B51887000D2DCC /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 5931590C28B51887000D2DCC /* schema.json */; };
-		5998C96228B9EE7E00D2BA58 /* RESTLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */; };
-		5998C96628B9F1D200D2BA58 /* RESTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96528B9F1D200D2BA58 /* RESTAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,7 +49,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		5902A65628B90B860074087A /* DummyLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DummyLaunchDataStore.swift; sourceTree = "<group>"; };
 		5916BCDB28B3FC5C00F51AF6 /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BCDE28B3FC5C00F51AF6 /* Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
 		5916BCDF28B3FC5C00F51AF6 /* Data.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Data.docc; sourceTree = "<group>"; };
@@ -61,15 +56,12 @@
 		5916BCEA28B3FC5C00F51AF6 /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		5916BD0628B403C500F51AF6 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5930672A28B51FA7004913B7 /* Queries.graphql */ = {isa = PBXFileReference; lastKnownFileType = text; path = Queries.graphql; sourceTree = "<group>"; };
-		5930672D28B5274E004913B7 /* FetchLaunchesReponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLaunchesReponseDTO.swift; sourceTree = "<group>"; };
 		5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpaceXAPI+Extensions.swift"; sourceTree = "<group>"; };
 		5930676928B65D92004913B7 /* SpaceXAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXAPI.swift; sourceTree = "<group>"; };
 		593158EE28B5085B000D2DCC /* DefaultLaunchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLaunchRepository.swift; sourceTree = "<group>"; };
 		593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchDataStore.swift; sourceTree = "<group>"; };
 		593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLLaunchDataStore.swift; sourceTree = "<group>"; };
 		5931590C28B51887000D2DCC /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = Data/schema.json; sourceTree = SOURCE_ROOT; };
-		5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTLaunchDataStore.swift; sourceTree = "<group>"; };
-		5998C96528B9F1D200D2BA58 /* RESTAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -143,18 +135,9 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		592AE49A28BA31F500F68B6A /* Dummy */ = {
-			isa = PBXGroup;
-			children = (
-				5902A65628B90B860074087A /* DummyLaunchDataStore.swift */,
-			);
-			path = Dummy;
-			sourceTree = "<group>";
-		};
 		5930672C28B5273C004913B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				5930672D28B5274E004913B7 /* FetchLaunchesReponseDTO.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -188,8 +171,6 @@
 		593158F528B50E79000D2DCC /* RemoteLaunchDataStore */ = {
 			isa = PBXGroup;
 			children = (
-				592AE49A28BA31F500F68B6A /* Dummy */,
-				5998C96028B9EE4400D2BA58 /* REST */,
 				593158F628B50E94000D2DCC /* GraphQL */,
 				593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */,
 				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
@@ -208,7 +189,6 @@
 		5931590A28B51854000D2DCC /* Base */ = {
 			isa = PBXGroup;
 			children = (
-				5998C96428B9F1B600D2BA58 /* REST */,
 				5931590B28B5185C000D2DCC /* GraphQL */,
 			);
 			path = Base;
@@ -221,22 +201,6 @@
 				5931590C28B51887000D2DCC /* schema.json */,
 			);
 			path = GraphQL;
-			sourceTree = "<group>";
-		};
-		5998C96028B9EE4400D2BA58 /* REST */ = {
-			isa = PBXGroup;
-			children = (
-				5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */,
-			);
-			path = REST;
-			sourceTree = "<group>";
-		};
-		5998C96428B9F1B600D2BA58 /* REST */ = {
-			isa = PBXGroup;
-			children = (
-				5998C96528B9F1D200D2BA58 /* RESTAPI.swift */,
-			);
-			path = REST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -383,13 +347,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				5930673028B53C90004913B7 /* SpaceXAPI+Extensions.swift in Sources */,
-				5998C96228B9EE7E00D2BA58 /* RESTLaunchDataStore.swift in Sources */,
-				5998C96628B9F1D200D2BA58 /* RESTAPI.swift in Sources */,
 				5930676A28B65D92004913B7 /* SpaceXAPI.swift in Sources */,
 				593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */,
-				5902A65728B90B860074087A /* DummyLaunchDataStore.swift in Sources */,
 				593158EF28B5085B000D2DCC /* DefaultLaunchRepository.swift in Sources */,
-				5930672E28B5274E004913B7 /* FetchLaunchesReponseDTO.swift in Sources */,
 				593158F128B508E4000D2DCC /* RemoteLaunchDataStore.swift in Sources */,
 				5916BCE028B3FC5C00F51AF6 /* Data.docc in Sources */,
 			);

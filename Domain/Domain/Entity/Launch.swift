@@ -7,46 +7,40 @@
 
 import Foundation
 
-public struct Launch {
-    public let id: String?
-    public let missionName: String?
-    public let date: Date?
-    public let rocketName: String?
-    public let patchImageURL: URL?
+public struct Continent {
+    public let code: String
+    public let name: String
+    public let countries: [Country]
     
-    public var detail: String? = nil
-    
-    public init(
-        id: String?,
-        missionName: String?,
-        dateString: String?,
-        rocketName: String?,
-        patchImageURLString: String?,
-        detail: String?
-    ) {
-        self.id = id
-        self.missionName = missionName
-        if let dateString = dateString {
-            self.date = dateFormatter.date(from: dateString)
-        } else {
-            self.date = nil
-        }
-        self.rocketName = rocketName
-        if let patchImageURLString = patchImageURLString {
-            self.patchImageURL = URL(string: patchImageURLString)
-        } else {
-            self.patchImageURL = nil
-        }
-        self.detail = detail
+    public init(code: String, name: String, countries: [Country]) {
+        self.code = code
+        self.name = name
+        self.countries = countries
     }
 }
 
+public struct Country {
+    public let code: String
+    public let name: String
+    public let capital: String?
+    public let emoji: String?
+    public let phone: String?
+    
+    public init(code: String, name: String, capital: String?, emoji: String?, phone: String?) {
+        self.code = code
+        self.name = name
+        self.capital = capital
+        self.emoji = emoji
+        self.phone = phone
+    }
+}
 
-// TODO: Move this formatter into a class with other formatters
-private let dateFormatter: DateFormatter = {
-    let dateFormatter = DateFormatter()
-    dateFormatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-        dateFormatter.timeZone = TimeZone.current
-        dateFormatter.locale = Locale.current
-    return dateFormatter
-}()
+public struct CountryDetails {
+    public let states: [String]
+    public let languages: [String]
+    
+    public init(states: [String], languages: [String]) {
+        self.states = states
+        self.languages = languages
+    }
+}

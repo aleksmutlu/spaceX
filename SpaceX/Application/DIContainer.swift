@@ -14,9 +14,7 @@ import UIKit
 final class DIContainer: MainCoordinatorDependencies {
     
     private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = {
-//        GraphQLLaunchDataStore()
-//        DummyLaunchDataStore()
-        RESTLaunchDataStore()
+        GraphQLLaunchDataStore()
     }()
     
     // MARK: - Coordinator
@@ -50,6 +48,12 @@ final class DIContainer: MainCoordinatorDependencies {
         return fetchLaunchUseCase
     }
     
+    func makeFetchContinentsUseCase() -> some FetchContinentsUseCase {
+        let launchRepository = makeLaunchRepository()
+        let fetchLaunchUseCase = DefaultFetchContinentsUseCase(launchRepository: launchRepository)
+        return fetchLaunchUseCase
+    }
+    
     // MARK: - Home
 
     func makeHomeScene(
@@ -63,9 +67,9 @@ final class DIContainer: MainCoordinatorDependencies {
     private func makeHomeViewModel(
         onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
     ) -> some HomeViewModel {
-        let fetchLaunchesUseCase = makeFetchLaunchesUseCase()
+        let fetchContinentsUseCase = makeFetchContinentsUseCase()
         let homeViewModel = DefaultHomeViewModel(
-            fetchLaunchesUseCase: fetchLaunchesUseCase,
+            fetchContinentsUseCase: fetchContinentsUseCase,
             onCoordinatorActionTrigger: onHomeActionTrigger
         )
         return homeViewModel
@@ -73,13 +77,13 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Detail
     
-    func makeDetailScene(for launch: Launch) -> DetailViewController {
+    func makeDetailScene(for launch: Country) -> DetailViewController {
         let detailViewModel = makeDetailViewModel(launch: launch)
         let detailViewController = DetailViewController(viewModel: detailViewModel)
         return detailViewController
     }
     
-    private func makeDetailViewModel(launch: Launch) -> some DetailViewModel {
+    private func makeDetailViewModel(launch: Country) -> some DetailViewModel {
         let detailViewModel = DefaultDetailViewModel(
             fetchLaunchUseCase: makeFetchLaunchUseCase(),
             launch: launch

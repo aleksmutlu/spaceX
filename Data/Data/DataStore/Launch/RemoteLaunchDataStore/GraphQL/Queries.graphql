@@ -1,13 +1,38 @@
-query Launches {
-  launchesPast(limit: 20, order: "desc", sort: "launch_date_utc") {
-    launch_date_utc
-    mission_name
-    id
-    links {
-      mission_patch_small
+query Continents {
+  continents {
+    code
+    name
+    countries {
+      code
+        name
+        capital
+        emoji
+      phone
     }
-    rocket {
-      rocket_name
+  }
+}
+
+query Countries {
+  countries(filter: {
+    continent: {
+      eq: "OC"
     }
+  }) {
+    code
+    name
+    capital
+    emoji
+  }
+}
+
+query Country($code:ID!) {
+  country(code: $code) {
+    languages {
+      name
+    }
+    states {
+      name
+    }
+    currency
   }
 }

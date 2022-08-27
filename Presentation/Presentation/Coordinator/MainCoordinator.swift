@@ -14,7 +14,7 @@ public protocol MainCoordinatorDependencies {
         onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
     ) -> HomeViewController
     
-    func makeDetailScene(for launch: Launch) -> DetailViewController
+    func makeDetailScene(for launch: Country) -> DetailViewController
 }
 
 public final class MainCoordinator: Coordinator {
@@ -44,7 +44,7 @@ public final class MainCoordinator: Coordinator {
         navigationController.viewControllers = [homeViewController]
     }
     
-    private func showDetail(of launch: Launch) {
+    private func showDetail(of launch: Country) {
         let detailViewController = dependencies.makeDetailScene(for: launch)
         navigationController.present(detailViewController, animated: true)
     }

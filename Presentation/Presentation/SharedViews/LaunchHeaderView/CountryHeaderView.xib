@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="LaunchHeaderView" customModule="Presentation" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CountryHeaderView" customModule="Presentation" customModuleProvider="target">
             <connections>
                 <outlet property="bottomContainerView" destination="NHk-3u-lfU" id="LBF-8r-84I"/>
                 <outlet property="constraintImageViewBackgroundHeight" destination="PiZ-AH-4wx" id="qli-Ib-wnY"/>
@@ -17,6 +17,7 @@
                 <outlet property="imageViewBackground" destination="MFk-lS-LkF" id="zLv-Dj-G9v"/>
                 <outlet property="imageViewPatch" destination="P7G-Pz-v8I" id="f9w-2j-MhP"/>
                 <outlet property="labelDate" destination="pSf-eM-YLg" id="Hat-BX-ay7"/>
+                <outlet property="labelFlag" destination="2jF-WE-MjG" id="3oQ-46-boS"/>
                 <outlet property="labelMissionName" destination="rbH-e9-65x" id="AAB-mT-SOz"/>
                 <outlet property="labelRocketName" destination="dYP-AO-cjh" id="Nrh-xG-9cq"/>
             </connections>
@@ -32,7 +33,7 @@
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="So5-V6-cS9">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="186"/>
                             <subviews>
-                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="bg4" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-lS-LkF">
+                                <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="staticmap" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-lS-LkF">
                                     <rect key="frame" x="0.0" y="-20" width="400" height="186"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
@@ -44,12 +45,22 @@
                                         <constraint firstAttribute="width" secondItem="P7G-Pz-v8I" secondAttribute="height" multiplier="1:1" id="q1h-JL-PQE"/>
                                     </constraints>
                                 </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="🏳️" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2jF-WE-MjG">
+                                    <rect key="frame" x="16" y="63" width="60" height="60"/>
+                                    <fontDescription key="fontDescription" type="system" pointSize="70"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
                             </subviews>
                             <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             <constraints>
+                                <constraint firstItem="2jF-WE-MjG" firstAttribute="top" secondItem="P7G-Pz-v8I" secondAttribute="top" id="Dg4-NT-L3O"/>
+                                <constraint firstItem="2jF-WE-MjG" firstAttribute="trailing" secondItem="P7G-Pz-v8I" secondAttribute="trailing" id="J1i-rA-2FN"/>
                                 <constraint firstItem="P7G-Pz-v8I" firstAttribute="leading" secondItem="So5-V6-cS9" secondAttribute="leading" constant="16" id="Knc-q3-xhG"/>
                                 <constraint firstAttribute="height" constant="186" id="PiZ-AH-4wx"/>
+                                <constraint firstItem="2jF-WE-MjG" firstAttribute="leading" secondItem="P7G-Pz-v8I" secondAttribute="leading" id="bUF-MJ-ByJ"/>
                                 <constraint firstItem="P7G-Pz-v8I" firstAttribute="centerY" secondItem="So5-V6-cS9" secondAttribute="centerY" id="p9z-z5-FNA"/>
+                                <constraint firstItem="2jF-WE-MjG" firstAttribute="bottom" secondItem="P7G-Pz-v8I" secondAttribute="bottom" id="vpX-3P-Cfc"/>
                             </constraints>
                         </view>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NHk-3u-lfU">
@@ -116,7 +127,7 @@
                 </view>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
                 <constraint firstItem="gGS-A5-QRR" firstAttribute="bottom" secondItem="vUN-kp-3ea" secondAttribute="bottom" id="2Dx-Nw-3mP"/>
                 <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="gGS-A5-QRR" secondAttribute="trailing" id="3tS-Hy-wYs"/>
@@ -128,7 +139,7 @@
         </view>
     </objects>
     <resources>
-        <image name="bg4" width="457" height="200"/>
+        <image name="staticmap" width="200" height="100"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

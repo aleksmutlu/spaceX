@@ -12,7 +12,7 @@ final class LaunchTableViewCell: UITableViewCell {
 
     // MARK: - Views
     
-    @IBOutlet weak var headerView: LaunchHeaderView!
+    @IBOutlet weak var headerView: CountryHeaderView!
     
     // MARK: - Life cycle
     
@@ -30,10 +30,11 @@ final class LaunchTableViewCell: UITableViewCell {
 
     // MARK: -
     
-    func populate(with viewModel: LaunchListItemViewModel) {
-        headerView.labelMissionName.text = viewModel.missionName
-        headerView.labelDate.text = viewModel.dateString
-        headerView.labelRocketName.text = viewModel.rocketName
-        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
+    func populate(with viewModel: CountryListItemViewModel) {
+        headerView.labelMissionName.text = viewModel.name
+        headerView.labelDate.text = viewModel.phone
+        headerView.labelRocketName.text = viewModel.capital
+//        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
+        headerView.labelFlag.text = viewModel.flag
     }
 }

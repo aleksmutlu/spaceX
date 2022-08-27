@@ -15,7 +15,18 @@ public final class DefaultLaunchRepository: LaunchRepository {
         self.remoteLaunchDataStore = remoteLaunchDataStore
     }
     
-    public func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void) {
+    public func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) {
+        remoteLaunchDataStore.fetchContinents { result in
+            switch result {
+            case .success(let continents):
+                onCompletion(.success(continents))
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
+    }
+    
+    public func fetchLaunches(onCompletion: @escaping (Result<[Country], Error>) -> Void) {
         remoteLaunchDataStore.fetchLaunches { result in
             switch result {
             case .success(let launches):
@@ -26,8 +37,11 @@ public final class DefaultLaunchRepository: LaunchRepository {
         }
     }
     
-    public func fetchLaunch(by id: String, onCompletion: @escaping (Result<Launch, Error>) -> Void) {
-        remoteLaunchDataStore.fetchLaunch(by: id) { result in
+    public func fetchCountry(
+        by code: String,
+        onCompletion: @escaping (Result<CountryDetails, Error>) -> Void
+    ) {
+        remoteLaunchDataStore.fetchCountry(by: code) { result in
             switch result {
             case .success(let launch):
                 onCompletion(.success(launch))

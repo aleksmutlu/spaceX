@@ -12,22 +12,18 @@ import Foundation
 public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
     
     // TODO: inject
-    let cl = ApolloClient(url: URL(string: "https://api.spacex.land/graphql/")!)
+    let cl = ApolloClient(url: URL(string: "https://countries.trevorblades.com/")!)
     
     public init() {
         
     }
     
-    public func fetchLaunches(
-        onCompletion: @escaping (Result<[Launch], Error>) -> Void
-    ) {
-        cl.fetch(query: LaunchesQuery()) { result in
+    public func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) {
+        cl.fetch(query: ContinentsQuery(), cachePolicy: .returnCacheDataElseFetch) { result in
             switch result {
             case .success(let queryResult):
-                
-                // TODO: Error Handling?
-                if let domain = queryResult.data?.toDomain() {
-                    onCompletion(.success(domain))
+                if let continents = queryResult.data?.toDomain() {
+                    onCompletion(.success(continents))
                 }
             case .failure(let error):
                 onCompletion(.failure(error))
@@ -35,10 +31,39 @@ public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
         }
     }
     
-    public func fetchLaunch(
-        by id: String,
-        onCompletion: @escaping (Result<Launch, Error>) -> Void
+    public func fetchLaunches(
+        onCompletion: @escaping (Result<[Country], Error>) -> Void
     ) {
-            // TODO:  implement
+//        cl.fetch(query: CountriesQuery()) { result in
+//            switch result {
+//            case .success(let queryResult):
+//
+//                // TODO: Error Handling?
+//                if let domain = queryResult.data?.toDomain() {
+//                    onCompletion(.success(domain))
+//                }
+//            case .failure(let error):
+//                onCompletion(.failure(error))
+//            }
+//        }
+    }
+
+    public func fetchCountry(
+        by code: String,
+        onCompletion: @escaping (Result<CountryDetails, Error>) -> Void
+    ) {
+        cl.fetch(
+            query: CountryQuery(code: code),
+            cachePolicy: .returnCacheDataElseFetch
+        ) { result in
+            switch result {
+            case .success(let queryResult):
+                if let domain = queryResult.data?.country?.toDomain() {
+                    onCompletion(.success(domain))
+                }
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
     }
 }

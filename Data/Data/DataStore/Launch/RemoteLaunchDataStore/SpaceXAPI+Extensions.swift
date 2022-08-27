@@ -8,24 +8,33 @@
 import Domain
 import Foundation
 
-extension LaunchesQuery.Data {
+extension ContinentsQuery.Data {
     
-    func toDomain() -> [Launch] {
-        let launches = launchesPast?.compactMap { $0?.toDomain() } ?? []
-        return launches
+    func toDomain() -> [Domain.Continent] {
+        continents.map { $0.toDomain() }
     }
 }
 
-extension LaunchesQuery.Data.LaunchesPast {
+extension ContinentsQuery.Data.Continent {
     
-    func toDomain() -> Launch {
-        Launch(
-            id: id,
-            missionName: missionName,
-            dateString: launchDateUtc,
-            rocketName: rocket?.rocketName,
-            patchImageURLString: links?.missionPatchSmall,
-            detail: nil
+    func toDomain() -> Domain.Continent {
+        Domain.Continent(code: code, name: name, countries: countries.map { $0.toDomain() })
+    }
+}
+
+extension ContinentsQuery.Data.Continent.Country {
+    
+    func toDomain() -> Domain.Country {
+        Domain.Country(code: code, name: name, capital: capital, emoji: emoji, phone: phone)
+    }
+}
+
+extension CountryQuery.Data.Country {
+    
+    func toDomain() -> Domain.CountryDetails {
+        Domain.CountryDetails(
+            states: states.map { $0.name },
+            languages: languages.compactMap { $0.name }
         )
     }
 }

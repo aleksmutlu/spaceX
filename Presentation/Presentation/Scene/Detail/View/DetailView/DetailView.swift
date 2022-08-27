@@ -9,9 +9,8 @@ import UIKit
 
 final class DetailView: NibView {
     
-    @IBOutlet weak var headerView: LaunchHeaderView!
-    @IBOutlet weak var detailSectionView: DetailSectionView!
-    
+    @IBOutlet weak var headerView: CountryHeaderView!
+    @IBOutlet weak var stackViewDetailSections: UIStackView!
     
     override func setUpViews() {
         super.setUpViews()

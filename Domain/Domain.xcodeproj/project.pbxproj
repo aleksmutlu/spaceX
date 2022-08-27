@@ -11,6 +11,7 @@
 		5916BCC228B3FC4800F51AF6 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BCB728B3FC4800F51AF6 /* Domain.framework */; };
 		5916BCC728B3FC4800F51AF6 /* DomainTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCC628B3FC4800F51AF6 /* DomainTests.swift */; };
 		5916BCC828B3FC4800F51AF6 /* Domain.h in Headers */ = {isa = PBXBuildFile; fileRef = 5916BCBA28B3FC4800F51AF6 /* Domain.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		592314EC28BA82B900AD2128 /* FetchContinentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */; };
 		592AE49928BA2ED300F68B6A /* FetchLaunchUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592AE49828BA2ED300F68B6A /* FetchLaunchUseCase.swift */; };
 		593158E528B5049F000D2DCC /* FetchLaunchesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */; };
 		593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E728B50502000D2DCC /* LaunchRepository.swift */; };
@@ -33,6 +34,7 @@
 		5916BCBB28B3FC4800F51AF6 /* Domain.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Domain.docc; sourceTree = "<group>"; };
 		5916BCC128B3FC4800F51AF6 /* DomainTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DomainTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BCC628B3FC4800F51AF6 /* DomainTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DomainTests.swift; sourceTree = "<group>"; };
+		592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchContinentsUseCase.swift; sourceTree = "<group>"; };
 		592AE49828BA2ED300F68B6A /* FetchLaunchUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLaunchUseCase.swift; sourceTree = "<group>"; };
 		593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchLaunchesUseCase.swift; sourceTree = "<group>"; };
 		593158E728B50502000D2DCC /* LaunchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRepository.swift; sourceTree = "<group>"; };
@@ -101,6 +103,7 @@
 			children = (
 				593158E428B5049F000D2DCC /* FetchLaunchesUseCase.swift */,
 				592AE49828BA2ED300F68B6A /* FetchLaunchUseCase.swift */,
+				592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -233,6 +236,7 @@
 				593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */,
 				5916BCBC28B3FC4800F51AF6 /* Domain.docc in Sources */,
 				593158EB28B5062F000D2DCC /* Launch.swift in Sources */,
+				592314EC28BA82B900AD2128 /* FetchContinentsUseCase.swift in Sources */,
 				593158E528B5049F000D2DCC /* FetchLaunchesUseCase.swift in Sources */,
 				592AE49928BA2ED300F68B6A /* FetchLaunchUseCase.swift in Sources */,
 			);
