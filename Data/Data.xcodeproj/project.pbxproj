@@ -25,6 +25,8 @@
 		593158F128B508E4000D2DCC /* RemoteLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */; };
 		593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */; };
 		5931590D28B51887000D2DCC /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 5931590C28B51887000D2DCC /* schema.json */; };
+		5998C96228B9EE7E00D2BA58 /* RESTLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */; };
+		5998C96628B9F1D200D2BA58 /* RESTAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96528B9F1D200D2BA58 /* RESTAPI.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -66,6 +68,8 @@
 		593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchDataStore.swift; sourceTree = "<group>"; };
 		593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLLaunchDataStore.swift; sourceTree = "<group>"; };
 		5931590C28B51887000D2DCC /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = Data/schema.json; sourceTree = SOURCE_ROOT; };
+		5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTLaunchDataStore.swift; sourceTree = "<group>"; };
+		5998C96528B9F1D200D2BA58 /* RESTAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RESTAPI.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -185,8 +189,10 @@
 		593158F528B50E79000D2DCC /* RemoteLaunchDataStore */ = {
 			isa = PBXGroup;
 			children = (
+				5998C96028B9EE4400D2BA58 /* REST */,
 				593158F628B50E94000D2DCC /* GraphQL */,
 				593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */,
+				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
 			);
 			path = RemoteLaunchDataStore;
 			sourceTree = "<group>";
@@ -202,6 +208,7 @@
 		5931590A28B51854000D2DCC /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				5998C96428B9F1B600D2BA58 /* REST */,
 				5931590B28B5185C000D2DCC /* GraphQL */,
 			);
 			path = Base;
@@ -211,10 +218,25 @@
 			isa = PBXGroup;
 			children = (
 				5930676928B65D92004913B7 /* SpaceXAPI.swift */,
-				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
 				5931590C28B51887000D2DCC /* schema.json */,
 			);
 			path = GraphQL;
+			sourceTree = "<group>";
+		};
+		5998C96028B9EE4400D2BA58 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				5998C96128B9EE7E00D2BA58 /* RESTLaunchDataStore.swift */,
+			);
+			path = REST;
+			sourceTree = "<group>";
+		};
+		5998C96428B9F1B600D2BA58 /* REST */ = {
+			isa = PBXGroup;
+			children = (
+				5998C96528B9F1D200D2BA58 /* RESTAPI.swift */,
+			);
+			path = REST;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -361,6 +383,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5930673028B53C90004913B7 /* SpaceXAPI+Extensions.swift in Sources */,
+				5998C96228B9EE7E00D2BA58 /* RESTLaunchDataStore.swift in Sources */,
+				5998C96628B9F1D200D2BA58 /* RESTAPI.swift in Sources */,
 				5930676A28B65D92004913B7 /* SpaceXAPI.swift in Sources */,
 				593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */,
 				5902A65728B90B860074087A /* DummyLaunchDataStore.swift in Sources */,

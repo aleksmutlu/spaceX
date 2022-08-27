@@ -13,7 +13,11 @@ import UIKit
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
 final class DIContainer: MainCoordinatorDependencies {
     
-    private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = DummyLaunchDataStore() //GraphQLLaunchDataStore()
+    private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = {
+//        GraphQLLaunchDataStore()
+//        DummyLaunchDataStore()
+        RESTLaunchDataStore()
+    }()
     
     // MARK: - Coordinator
     

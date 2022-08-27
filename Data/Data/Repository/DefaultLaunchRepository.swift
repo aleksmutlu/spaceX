@@ -18,8 +18,7 @@ public final class DefaultLaunchRepository: LaunchRepository {
     public func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void) {
         remoteLaunchDataStore.fetchLaunches { result in
             switch result {
-            case .success(let response):
-                let launches = response.toDomain()
+            case .success(let launches):
                 onCompletion(.success(launches))
             case .failure(let error):
                 onCompletion(.failure(error))
