@@ -24,7 +24,8 @@ extension LaunchesQuery.Data.LaunchesPast {
             missionName: missionName,
             dateString: launchDateUtc,
             rocketName: rocket?.rocketName,
-            patchImageURLString: links?.missionPatchSmall
+            patchImageURLString: links?.missionPatchSmall,
+            detail: nil
         )
     }
 }

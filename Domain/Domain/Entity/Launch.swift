@@ -14,12 +14,15 @@ public struct Launch {
     public let rocketName: String?
     public let patchImageURL: URL?
     
+    public var detail: String? = nil
+    
     public init(
         id: String?,
         missionName: String?,
         dateString: String?,
         rocketName: String?,
-        patchImageURLString: String?
+        patchImageURLString: String?,
+        detail: String?
     ) {
         self.id = id
         self.missionName = missionName
@@ -34,6 +37,7 @@ public struct Launch {
         } else {
             self.patchImageURL = nil
         }
+        self.detail = detail
     }
 }
 

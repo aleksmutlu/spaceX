@@ -3,6 +3,7 @@
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="20020"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -10,6 +11,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailView" customModule="Presentation" customModuleProvider="target">
             <connections>
+                <outlet property="detailSectionView" destination="WoP-Mc-NIl" id="uTP-9p-IGE"/>
                 <outlet property="headerView" destination="pgQ-Xs-IgB" id="MIV-vn-nYV"/>
             </connections>
         </placeholder>
@@ -18,27 +20,81 @@
             <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgQ-Xs-IgB" customClass="LaunchHeaderView" customModule="Presentation" customModuleProvider="target">
-                    <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
-                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wng-T1-02U">
+                    <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnm-yp-Wcs">
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
+                            <subviews>
+                                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="44" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-Zd-RYz">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="2000"/>
+                                    <subviews>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgQ-Xs-IgB" customClass="LaunchHeaderView" customModule="Presentation" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                                            <color key="backgroundColor" name="SecondaryText"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="260" placeholder="YES" id="3eI-bs-QrR"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WoP-Mc-NIl" customClass="DetailSectionView" customModule="Presentation" customModuleProvider="target">
+                                            <rect key="frame" x="0.0" y="304" width="414" height="100"/>
+                                            <color key="backgroundColor" systemColor="systemMintColor"/>
+                                            <constraints>
+                                                <constraint firstAttribute="height" constant="100" placeholder="YES" id="u63-In-oBk"/>
+                                            </constraints>
+                                        </view>
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ac0-CI-rdV">
+                                            <rect key="frame" x="0.0" y="448" width="414" height="1552"/>
+                                            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                        </view>
+                                    </subviews>
+                                </stackView>
+                            </subviews>
+                            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="MeA-Zd-RYz" secondAttribute="trailing" id="Tzx-ac-hyc"/>
+                                <constraint firstItem="MeA-Zd-RYz" firstAttribute="top" secondItem="wnm-yp-Wcs" secondAttribute="top" id="Ytc-5Q-z5I"/>
+                                <constraint firstAttribute="height" constant="2000" id="ixb-7z-6pp"/>
+                                <constraint firstAttribute="bottom" secondItem="MeA-Zd-RYz" secondAttribute="bottom" id="lf6-CM-hEA"/>
+                                <constraint firstItem="MeA-Zd-RYz" firstAttribute="leading" secondItem="wnm-yp-Wcs" secondAttribute="leading" id="wjN-dX-qdR"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" name="MainBackground"/>
                     <constraints>
-                        <constraint firstAttribute="height" constant="260" id="3eI-bs-QrR"/>
+                        <constraint firstItem="wnm-yp-Wcs" firstAttribute="bottom" secondItem="YgU-61-RGx" secondAttribute="bottom" id="7qV-Y8-f7K"/>
+                        <constraint firstItem="wnm-yp-Wcs" firstAttribute="leading" secondItem="YgU-61-RGx" secondAttribute="leading" id="DBp-Bf-lCq"/>
+                        <constraint firstItem="wnm-yp-Wcs" firstAttribute="width" secondItem="21M-Q8-FQE" secondAttribute="width" id="dEn-Db-xOP"/>
+                        <constraint firstItem="wnm-yp-Wcs" firstAttribute="top" secondItem="YgU-61-RGx" secondAttribute="top" id="sVV-iT-77R"/>
+                        <constraint firstItem="wnm-yp-Wcs" firstAttribute="trailing" secondItem="YgU-61-RGx" secondAttribute="trailing" id="shL-76-Vpj"/>
                     </constraints>
-                </view>
+                    <viewLayoutGuide key="contentLayoutGuide" id="YgU-61-RGx"/>
+                    <viewLayoutGuide key="frameLayoutGuide" id="21M-Q8-FQE"/>
+                </scrollView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
-            <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
-                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="pgQ-Xs-IgB" secondAttribute="trailing" id="Kh8-dz-IyE"/>
-                <constraint firstItem="pgQ-Xs-IgB" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" id="dgf-uS-nHu"/>
-                <constraint firstItem="pgQ-Xs-IgB" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="nbt-8z-E17"/>
+                <constraint firstAttribute="bottom" secondItem="wng-T1-02U" secondAttribute="bottom" id="O4f-wc-iyF"/>
+                <constraint firstAttribute="trailing" secondItem="wng-T1-02U" secondAttribute="trailing" id="Z7R-6h-kSJ"/>
+                <constraint firstItem="wng-T1-02U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fKu-Wn-oUi"/>
+                <constraint firstItem="wng-T1-02U" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="rXN-fB-aM6"/>
             </constraints>
             <point key="canvasLocation" x="137.68115942028987" y="113.83928571428571"/>
         </view>
     </objects>
     <resources>
+        <namedColor name="MainBackground">
+            <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </namedColor>
+        <namedColor name="SecondaryText">
+            <color red="0.47600001096725464" green="0.47600001096725464" blue="0.47600001096725464" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+        <systemColor name="systemMintColor">
+            <color red="0.0" green="0.7803921568627451" blue="0.74509803921568629" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>
     </resources>
 </document>

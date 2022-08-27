@@ -44,6 +44,12 @@ final class DIContainer: MainCoordinatorDependencies {
         return fetchLaunchesUseCase
     }
     
+    func makeFetchLaunchUseCase() -> some FetchLaunchUseCase {
+        let launchRepository = makeLaunchRepository()
+        let fetchLaunchUseCase = DefaultFetchLaunchUseCase(launchRepository: launchRepository)
+        return fetchLaunchUseCase
+    }
+    
     // MARK: - Home
 
     func makeHomeScene(
@@ -74,7 +80,10 @@ final class DIContainer: MainCoordinatorDependencies {
     }
     
     private func makeDetailViewModel(launch: Launch) -> some DetailViewModel {
-        let detailViewModel = DefaultDetailViewModel(launch: launch)
+        let detailViewModel = DefaultDetailViewModel(
+            fetchLaunchUseCase: makeFetchLaunchUseCase(),
+            launch: launch
+        )
         return detailViewModel
     }
 }

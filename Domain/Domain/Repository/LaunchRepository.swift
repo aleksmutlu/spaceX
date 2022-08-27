@@ -9,5 +9,5 @@ import Foundation
 
 public protocol LaunchRepository {
     func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void)
-    func fetchLaunch(by id: String)
+    func fetchLaunch(by id: String, onCompletion: @escaping (Result<Launch, Error>) -> Void)
 }

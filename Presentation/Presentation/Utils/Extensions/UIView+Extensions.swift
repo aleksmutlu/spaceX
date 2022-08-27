@@ -15,4 +15,12 @@ extension UIView {
             self.alpha = 1
         }
     }
+    
+    var globalPoint :CGPoint? {
+        return superview?.convert(frame.origin, to: nil)
+    }
+    
+    var globalFrame :CGRect? {
+        return superview?.convert(frame, to: nil)
+    }
 }

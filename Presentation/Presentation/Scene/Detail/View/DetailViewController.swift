@@ -5,6 +5,7 @@
 //  Created by Aleks Mutlu on 23.08.2022.
 //
 
+import RxSwift
 import UIKit
 
 public final class DetailViewController: BaseViewController {
@@ -35,9 +36,24 @@ public final class DetailViewController: BaseViewController {
     public override func viewDidLoad() {
         super.viewDidLoad()
         
+        bindViewModel()
+        
         viewModel.inputs.viewDidLoad()
      
         populateHeaderView()
+    }
+    
+    private func bindViewModel() {
+        viewModel.outputs.detailSection
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] viewModel in
+                if let viewModel = viewModel {
+                    self?.detailView.detailSectionView.popuplate(with: viewModel)
+                } else {
+                    self?.detailView.detailSectionView.isHidden = true
+                }
+            }
+            .disposed(by: disposeBag)
     }
     
     private func populateHeaderView() {

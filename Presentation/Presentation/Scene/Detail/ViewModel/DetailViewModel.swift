@@ -22,11 +22,15 @@ public final class DefaultDetailViewModel: DetailViewModel {
     public var inputs: DetailViewModelInputs { self }
     public var outputs: DetailViewModelOutputs { self }
     
-    private let launch: Launch
+    private let detailSectionInput = PublishSubject<DetailSectionViewModel?>()
+    
+    private let fetchLaunchUseCase: FetchLaunchUseCase
+    private var launch: Launch
     
     // MARK: - Life cycle
     
-    public init(launch: Launch) {
+    public init(fetchLaunchUseCase: FetchLaunchUseCase, launch: Launch) {
+        self.fetchLaunchUseCase = fetchLaunchUseCase
         self.launch = launch
     }
 }
@@ -40,6 +44,25 @@ public protocol DetailViewModelInputs {
 extension DefaultDetailViewModel: DetailViewModelInputs {
     
     public func viewDidLoad() {
+        fetchLaunchUseCase.execute(launchID: launch.id!) { [weak self] result in
+            switch result {
+            case .success(let launch):
+                if let detail = launch.detail {
+                    self?.launch.detail = launch.detail
+                    self?.detailSectionInput.onNext(
+                        DetailSectionViewModel(
+                            sectionTitle: "Details",
+                            detail: detail
+                        )
+                    )
+                } else {
+                    self?.detailSectionInput.onNext(nil)
+                }
+                
+            case .failure(let error):
+                self?.detailSectionInput.onNext(nil)
+            }
+        }
         
     }
 }
@@ -48,11 +71,16 @@ extension DefaultDetailViewModel: DetailViewModelInputs {
 
 public protocol DetailViewModelOutputs {
     var headerData: LaunchListItemViewModel { get }
+    var detailSection: Observable<DetailSectionViewModel?> { get }
 }
 
 extension DefaultDetailViewModel: DetailViewModelOutputs {
     
     public var headerData: LaunchListItemViewModel {
         LaunchListItemViewModel(launch: launch)
+    }
+    
+    public var detailSection: Observable<DetailSectionViewModel?> {
+        detailSectionInput.asObservable()
     }
 }

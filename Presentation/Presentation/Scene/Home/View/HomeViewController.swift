@@ -64,6 +64,8 @@ public final class HomeViewController: BaseViewController {
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
+        
+        navigationController?.transitioningDelegate = self
     }
     
     // MARK: - Setup
@@ -172,5 +174,16 @@ extension HomeViewController: UITableViewDelegate {
     public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         guard let cell = cell as? LaunchTableViewCell else { return }
         updateParallaxOffset(of: cell, by: tableView.contentOffset.y)
+    }
+}
+
+extension HomeViewController: UIViewControllerTransitioningDelegate {
+    
+    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return nil
+    }
+    
+    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
+        return LaunchModalTransition()
     }
 }

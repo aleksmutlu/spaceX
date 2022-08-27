@@ -17,11 +17,28 @@ public final class RESTLaunchDataStore: RemoteLaunchDataStore {
     }
     
     public func fetchLaunches(onCompletion: @escaping (Result<[Launch], Error>) -> Void) {
-        restAPI.makeRequest { result in
+        let fetchLaunchesRequest = FetchLaunchesRequest()
+        
+        restAPI.makeRequest(request: fetchLaunchesRequest) { result in
             switch result {
             case .success(let launchesResponse):
                 let launches = launchesResponse.map { $0.toDomain() }
                 onCompletion(.success(launches))
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
+    }
+    
+    public func fetchLaunch(
+        by id: String,
+        onCompletion: @escaping (Result<Launch, Error>) -> Void
+    ) {
+        let fetchLaunchRequest = FetchLaunchRequest(id: id)
+        restAPI.makeRequest(request: fetchLaunchRequest) { result in
+            switch result {
+            case .success(let launchResponse):
+                onCompletion(.success(launchResponse.toDomain()))
             case .failure(let error):
                 onCompletion(.failure(error))
             }

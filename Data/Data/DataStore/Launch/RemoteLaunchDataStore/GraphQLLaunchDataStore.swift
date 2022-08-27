@@ -34,4 +34,11 @@ public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
             }
         }
     }
+    
+    public func fetchLaunch(
+        by id: String,
+        onCompletion: @escaping (Result<Launch, Error>) -> Void
+    ) {
+            // TODO:  implement
+    }
 }

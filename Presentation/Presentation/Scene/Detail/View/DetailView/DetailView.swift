@@ -10,6 +10,8 @@ import UIKit
 final class DetailView: NibView {
     
     @IBOutlet weak var headerView: LaunchHeaderView!
+    @IBOutlet weak var detailSectionView: DetailSectionView!
+    
     
     override func setUpViews() {
         super.setUpViews()

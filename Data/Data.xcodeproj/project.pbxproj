@@ -96,14 +96,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		5902A65528B90B760074087A /* DummyLaunchDataStore */ = {
-			isa = PBXGroup;
-			children = (
-				5902A65628B90B860074087A /* DummyLaunchDataStore.swift */,
-			);
-			path = DummyLaunchDataStore;
-			sourceTree = "<group>";
-		};
 		5916BCD128B3FC5C00F51AF6 = {
 			isa = PBXGroup;
 			children = (
@@ -151,6 +143,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		592AE49A28BA31F500F68B6A /* Dummy */ = {
+			isa = PBXGroup;
+			children = (
+				5902A65628B90B860074087A /* DummyLaunchDataStore.swift */,
+			);
+			path = Dummy;
+			sourceTree = "<group>";
+		};
 		5930672C28B5273C004913B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -180,7 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */,
-				5902A65528B90B760074087A /* DummyLaunchDataStore */,
 				593158F528B50E79000D2DCC /* RemoteLaunchDataStore */,
 			);
 			path = Launch;
@@ -189,6 +188,7 @@
 		593158F528B50E79000D2DCC /* RemoteLaunchDataStore */ = {
 			isa = PBXGroup;
 			children = (
+				592AE49A28BA31F500F68B6A /* Dummy */,
 				5998C96028B9EE4400D2BA58 /* REST */,
 				593158F628B50E94000D2DCC /* GraphQL */,
 				593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */,

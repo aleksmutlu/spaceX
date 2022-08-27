@@ -26,7 +26,14 @@ public final class DefaultLaunchRepository: LaunchRepository {
         }
     }
     
-    public func fetchLaunch(by id: String) {
-        // TODO:
+    public func fetchLaunch(by id: String, onCompletion: @escaping (Result<Launch, Error>) -> Void) {
+        remoteLaunchDataStore.fetchLaunch(by: id) { result in
+            switch result {
+            case .success(let launch):
+                onCompletion(.success(launch))
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
     }
 }
