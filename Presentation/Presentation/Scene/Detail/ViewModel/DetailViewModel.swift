@@ -60,7 +60,7 @@ extension DefaultDetailViewModel: DetailViewModelInputs {
                     sectionViewModels.append(
                         DetailSectionViewModel(
                             sectionTitle: "States",
-                            detail: countryDetails.states.joined(separator: "\n")
+                            detail: countryDetails.states.joined(separator: ", ")
                         )
                     )
                 }
