@@ -32,7 +32,8 @@ public final class HomeViewController: BaseViewController {
         let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, viewModel in
             let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
             cell.populate(with: viewModel)
-            cell.imageViewBackground.image = UIImage(named: "bg\(indexPath.row % 4 + 1)", in: .presentation, compatibleWith: nil)
+            cell.headerView.imageViewBackground.image = UIImage(named: "bg\(indexPath.row % 4 + 1)", in: .presentation, compatibleWith: nil)
+            // TODO: image population
             return cell
         }
         return dataSource
@@ -138,9 +139,9 @@ public final class HomeViewController: BaseViewController {
     
     private func updateParallaxOffset(of cell: LaunchTableViewCell, by contentOffsetY: CGFloat) {
         let yOffset = (contentOffsetY - cell.frame.origin.y) /
-                       cell.imageViewBackground.frame.height * parallaxSpeed
+        cell.headerView.imageViewBackground.frame.height * parallaxSpeed
                     
-        cell.imageViewBackground.frame = cell.imageViewBackground.bounds.offsetBy(
+        cell.headerView.imageViewBackground.frame = cell.headerView.imageViewBackground.bounds.offsetBy(
             dx: 0,
             dy: yOffset
         )

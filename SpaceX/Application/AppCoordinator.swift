@@ -10,6 +10,8 @@ import UIKit
 
 final class AppCoordinator: Coordinator {
     
+    // MARK: - Properties
+    
     private let container: DIContainer
     private let navigationController: UINavigationController
     var childCoordinators: [Coordinator] = []

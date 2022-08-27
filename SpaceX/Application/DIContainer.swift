@@ -42,28 +42,35 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Home
 
-    func makeHomeScene() -> HomeViewController {
-        let homeViewModel = makeHomeViewModel()
+    func makeHomeScene(
+        onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+    ) -> HomeViewController {
+        let homeViewModel = makeHomeViewModel(onHomeActionTrigger: onHomeActionTrigger)
         let homeViewController = HomeViewController(viewModel: homeViewModel)
         return homeViewController
     }
     
-    private func makeHomeViewModel() -> some HomeViewModel {
+    private func makeHomeViewModel(
+        onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+    ) -> some HomeViewModel {
         let fetchLaunchesUseCase = makeFetchLaunchesUseCase()
-        let homeViewModel = DefaultHomeViewModel(fetchLaunchesUseCase: fetchLaunchesUseCase)
+        let homeViewModel = DefaultHomeViewModel(
+            fetchLaunchesUseCase: fetchLaunchesUseCase,
+            onCoordinatorActionTrigger: onHomeActionTrigger
+        )
         return homeViewModel
     }
     
     // MARK: - Detail
     
-    func makeDetailScene() -> DetailViewController {
-        let detailViewModel = makeDetailViewModel()
+    func makeDetailScene(for launch: Launch) -> DetailViewController {
+        let detailViewModel = makeDetailViewModel(launch: launch)
         let detailViewController = DetailViewController(viewModel: detailViewModel)
         return detailViewController
     }
     
-    private func makeDetailViewModel() -> some DetailViewModel {
-        let detailViewModel = DefaultDetailViewModel()
+    private func makeDetailViewModel(launch: Launch) -> some DetailViewModel {
+        let detailViewModel = DefaultDetailViewModel(launch: launch)
         return detailViewModel
     }
 }

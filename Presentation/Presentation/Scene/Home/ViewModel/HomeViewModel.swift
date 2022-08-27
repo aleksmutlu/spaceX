@@ -10,6 +10,10 @@ import Foundation
 import RxCocoa
 import RxSwift
 
+public enum HomeViewCoordinatorActions {
+    case select(launch: Launch)
+}
+
 public protocol HomeViewModel: AnyObject {
     var inputs: HomeViewModelInputs { get }
     var outputs: HomeViewModelOutputs { get }
@@ -28,9 +32,14 @@ public final class DefaultHomeViewModel: HomeViewModel {
     private let fetchLaunchesUseCase: FetchLaunchesUseCase
     
     private var launches: [Launch] = []
+    private let onCoordinatorActionTrigger: (HomeViewCoordinatorActions) -> Void
     
-    public init(fetchLaunchesUseCase: FetchLaunchesUseCase) {
+    public init(
+        fetchLaunchesUseCase: FetchLaunchesUseCase,
+        onCoordinatorActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+    ) {
         self.fetchLaunchesUseCase = fetchLaunchesUseCase
+        self.onCoordinatorActionTrigger = onCoordinatorActionTrigger
     }
     
     // MARK: - Helpers
@@ -71,7 +80,8 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
     }
     
     public func didSelectItem(at index: Int) {
-        print("Navigate to launch: \(launches[index].missionName)")
+        let launch = launches[index]
+        onCoordinatorActionTrigger(.select(launch: launch))
     }
     
     public func refetchTapped() {
