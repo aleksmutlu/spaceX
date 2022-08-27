@@ -56,6 +56,7 @@ public final class DetailViewController: BaseViewController {
         detailView.headerView.labelMissionName.text = viewModel.outputs.headerData.name
         detailView.headerView.labelDate.text = viewModel.outputs.headerData.phone
         detailView.headerView.labelRocketName.text = viewModel.outputs.headerData.capital
+        detailView.headerView.labelFlag.text = viewModel.outputs.headerData.flag
 //        detailView.headerView.imageViewPatch.kf.setImage(
 //            with: viewModel.outputs.headerData.patchImageURL
 //        )
