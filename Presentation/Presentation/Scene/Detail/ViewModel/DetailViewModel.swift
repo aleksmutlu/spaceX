@@ -24,12 +24,12 @@ public final class DefaultDetailViewModel: DetailViewModel {
     
     private let detailSectionInput = PublishSubject<[DetailSectionViewModel]>()
     
-    private let fetchLaunchUseCase: FetchLaunchUseCase
+    private let fetchLaunchUseCase: FetchCountryUseCase
     private var launch: Country
     
     // MARK: - Life cycle
     
-    public init(fetchLaunchUseCase: FetchLaunchUseCase, launch: Country) {
+    public init(fetchLaunchUseCase: FetchCountryUseCase, launch: Country) {
         self.fetchLaunchUseCase = fetchLaunchUseCase
         self.launch = launch
     }

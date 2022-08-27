@@ -8,10 +8,11 @@
 import UIKit
 import RxSwift
 
+// TODO: move
 class GenericTableDataSource: UITableViewDiffableDataSource<ContinentListItemViewModel, CountryListItemViewModel> {
   init(tableView: UITableView) {
     super.init(tableView: tableView) { tableView, indexPath, item in
-        let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
+        let cell = tableView.dequeueCell(typed: CountryTableViewCell.self, indexPath: indexPath)
         cell.populate(with: item)
       return cell
     }
@@ -26,11 +27,15 @@ public enum HomeState {
     case idle
     case loading
     case loadMore
-    case display(continents: [ContinentListItemViewModel], animated: Bool, shouldResetOld: Bool)
+    case display(continents: [ContinentListItemViewModel], action: DisplayAction)
     case error(title: String)
+    
+    public enum DisplayAction {
+        case expand(index: Int)
+        case collapse
+    }
 }
 
-private typealias LaunchesDataSource = UITableViewDiffableDataSource<String, CountryListItemViewModel>
 private let parallaxSpeed: CGFloat = 10
 
 public final class HomeViewController: BaseViewController {
@@ -42,21 +47,7 @@ public final class HomeViewController: BaseViewController {
     // MARK: - Properties
     
     private let viewModel: HomeViewModel
-//    private lazy var dataSource: LaunchesDataSource = {
-//        let dataSource = LaunchesDataSource(tableView: homeView.tableView) { tableView, indexPath, viewModel in
-//
-//
-//
-//            let cell = tableView.dequeueCell(typed: LaunchTableViewCell.self, indexPath: indexPath)
-//            cell.populate(with: viewModel)
-////            cell.headerView.imageViewBackground.image = UIImage(named: "bg\(indexPath.row % 4 + 1)", in: .presentation, compatibleWith: nil)
-//            // TODO: image population
-//            return cell
-//        }
-//        return dataSource
-//    }()
     private var dataSource: GenericTableDataSource!
-    
     
     // MARK: - Life cycle
     
@@ -84,7 +75,6 @@ public final class HomeViewController: BaseViewController {
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
-        
         
         navigationController?.transitioningDelegate = self
     }
@@ -125,9 +115,8 @@ public final class HomeViewController: BaseViewController {
             fatalError()
         case .loadMore:
             fatalError()
-            
-        case .display(let continents, let animated, let shouldResetOld):
-            display(continents: continents, animated: animated, shouldResetOld: shouldResetOld)
+        case .display(let continents, let action):
+            display(continents: continents, action: action)
         case .error(let title):
             displayError(with: title)
         }
@@ -140,8 +129,7 @@ public final class HomeViewController: BaseViewController {
     
     private func display(
         continents: [ContinentListItemViewModel],
-        animated: Bool,
-        shouldResetOld: Bool
+        action: HomeState.DisplayAction
     ) {
         var snapshot = NSDiffableDataSourceSnapshot<ContinentListItemViewModel, CountryListItemViewModel>()
         
@@ -150,8 +138,34 @@ public final class HomeViewController: BaseViewController {
             snapshot.appendItems(continent.countryListItems, toSection: continent)
         }
         
-        dataSource.apply(snapshot, animatingDifferences: animated) {
+        dataSource.apply(snapshot, animatingDifferences: false) {
             self.updateParallaxOffsets()
+            
+            switch action{
+            case .expand(let index):
+                self.homeView.tableView.scrollToRow(
+                    at: IndexPath(row: 0, section: index),
+                    at: .top,
+                    animated: false
+                )
+                
+                self.homeView.tableView.visibleCells.enumerated().forEach { (offset, cell) in
+                    cell.transform = CGAffineTransform(translationX: 0, y: 120)
+                    UIView.animate(
+                        withDuration: 1,
+                        delay: TimeInterval(offset) * 0.02,
+                        usingSpringWithDamping: 0.85,
+                        initialSpringVelocity: 9,
+                        options: .curveEaseIn,
+                        animations: {
+                            cell.transform = .identity
+                        },
+                        completion: nil
+                    )
+                }
+            case .collapse:
+                self.homeView.tableView.fadeIn(in: 0.4)
+            }
         }
     }
     
@@ -164,7 +178,7 @@ public final class HomeViewController: BaseViewController {
         // TODO: Alert
     }
     
-    private func updateParallaxOffset(of cell: LaunchTableViewCell, by contentOffsetY: CGFloat) {
+    private func updateParallaxOffset(of cell: CountryTableViewCell, by contentOffsetY: CGFloat) {
         let yOffset = (contentOffsetY - cell.frame.origin.y) /
         cell.headerView.imageViewBackground.frame.height * parallaxSpeed
                     
@@ -175,7 +189,7 @@ public final class HomeViewController: BaseViewController {
     }
     
     private func updateParallaxOffsets(by contentOffsetY: CGFloat = 0) {
-        guard let visibleCells = homeView.tableView.visibleCells as? [LaunchTableViewCell] else {
+        guard let visibleCells = homeView.tableView.visibleCells as? [CountryTableViewCell] else {
             return
         }
         for cell in visibleCells {
@@ -196,9 +210,30 @@ extension HomeViewController: UITableViewDelegate {
         updateParallaxOffsets(by: scrollView.contentOffset.y)
     }
     
-    public func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        guard let cell = cell as? LaunchTableViewCell else { return }
+    public func tableView(
+        _ tableView: UITableView,
+        willDisplay cell: UITableViewCell,
+        forRowAt indexPath: IndexPath
+    ) {
+        guard let cell = cell as? CountryTableViewCell else { return }
         updateParallaxOffset(of: cell, by: tableView.contentOffset.y)
+    }
+    
+    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        62
+    }
+    
+    public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = ContinentHeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        let continentItem = dataSource.snapshot().sectionIdentifiers[section]
+        headerView.labelTitle.text = continentItem.title
+        let action = UIAction { [weak self] _ in
+            self?.viewModel.inputs.expandTapped(at: section)
+        }
+        headerView.update(state: continentItem.state)
+        headerView.buttonExpand.addAction(action, for: .touchUpInside)
+        headerView.layer.zPosition = CGFloat(section) * 0.1
+        return headerView
     }
 }
 

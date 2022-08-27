@@ -1,5 +1,5 @@
 //
-//  LaunchTableViewCell.swift
+//  CountryTableViewCell.swift
 //  Presentation
 //
 //  Created by Aleks Mutlu on 24.08.2022.
@@ -8,7 +8,7 @@
 import Kingfisher
 import UIKit
 
-final class LaunchTableViewCell: UITableViewCell {
+final class CountryTableViewCell: UITableViewCell {
 
     // MARK: - Views
     
@@ -24,6 +24,7 @@ final class LaunchTableViewCell: UITableViewCell {
     
     private func setHeaderViewUp() {
         headerView.layer.cornerRadius = 16
+        // TODO: Move 16 to constants, used in continentHeaderView
         headerView.layer.cornerCurve = .circular
         headerView.constraintImageViewBackgroundHeight.constant = 100
     }

@@ -26,8 +26,11 @@ public final class DefaultLaunchRepository: LaunchRepository {
         }
     }
     
-    public func fetchLaunches(onCompletion: @escaping (Result<[Country], Error>) -> Void) {
-        remoteLaunchDataStore.fetchLaunches { result in
+    public func fetchCountries(
+        by continentCode: String,
+        onCompletion: @escaping (Result<[Country], Error>) -> Void
+    ) {
+        remoteLaunchDataStore.fetchCountries(by: continentCode) { result in
             switch result {
             case .success(let launches):
                 onCompletion(.success(launches))

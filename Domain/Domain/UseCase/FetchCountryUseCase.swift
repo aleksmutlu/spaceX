@@ -1,5 +1,5 @@
 //
-//  FetchLaunchUseCase.swift
+//  FetchCountryUseCase.swift
 //  Domain
 //
 //  Created by Aleks Mutlu on 27.08.2022.
@@ -7,11 +7,11 @@
 
 import Foundation
 
-public protocol FetchLaunchUseCase {
+public protocol FetchCountryUseCase {
     func execute(countryCode: String, onCompletion: @escaping (Result<CountryDetails, Error>) -> Void)
 }
 
-public final class DefaultFetchLaunchUseCase: FetchLaunchUseCase {
+public final class DefaultFetchCountryUseCase: FetchCountryUseCase {
  
     private let launchRepository: LaunchRepository
     

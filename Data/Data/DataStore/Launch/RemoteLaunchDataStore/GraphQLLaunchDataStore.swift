@@ -31,23 +31,26 @@ public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
         }
     }
     
-    public func fetchLaunches(
+    public func fetchCountries(
+        by continentCode: String,
         onCompletion: @escaping (Result<[Country], Error>) -> Void
     ) {
-//        cl.fetch(query: CountriesQuery()) { result in
-//            switch result {
-//            case .success(let queryResult):
-//
+        cl.fetch(
+            query: CountriesQuery(code: continentCode),
+            cachePolicy: .returnCacheDataElseFetch
+        ) { result in
+            switch result {
+            case .success(let queryResult):
 //                // TODO: Error Handling?
-//                if let domain = queryResult.data?.toDomain() {
-//                    onCompletion(.success(domain))
-//                }
-//            case .failure(let error):
-//                onCompletion(.failure(error))
-//            }
-//        }
+                if let domain = queryResult.data?.toDomain() {
+                    onCompletion(.success(domain))
+                }
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
     }
-
+    
     public func fetchCountry(
         by code: String,
         onCompletion: @escaping (Result<CountryDetails, Error>) -> Void

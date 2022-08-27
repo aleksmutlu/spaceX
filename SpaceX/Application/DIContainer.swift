@@ -36,15 +36,15 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Use Case
     
-    func makeFetchLaunchesUseCase() -> some FetchLaunchesUseCase {
+    func makeFetchCountriesUseCase() -> some FetchCountriesUseCase {
         let launchRepository = makeLaunchRepository()
-        let fetchLaunchesUseCase = DefaultFetchLaunchesUseCase(launchRepository: launchRepository)
+        let fetchLaunchesUseCase = DefaultFetchCountriesUseCase(launchRepository: launchRepository)
         return fetchLaunchesUseCase
     }
     
-    func makeFetchLaunchUseCase() -> some FetchLaunchUseCase {
+    func makeFetchLaunchUseCase() -> some FetchCountryUseCase {
         let launchRepository = makeLaunchRepository()
-        let fetchLaunchUseCase = DefaultFetchLaunchUseCase(launchRepository: launchRepository)
+        let fetchLaunchUseCase = DefaultFetchCountryUseCase(launchRepository: launchRepository)
         return fetchLaunchUseCase
     }
     
@@ -68,8 +68,10 @@ final class DIContainer: MainCoordinatorDependencies {
         onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
     ) -> some HomeViewModel {
         let fetchContinentsUseCase = makeFetchContinentsUseCase()
+        let fetchCountriesUseCase = makeFetchCountriesUseCase()
         let homeViewModel = DefaultHomeViewModel(
             fetchContinentsUseCase: fetchContinentsUseCase,
+            fetchCountriesUseCase: fetchCountriesUseCase,
             onCoordinatorActionTrigger: onHomeActionTrigger
         )
         return homeViewModel

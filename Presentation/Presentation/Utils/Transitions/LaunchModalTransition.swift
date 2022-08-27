@@ -21,7 +21,7 @@ final class LaunchModalTransition: NSObject, UIViewControllerAnimatedTransitioni
         let headerView = detailView.headerView
         
         let fromView = transitionContext.view(forKey: .from) as! HomeView
-        let cell = fromView.tableView.visibleCells[2] as! LaunchTableViewCell
+        let cell = fromView.tableView.visibleCells[2] as! CountryTableViewCell
         let sourceFrame = cell.headerView.globalFrame
         print(sourceFrame)
         

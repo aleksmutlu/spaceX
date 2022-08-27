@@ -10,13 +10,15 @@ import Foundation
 
 public struct ContinentListItemViewModel: Hashable {
     let title: String
-    let countryListItems: [CountryListItemViewModel]
+    let state: ContinentHeaderViewState
+    var countryListItems: [CountryListItemViewModel] = []
 }
 
 extension ContinentListItemViewModel {
     
-    init(continent: Continent) {
+    init(continent: Continent, state: ContinentHeaderViewState) {
         title = continent.name
-        countryListItems = continent.countries.map(CountryListItemViewModel.init)
+        self.state = state
+        countryListItems = []
     }
 }

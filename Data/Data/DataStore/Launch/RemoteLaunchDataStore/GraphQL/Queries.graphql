@@ -2,26 +2,20 @@ query Continents {
   continents {
     code
     name
-    countries {
-      code
-        name
-        capital
-        emoji
-      phone
-    }
   }
 }
 
-query Countries {
+query Countries($code:String) {
   countries(filter: {
     continent: {
-      eq: "OC"
+      eq: $code
     }
   }) {
     code
     name
     capital
     emoji
+    phone
   }
 }
 

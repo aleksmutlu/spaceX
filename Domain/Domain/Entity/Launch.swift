@@ -10,14 +10,13 @@ import Foundation
 public struct Continent {
     public let code: String
     public let name: String
-    public let countries: [Country]
     
-    public init(code: String, name: String, countries: [Country]) {
+    public init(code: String, name: String) {
         self.code = code
         self.name = name
-        self.countries = countries
     }
 }
+// TODO: Seperate files
 
 public struct Country {
     public let code: String

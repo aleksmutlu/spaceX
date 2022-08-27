@@ -9,18 +9,18 @@ import UIKit
 
 extension UIView {
     
-    func fadeIn(in duration: TimeInterval = 0.3) {
+    func fadeIn(in duration: TimeInterval = 0.3, after delay: TimeInterval = 0) {
         alpha = 0
-        UIView.animate(withDuration: duration) {
+        UIView.animate(withDuration: duration, delay: delay) {
             self.alpha = 1
         }
     }
     
-    var globalPoint :CGPoint? {
+    var globalPoint: CGPoint? {
         return superview?.convert(frame.origin, to: nil)
     }
     
-    var globalFrame :CGRect? {
+    var globalFrame: CGRect? {
         return superview?.convert(frame, to: nil)
     }
 }

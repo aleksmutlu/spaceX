@@ -24,7 +24,7 @@ final class HomeView: UIView {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
-        tableView.registerNibCell(typed: LaunchTableViewCell.self)
+        tableView.registerNibCell(typed: CountryTableViewCell.self)
         addSubview(tableView)
         // TODO: Move this into an extension?
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
