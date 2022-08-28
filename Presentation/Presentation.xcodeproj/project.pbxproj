@@ -183,7 +183,7 @@
 			children = (
 				5923151728BC182C00AD2128 /* ContinentsDataSource.swift */,
 				592314F428BAA80A00AD2128 /* ContinentHeaderView */,
-				5930676B28B66D81004913B7 /* LaunchCell */,
+				5930676B28B66D81004913B7 /* CountryCell */,
 				5930676728B636BA004913B7 /* HomeView.swift */,
 				5901E01328B4E59600FAD243 /* HomeViewController.swift */,
 			);
@@ -375,13 +375,13 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
-		5930676B28B66D81004913B7 /* LaunchCell */ = {
+		5930676B28B66D81004913B7 /* CountryCell */ = {
 			isa = PBXGroup;
 			children = (
 				5930676C28B66D9A004913B7 /* CountryTableViewCell.swift */,
 				5930676D28B66D9A004913B7 /* CountryTableViewCell.xib */,
 			);
-			path = LaunchCell;
+			path = CountryCell;
 			sourceTree = "<group>";
 		};
 		5930677028B695C1004913B7 /* Assets */ = {

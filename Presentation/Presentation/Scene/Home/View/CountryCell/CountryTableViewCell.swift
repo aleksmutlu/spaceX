@@ -26,17 +26,15 @@ final class CountryTableViewCell: UITableViewCell {
         headerView.layer.cornerRadius = 16
         // TODO: Move 16 to constants, used in continentHeaderView
         headerView.layer.cornerCurve = .circular
-        headerView.constraintImageViewBackgroundHeight.constant = 100
     }
 
     // MARK: -
     
     func populate(with viewModel: CountryListItemViewModel) {
-        headerView.labelMissionName.text = viewModel.name
-        headerView.labelDate.text = viewModel.phone
-        headerView.labelRocketName.text = viewModel.capital
+        headerView.labelCountryName.text = viewModel.name
+        headerView.labelPhoneCode.text = viewModel.phone
+        headerView.labelCapitalName.text = viewModel.capital
 //        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
         headerView.labelFlag.text = viewModel.flag
-        layoutIfNeeded()
     }
 }

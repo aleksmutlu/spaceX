@@ -92,9 +92,9 @@ public final class DetailViewController: BaseViewController {
     }
     
     private func populateHeaderView(with viewModel: CountryListItemViewModel) {
-        detailView.headerView.labelMissionName.text = viewModel.name
-        detailView.headerView.labelDate.text = viewModel.phone
-        detailView.headerView.labelRocketName.text = viewModel.capital
+        detailView.headerView.labelCountryName.text = viewModel.name
+        detailView.headerView.labelPhoneCode.text = viewModel.phone
+        detailView.headerView.labelCapitalName.text = viewModel.capital
         detailView.headerView.labelFlag.text = viewModel.flag
 //        detailView.headerView.imageViewPatch.kf.setImage(
 //            with: viewModel.outputs.headerData.patchImageURL

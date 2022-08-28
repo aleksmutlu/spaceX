@@ -25,7 +25,7 @@
                         <stackView opaque="NO" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" axis="vertical" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="KyF-RR-Y8e">
                             <rect key="frame" x="0.0" y="0.0" width="414" height="120"/>
                             <subviews>
-                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="rocket-broken" translatesAutoresizingMaskIntoConstraints="NO" id="m3P-cy-ocn">
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="world" translatesAutoresizingMaskIntoConstraints="NO" id="m3P-cy-ocn">
                                     <rect key="frame" x="147" y="0.0" width="120" height="120"/>
                                     <constraints>
                                         <constraint firstAttribute="width" constant="120" id="BwA-Bi-KFW"/>
@@ -70,6 +70,6 @@
         </view>
     </objects>
     <resources>
-        <image name="rocket-broken" width="493.33334350585938" height="415.33334350585938"/>
+        <image name="world" width="512" height="512"/>
     </resources>
 </document>
