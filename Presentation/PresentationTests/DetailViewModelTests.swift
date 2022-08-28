@@ -68,27 +68,6 @@ final class DetailViewModelTests: XCTestCase {
         XCTAssertTrue(spy.values.count == 2, "🚨 Expected 2 sections as an output")
     }
     
-    func testFetchCountryDetailsOnViewDidLoad_OneSectionResult() {
-        // Given
-        
-        let states = ["Istanbul"]
-        let countryDetail = CountryDetails(states: states, languages: [])
-        fetchLaunchUseCase.countryDetailResponse = countryDetail
-        let spy = SectionViewModelSpy(sut.outputs.detailSection)
-        
-        // When
-        
-        sut.viewDidLoad()
-        
-        // Then
-        
-        XCTAssertTrue(
-            fetchLaunchUseCase.isExecutionComplete,
-            "🚨 fetchLaunchUseCase case is not executed"
-        )
-        
-        XCTAssertTrue(spy.values.count == 1, "🚨 Expected 2 sections as an output")
-    }
     
     func testFetchCountryDetailsOnViewDidLoad_ZeroSectionResult() {
         // Given
@@ -108,6 +87,29 @@ final class DetailViewModelTests: XCTestCase {
             "🚨 fetchLaunchUseCase case is not executed"
         )
         
-        XCTAssertTrue(spy.values.isEmpty, "🚨 Expected 2 sections as an output")
+        XCTAssertTrue(spy.values.isEmpty, "🚨 Expected 0 section as an output")
+    }
+    
+    func testRefetchCountryDetailsOnViewDidLoad_ZeroSectionResult() {
+        // Given
+        
+        let states = ["Istanbul"]
+        let languages = ["Turkish"]
+        let countryDetail = CountryDetails(states: states, languages: languages)
+        fetchLaunchUseCase.countryDetailResponse = countryDetail
+        let spy = SectionViewModelSpy(sut.outputs.detailSection)
+        
+        // When
+        
+        sut.refetchTapped()
+        
+        // Then
+        
+        XCTAssertTrue(
+            fetchLaunchUseCase.isExecutionComplete,
+            "🚨 fetchLaunchUseCase case is not executed"
+        )
+        
+        XCTAssertTrue(spy.values.count == 2, "🚨 Expected 2 sections as an output")
     }
 }

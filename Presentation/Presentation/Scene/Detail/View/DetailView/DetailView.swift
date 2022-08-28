@@ -9,8 +9,14 @@ import UIKit
 
 final class DetailView: NibView {
     
+    // MARK: - Views
+    
     @IBOutlet weak var headerView: CountryHeaderView!
     @IBOutlet weak var stackViewDetailSections: UIStackView!
+    @IBOutlet weak var errorView: ErrorView!
+    @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
+    
+    // MARK: - Life cycle
     
     override func setUpViews() {
         super.setUpViews()
@@ -18,6 +24,8 @@ final class DetailView: NibView {
         setUp()
         setBottomContainerUp()
     }
+    
+    // MARK: - Setup
     
     private func setUp() {
         backgroundColor = Theme.mainBackgroundColor

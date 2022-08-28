@@ -10,6 +10,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DetailView" customModule="Presentation" customModuleProvider="target">
             <connections>
+                <outlet property="activityIndicator" destination="mfR-0O-CHc" id="f6G-wa-LRr"/>
+                <outlet property="errorView" destination="cjW-ta-6gz" id="Um1-yG-RKe"/>
                 <outlet property="headerView" destination="pgQ-Xs-IgB" id="MIV-vn-nYV"/>
                 <outlet property="stackViewDetailSections" destination="MeA-Zd-RYz" id="YIV-zc-oC6"/>
             </connections>
@@ -23,10 +25,10 @@
                     <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                     <subviews>
                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wnm-yp-Wcs">
-                            <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                            <rect key="frame" x="0.0" y="0.0" width="414" height="496"/>
                             <subviews>
                                 <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="MeA-Zd-RYz">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="496"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pgQ-Xs-IgB" customClass="CountryHeaderView" customModule="Presentation" customModuleProvider="target">
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="260"/>
@@ -35,6 +37,19 @@
                                                 <constraint firstAttribute="height" constant="260" placeholder="YES" id="3eI-bs-QrR"/>
                                             </constraints>
                                         </view>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="2nE-Um-3Zp">
+                                            <rect key="frame" x="0.0" y="266" width="414" height="230"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cjW-ta-6gz" customClass="ErrorView" customModule="Presentation" customModuleProvider="target">
+                                                    <rect key="frame" x="0.0" y="30" width="414" height="200"/>
+                                                    <color key="backgroundColor" name="MainBackground"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="200" placeholder="YES" id="mHt-dz-eWJ"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <edgeInsets key="layoutMargins" top="30" left="0.0" bottom="0.0" right="0.0"/>
+                                        </stackView>
                                     </subviews>
                                 </stackView>
                             </subviews>
@@ -59,10 +74,16 @@
                     <viewLayoutGuide key="contentLayoutGuide" id="YgU-61-RGx"/>
                     <viewLayoutGuide key="frameLayoutGuide" id="21M-Q8-FQE"/>
                 </scrollView>
+                <activityIndicatorView hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="medium" translatesAutoresizingMaskIntoConstraints="NO" id="mfR-0O-CHc">
+                    <rect key="frame" x="197" y="438" width="20" height="20"/>
+                    <color key="color" name="AccentColor"/>
+                </activityIndicatorView>
             </subviews>
             <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="mfR-0O-CHc" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="KAn-t8-nmT"/>
+                <constraint firstItem="mfR-0O-CHc" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="KwH-rK-nDk"/>
                 <constraint firstAttribute="bottom" secondItem="wng-T1-02U" secondAttribute="bottom" id="O4f-wc-iyF"/>
                 <constraint firstAttribute="trailing" secondItem="wng-T1-02U" secondAttribute="trailing" id="Z7R-6h-kSJ"/>
                 <constraint firstItem="wng-T1-02U" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fKu-Wn-oUi"/>
@@ -72,6 +93,9 @@
         </view>
     </objects>
     <resources>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <namedColor name="MainBackground">
             <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </namedColor>

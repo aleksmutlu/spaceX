@@ -18,7 +18,7 @@ final class CountryListItemViewModelTests: XCTestCase {
         
         // When
         
-        let sut = CountryListItemViewModel(launch: country)
+        let sut = CountryListItemViewModel(country: country)
         
         // Then
 

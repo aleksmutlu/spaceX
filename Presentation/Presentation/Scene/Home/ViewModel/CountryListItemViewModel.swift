@@ -17,11 +17,11 @@ public struct CountryListItemViewModel: Hashable {
 
 extension CountryListItemViewModel {
     
-    init(launch: Country) {
-        name = launch.name
-        capital = launch.capital
-        flag = launch.emoji
-        if let phone = launch.phone {
+    init(country: Country) {
+        name = country.name
+        capital = country.capital
+        flag = country.emoji
+        if let phone = country.phone {
             self.phone = "+\(phone)"
         } else {
             self.phone = nil

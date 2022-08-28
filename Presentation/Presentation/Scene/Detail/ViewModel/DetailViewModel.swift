@@ -23,6 +23,8 @@ public final class DefaultDetailViewModel: DetailViewModel {
     public var outputs: DetailViewModelOutputs { self }
     
     private let detailSectionInput = PublishSubject<[DetailSectionViewModel]>()
+    private let hudActionsInput = PublishSubject<DetailHUDActions>()
+    private let headerDataInput = PublishSubject<CountryListItemViewModel>()
     
     private let fetchCountryUseCase: FetchCountryUseCase
     private var country: Country
@@ -44,8 +46,9 @@ public final class DefaultDetailViewModel: DetailViewModel {
             case .success(let countryDetails):
                 let sectionViewModels = self.generateSecionViewModels(from: countryDetails)
                 self.detailSectionInput.onNext(sectionViewModels)
-            case .failure(let error):
-                self.detailSectionInput.onNext([])
+                self.updateHUD(.idle)
+            case .failure:
+                self.updateHUD(.showError(title: "Oops! Something went wrong...")) // TODO: Constants?
             }
         }
     }
@@ -56,7 +59,7 @@ public final class DefaultDetailViewModel: DetailViewModel {
         var sectionViewModels = [DetailSectionViewModel]()
         if !countryDetails.languages.isEmpty {
             sectionViewModels.append(
-                DetailSectionViewModel( // TODO: Test
+                DetailSectionViewModel(
                     sectionTitle: "Languages",
                     detailItems: countryDetails.languages
                 )
@@ -72,17 +75,29 @@ public final class DefaultDetailViewModel: DetailViewModel {
         }
         return sectionViewModels
     }
+    
+    private func updateHUD(_ action: DetailHUDActions) {
+        hudActionsInput.onNext(action)
+    }
 }
 
 // MARK: - DetailViewModelInputs
 
 public protocol DetailViewModelInputs {
     func viewDidLoad()
+    func refetchTapped()
 }
 
 extension DefaultDetailViewModel: DetailViewModelInputs {
     
     public func viewDidLoad() {
+        updateHUD(.showLoading)
+        headerDataInput.onNext(CountryListItemViewModel(country: country))
+        fetchCountryDetail(by: country.code)
+    }
+    
+    public func refetchTapped() {
+        updateHUD(.showLoading)
         fetchCountryDetail(by: country.code)
     }
 }
@@ -90,17 +105,18 @@ extension DefaultDetailViewModel: DetailViewModelInputs {
 // MARK: - DetailViewModelOutputs
 
 public protocol DetailViewModelOutputs {
-    var headerData: CountryListItemViewModel { get }
+    var headerData: Observable<CountryListItemViewModel> { get }
     var detailSection: Observable<[DetailSectionViewModel]> { get }
+    var hudActions: Observable<DetailHUDActions> { get }
 }
 
 extension DefaultDetailViewModel: DetailViewModelOutputs {
     
-    public var headerData: CountryListItemViewModel {
-        CountryListItemViewModel(launch: country)
-    }
+    public var headerData: Observable<CountryListItemViewModel> { headerDataInput.asObservable() }
     
     public var detailSection: Observable<[DetailSectionViewModel]> {
         detailSectionInput.asObservable()
     }
+    
+    public var hudActions: Observable<DetailHUDActions> { hudActionsInput.asObservable() }
 }

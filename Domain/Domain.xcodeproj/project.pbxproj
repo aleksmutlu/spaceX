@@ -14,7 +14,7 @@
 		592314EC28BA82B900AD2128 /* FetchContinentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */; };
 		592AE49928BA2ED300F68B6A /* FetchCountryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592AE49828BA2ED300F68B6A /* FetchCountryUseCase.swift */; };
 		593158E528B5049F000D2DCC /* FetchCountriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E428B5049F000D2DCC /* FetchCountriesUseCase.swift */; };
-		593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E728B50502000D2DCC /* LaunchRepository.swift */; };
+		593158E828B50502000D2DCC /* CountryRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E728B50502000D2DCC /* CountryRepository.swift */; };
 		593158EB28B5062F000D2DCC /* Launch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158EA28B5062F000D2DCC /* Launch.swift */; };
 /* End PBXBuildFile section */
 
@@ -37,7 +37,7 @@
 		592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchContinentsUseCase.swift; sourceTree = "<group>"; };
 		592AE49828BA2ED300F68B6A /* FetchCountryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCountryUseCase.swift; sourceTree = "<group>"; };
 		593158E428B5049F000D2DCC /* FetchCountriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCountriesUseCase.swift; sourceTree = "<group>"; };
-		593158E728B50502000D2DCC /* LaunchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchRepository.swift; sourceTree = "<group>"; };
+		593158E728B50502000D2DCC /* CountryRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryRepository.swift; sourceTree = "<group>"; };
 		593158EA28B5062F000D2DCC /* Launch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Launch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -111,7 +111,7 @@
 		593158E628B504D9000D2DCC /* Repository */ = {
 			isa = PBXGroup;
 			children = (
-				593158E728B50502000D2DCC /* LaunchRepository.swift */,
+				593158E728B50502000D2DCC /* CountryRepository.swift */,
 			);
 			path = Repository;
 			sourceTree = "<group>";
@@ -233,7 +233,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				593158E828B50502000D2DCC /* LaunchRepository.swift in Sources */,
+				593158E828B50502000D2DCC /* CountryRepository.swift in Sources */,
 				5916BCBC28B3FC4800F51AF6 /* Domain.docc in Sources */,
 				593158EB28B5062F000D2DCC /* Launch.swift in Sources */,
 				592314EC28BA82B900AD2128 /* FetchContinentsUseCase.swift in Sources */,

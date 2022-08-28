@@ -1,5 +1,5 @@
 //
-//  GraphQLLaunchDataStore.swift
+//  GraphQLCountryDataStore.swift
 //  Data
 //
 //  Created by Aleks Mutlu on 23.08.2022.
@@ -9,7 +9,7 @@ import Apollo
 import Domain
 import Foundation
 
-public final class GraphQLLaunchDataStore: RemoteLaunchDataStore {
+public final class GraphQLCountryDataStore: RemoteCountryDataStore {
     
     // TODO: inject
     let cl = ApolloClient(url: URL(string: "https://countries.trevorblades.com/")!)

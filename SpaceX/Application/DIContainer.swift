@@ -13,8 +13,8 @@ import UIKit
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
 final class DIContainer: MainCoordinatorDependencies {
     
-    private lazy var remoteLaunchDataStore: RemoteLaunchDataStore = {
-        GraphQLLaunchDataStore()
+    private lazy var remoteCountryDataStore: RemoteCountryDataStore = {
+        GraphQLCountryDataStore()
     }()
     
     // MARK: - Coordinator
@@ -29,29 +29,29 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Repository
     
-    func makeLaunchRepository() -> some LaunchRepository {
-        let launchRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteLaunchDataStore)
-        return launchRepository
+    func makeCountryRepository() -> some CountryRepository {
+        let countryRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteCountryDataStore)
+        return countryRepository
     }
     
     // MARK: - Use Case
     
     func makeFetchCountriesUseCase() -> some FetchCountriesUseCase {
-        let launchRepository = makeLaunchRepository()
-        let fetchLaunchesUseCase = DefaultFetchCountriesUseCase(launchRepository: launchRepository)
-        return fetchLaunchesUseCase
+        let countryRepository = makeCountryRepository()
+        let fetchCountriesUseCase = DefaultFetchCountriesUseCase(countryRepository: countryRepository)
+        return fetchCountriesUseCase
     }
     
-    func makeFetchLaunchUseCase() -> some FetchCountryUseCase {
-        let launchRepository = makeLaunchRepository()
-        let fetchLaunchUseCase = DefaultFetchCountryUseCase(launchRepository: launchRepository)
-        return fetchLaunchUseCase
+    func makeFetchCountryUseCase() -> some FetchCountryUseCase {
+        let countryRepository = makeCountryRepository()
+        let fetchCountryUseCase = DefaultFetchCountryUseCase(countryRepository: countryRepository)
+        return fetchCountryUseCase
     }
     
     func makeFetchContinentsUseCase() -> some FetchContinentsUseCase {
-        let launchRepository = makeLaunchRepository()
-        let fetchLaunchUseCase = DefaultFetchContinentsUseCase(launchRepository: launchRepository)
-        return fetchLaunchUseCase
+        let countryRepository = makeCountryRepository()
+        let fetchContinentsUseCase = DefaultFetchContinentsUseCase(countryRepository: countryRepository)
+        return fetchContinentsUseCase
     }
     
     // MARK: - Home
@@ -87,7 +87,7 @@ final class DIContainer: MainCoordinatorDependencies {
     
     private func makeDetailViewModel(country: Country) -> some DetailViewModel {
         let detailViewModel = DefaultDetailViewModel(
-            fetchLaunchUseCase: makeFetchLaunchUseCase(),
+            fetchCountryUseCase: makeFetchCountryUseCase(),
             country: country
         )
         return detailViewModel

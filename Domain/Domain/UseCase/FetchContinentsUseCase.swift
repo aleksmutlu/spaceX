@@ -13,14 +13,14 @@ public protocol FetchContinentsUseCase {
 
 public final class DefaultFetchContinentsUseCase: FetchContinentsUseCase {
  
-    private let launchRepository: LaunchRepository
+    private let countryRepository: CountryRepository
     
-    public init(launchRepository: LaunchRepository) {
-        self.launchRepository = launchRepository
+    public init(countryRepository: CountryRepository) {
+        self.countryRepository = countryRepository
     }
     
     public func execute(onCompletion: @escaping (Result<[Continent], Error>) -> Void) {
-        launchRepository.fetchContinents() { result in
+        countryRepository.fetchContinents() { result in
             switch result {
             case .success(let continents):
                 onCompletion(.success(continents))

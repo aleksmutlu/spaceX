@@ -13,17 +13,17 @@ public protocol FetchCountryUseCase {
 
 public final class DefaultFetchCountryUseCase: FetchCountryUseCase {
  
-    private let launchRepository: LaunchRepository
+    private let countryRepository: CountryRepository
     
-    public init(launchRepository: LaunchRepository) {
-        self.launchRepository = launchRepository
+    public init(countryRepository: CountryRepository) {
+        self.countryRepository = countryRepository
     }
     
     public func execute(
         countryCode: String,
         onCompletion: @escaping (Result<CountryDetails, Error>) -> Void
     ) {
-        launchRepository.fetchCountry(by: countryCode) { result in
+        countryRepository.fetchCountry(by: countryCode) { result in
             switch result {
             case .success(let launch):
                 onCompletion(.success(launch))

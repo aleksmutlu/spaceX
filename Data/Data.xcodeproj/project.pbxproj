@@ -20,8 +20,8 @@
 		5930673028B53C90004913B7 /* SpaceXAPI+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */; };
 		5930676A28B65D92004913B7 /* SpaceXAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930676928B65D92004913B7 /* SpaceXAPI.swift */; };
 		593158EF28B5085B000D2DCC /* DefaultLaunchRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158EE28B5085B000D2DCC /* DefaultLaunchRepository.swift */; };
-		593158F128B508E4000D2DCC /* RemoteLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */; };
-		593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */; };
+		593158F128B508E4000D2DCC /* RemoteCountryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F028B508E4000D2DCC /* RemoteCountryDataStore.swift */; };
+		593158F328B5090F000D2DCC /* GraphQLCountryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */; };
 		5931590D28B51887000D2DCC /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 5931590C28B51887000D2DCC /* schema.json */; };
 /* End PBXBuildFile section */
 
@@ -59,8 +59,8 @@
 		5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "SpaceXAPI+Extensions.swift"; sourceTree = "<group>"; };
 		5930676928B65D92004913B7 /* SpaceXAPI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpaceXAPI.swift; sourceTree = "<group>"; };
 		593158EE28B5085B000D2DCC /* DefaultLaunchRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DefaultLaunchRepository.swift; sourceTree = "<group>"; };
-		593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteLaunchDataStore.swift; sourceTree = "<group>"; };
-		593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLLaunchDataStore.swift; sourceTree = "<group>"; };
+		593158F028B508E4000D2DCC /* RemoteCountryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteCountryDataStore.swift; sourceTree = "<group>"; };
+		593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GraphQLCountryDataStore.swift; sourceTree = "<group>"; };
 		5931590C28B51887000D2DCC /* schema.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = schema.json; path = Data/schema.json; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
@@ -162,7 +162,7 @@
 		593158F428B5092F000D2DCC /* Launch */ = {
 			isa = PBXGroup;
 			children = (
-				593158F028B508E4000D2DCC /* RemoteLaunchDataStore.swift */,
+				593158F028B508E4000D2DCC /* RemoteCountryDataStore.swift */,
 				593158F528B50E79000D2DCC /* RemoteLaunchDataStore */,
 			);
 			path = Launch;
@@ -172,7 +172,7 @@
 			isa = PBXGroup;
 			children = (
 				593158F628B50E94000D2DCC /* GraphQL */,
-				593158F228B5090F000D2DCC /* GraphQLLaunchDataStore.swift */,
+				593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */,
 				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
 			);
 			path = RemoteLaunchDataStore;
@@ -348,9 +348,9 @@
 			files = (
 				5930673028B53C90004913B7 /* SpaceXAPI+Extensions.swift in Sources */,
 				5930676A28B65D92004913B7 /* SpaceXAPI.swift in Sources */,
-				593158F328B5090F000D2DCC /* GraphQLLaunchDataStore.swift in Sources */,
+				593158F328B5090F000D2DCC /* GraphQLCountryDataStore.swift in Sources */,
 				593158EF28B5085B000D2DCC /* DefaultLaunchRepository.swift in Sources */,
-				593158F128B508E4000D2DCC /* RemoteLaunchDataStore.swift in Sources */,
+				593158F128B508E4000D2DCC /* RemoteCountryDataStore.swift in Sources */,
 				5916BCE028B3FC5C00F51AF6 /* Data.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

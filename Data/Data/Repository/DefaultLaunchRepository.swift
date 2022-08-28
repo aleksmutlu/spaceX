@@ -7,11 +7,11 @@
 
 import Domain
 
-public final class DefaultLaunchRepository: LaunchRepository {
+public final class DefaultLaunchRepository: CountryRepository {
     
-    private let remoteLaunchDataStore: RemoteLaunchDataStore
+    private let remoteLaunchDataStore: RemoteCountryDataStore
     
-    public init(remoteLaunchDataStore: RemoteLaunchDataStore) {
+    public init(remoteLaunchDataStore: RemoteCountryDataStore) {
         self.remoteLaunchDataStore = remoteLaunchDataStore
     }
     

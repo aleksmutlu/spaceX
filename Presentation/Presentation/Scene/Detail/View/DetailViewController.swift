@@ -8,6 +8,12 @@
 import RxSwift
 import UIKit
 
+public enum DetailHUDActions {
+    case idle
+    case showLoading
+    case showError(title: String)
+}
+
 public final class DetailViewController: BaseViewController {
     
     // MARK: - Views
@@ -39,8 +45,6 @@ public final class DetailViewController: BaseViewController {
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
-     
-        populateHeaderView()
     }
     
     private func bindViewModel() {
@@ -50,13 +54,48 @@ public final class DetailViewController: BaseViewController {
                 self?.populateDetailSections(with: viewModels)
             }
             .disposed(by: disposeBag)
+        
+        viewModel.outputs.headerData
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self ] viewModel in
+                self?.populateHeaderView(with: viewModel)
+            }
+            .disposed(by: disposeBag)
+        
+        viewModel.outputs.hudActions
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] action in
+                self?.handleHUDActions(action)
+            }
+            .disposed(by: disposeBag)
+        
+        detailView.errorView.buttonRetry.rx.tap.asObservable()
+            .bind { [weak self] in
+                self?.viewModel.inputs.refetchTapped()
+            }
+            .disposed(by: disposeBag)
     }
     
-    private func populateHeaderView() {
-        detailView.headerView.labelMissionName.text = viewModel.outputs.headerData.name
-        detailView.headerView.labelDate.text = viewModel.outputs.headerData.phone
-        detailView.headerView.labelRocketName.text = viewModel.outputs.headerData.capital
-        detailView.headerView.labelFlag.text = viewModel.outputs.headerData.flag
+    private func handleHUDActions(_ action: DetailHUDActions) {
+        switch action {
+        case .idle:
+            detailView.errorView.isHidden = true
+            detailView.activityIndicator.stopAnimating()
+        case .showLoading:
+            detailView.errorView.isHidden = true
+            detailView.activityIndicator.startAnimating()
+        case .showError(let title):
+            detailView.errorView.display(with: title)
+            detailView.errorView.isHidden = false
+            detailView.activityIndicator.stopAnimating()
+        }
+    }
+    
+    private func populateHeaderView(with viewModel: CountryListItemViewModel) {
+        detailView.headerView.labelMissionName.text = viewModel.name
+        detailView.headerView.labelDate.text = viewModel.phone
+        detailView.headerView.labelRocketName.text = viewModel.capital
+        detailView.headerView.labelFlag.text = viewModel.flag
 //        detailView.headerView.imageViewPatch.kf.setImage(
 //            with: viewModel.outputs.headerData.patchImageURL
 //        )
