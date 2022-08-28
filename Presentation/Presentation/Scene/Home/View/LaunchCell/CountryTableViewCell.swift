@@ -37,5 +37,6 @@ final class CountryTableViewCell: UITableViewCell {
         headerView.labelRocketName.text = viewModel.capital
 //        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
         headerView.labelFlag.text = viewModel.flag
+        layoutIfNeeded()
     }
 }

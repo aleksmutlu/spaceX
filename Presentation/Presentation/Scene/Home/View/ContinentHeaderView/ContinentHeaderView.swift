@@ -33,22 +33,21 @@ final class ContinentHeaderView: NibView {
     override func setUpViews() {
         super.setUpViews()
         
-        contentView.backgroundColor = .clear
-        backgroundColor = .clear
         containerView.backgroundColor = Theme.contentBackgroundColor
         containerView.layer.cornerRadius = 16
     }
     
     func update(state: ContinentHeaderViewState) {
-        
         // TODO: FONT
         switch state {
         case .collapsed:
             labelTitle.font = .systemFont(ofSize: 17, weight: .semibold)
-            buttonExpand.setImage(state.image, for: .normal)
+            buttonExpand.configuration?.image = state.image
+            contentView.backgroundColor = .clear
         case .expanded:
             labelTitle.font = .systemFont(ofSize: 20, weight: .black)
-            buttonExpand.setImage(state.image, for: .normal)
+            buttonExpand.configuration?.image = state.image
+            contentView.backgroundColor = Theme.contentBackgroundColor
         case .loading:
             break
         }

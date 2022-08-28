@@ -67,28 +67,27 @@
                             <rect key="frame" x="0.0" y="186" width="414" height="230"/>
                             <subviews>
                                 <view contentMode="scaleToFill" horizontalCompressionResistancePriority="1000" translatesAutoresizingMaskIntoConstraints="NO" id="Som-8i-kGR">
-                                    <rect key="frame" x="346.5" y="86.5" width="57.5" height="57.5"/>
+                                    <rect key="frame" x="346.5" y="98" width="57.5" height="34"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="252" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pSf-eM-YLg">
-                                            <rect key="frame" x="8" y="8" width="41.5" height="41.5"/>
+                                            <rect key="frame" x="8" y="8" width="41.5" height="18"/>
                                             <fontDescription key="fontDescription" type="system" weight="heavy" pointSize="15"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     <constraints>
                                         <constraint firstItem="pSf-eM-YLg" firstAttribute="leading" secondItem="Som-8i-kGR" secondAttribute="leading" constant="8" id="4xe-Ue-pDA"/>
                                         <constraint firstItem="pSf-eM-YLg" firstAttribute="top" secondItem="Som-8i-kGR" secondAttribute="top" constant="8" id="ASG-NK-jy1"/>
                                         <constraint firstAttribute="trailing" secondItem="pSf-eM-YLg" secondAttribute="trailing" constant="8" id="AZ8-8g-jgG"/>
-                                        <constraint firstAttribute="width" secondItem="Som-8i-kGR" secondAttribute="height" id="gjP-LD-qz2"/>
                                         <constraint firstAttribute="bottom" secondItem="pSf-eM-YLg" secondAttribute="bottom" constant="8" id="vIg-K4-uVK"/>
                                     </constraints>
                                 </view>
                                 <stackView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="249" axis="vertical" spacing="2" translatesAutoresizingMaskIntoConstraints="NO" id="IhT-vt-Lls">
                                     <rect key="frame" x="12" y="12" width="324.5" height="206"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-e9-65x">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" verticalCompressionResistancePriority="1000" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rbH-e9-65x">
                                             <rect key="frame" x="0.0" y="0.0" width="324.5" height="17"/>
                                             <fontDescription key="fontDescription" style="UICTFontTextStyleHeadline"/>
                                             <nil key="textColor"/>

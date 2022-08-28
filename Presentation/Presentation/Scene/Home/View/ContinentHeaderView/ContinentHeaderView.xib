@@ -24,7 +24,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tuW-Nn-IYd">
                     <rect key="frame" x="6" y="4" width="402" height="228"/>
                     <subviews>
-                        <stackView opaque="NO" contentMode="scaleToFill" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7cu-ZI-Hpq">
+                        <stackView opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="1000" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="7cu-ZI-Hpq">
                             <rect key="frame" x="0.0" y="0.0" width="402" height="228"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Gzq-7z-32R">

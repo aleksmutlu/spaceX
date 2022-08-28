@@ -9,6 +9,7 @@ import UIKit
 
 final class CountryHeaderView: NibView {
  
+    // TODO: Remove patch, add flag bg
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var imageViewPatch: UIImageView!
     @IBOutlet weak var imageViewBackground: UIImageView!
@@ -27,7 +28,6 @@ final class CountryHeaderView: NibView {
         
         setLabelMissionNameUp()
         setLabelRocketNameUp()
-        setDateContainerViewUp()
         setContentViewUp()
         setBottomContainerViewUp()
     }
@@ -40,10 +40,6 @@ final class CountryHeaderView: NibView {
     
     private func setLabelRocketNameUp() {
         labelRocketName.textColor = Theme.secondaryText
-    }
-    
-    private func setDateContainerViewUp() {
-        dateContainerView.backgroundColor = Theme.contentBackgroundColor
     }
     
     private func setContentViewUp() {
