@@ -20,8 +20,8 @@
             <subviews>
                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fKd-ho-OMa">
                     <rect key="frame" x="16" y="0.0" width="382" height="107"/>
-                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
-                    <nil key="textColor"/>
+                    <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                    <color key="textColor" name="PrimaryText"/>
                     <nil key="highlightedColor"/>
                 </label>
             </subviews>
@@ -39,7 +39,10 @@
     </objects>
     <resources>
         <namedColor name="MainBackground">
-            <color white="0.92000001668930054" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+            <color red="0.92143100499999997" green="0.92145264149999995" blue="0.92144101860000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="PrimaryText">
+            <color red="0.12999999523162842" green="0.12999999523162842" blue="0.12999999523162842" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>
