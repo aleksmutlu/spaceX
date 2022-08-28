@@ -33,6 +33,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
     private let fetchCountriesUseCase: FetchCountriesUseCase
     
     private var continents: [Continent] = []
+    private var countries: [Country] = []
     private let onCoordinatorActionTrigger: (HomeViewCoordinatorActions) -> Void
     
     private var openSectionIndex: Int? = nil
@@ -83,6 +84,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
                     continentIndex: index
                 )
                 
+                self.countries = countries
                 let action: HomeState.DisplayAction
                 action = self.openSectionIndex == nil ? .collapse : .expand(index: self.openSectionIndex!)
                 self.stateInput.onNext(
@@ -102,7 +104,7 @@ public final class DefaultHomeViewModel: HomeViewModel {
 
 public protocol HomeViewModelInputs {
     func viewDidLoad()
-    func didSelectItem(at index: Int, in section: Int)
+    func didSelectItem(at index: Int)
     func expandTapped(at index: Int)
     func refetchTapped()
 }
@@ -127,10 +129,9 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         stateInput.onNext(.idle)
     }
     
-    public func didSelectItem(at index: Int, in section: Int) {
-        let continent = continents[section]
-//        let country = continent.countries[index]
-//        onCoordinatorActionTrigger(.select(launch: country))
+    public func didSelectItem(at index: Int) { // TODO: Rename this
+        let country = countries[index]
+        onCoordinatorActionTrigger(.select(launch: country))
     }
     
     public func expandTapped(at index: Int) {
@@ -139,9 +140,9 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
             if openSectionIndex == index { // Close
                 self.openSectionIndex = nil
                 let viewModels = generateContinentListItemViewModels(from: continents, continentIndex: index)
+                countries = []
                 stateInput.onNext(.display(continents: viewModels, action: .collapse))
             } else { // Switch to another
-                print("Open another \(openSectionIndex)")
                 self.openSectionIndex = index
                 let continent = continents[index]
                 fetchCountries(of: continent.code, index: index)

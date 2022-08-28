@@ -15,7 +15,7 @@ public final class DefaultLaunchRepository: LaunchRepository {
         self.remoteLaunchDataStore = remoteLaunchDataStore
     }
     
-    public func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) {
+    public func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void)  {
         remoteLaunchDataStore.fetchContinents { result in
             switch result {
             case .success(let continents):

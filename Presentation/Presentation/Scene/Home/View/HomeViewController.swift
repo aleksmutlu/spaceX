@@ -17,10 +17,6 @@ class GenericTableDataSource: UITableViewDiffableDataSource<ContinentListItemVie
       return cell
     }
   }
-  
-  override func tableView(_ tableView: UITableView,  titleForHeaderInSection section: Int) -> String? {
-      return snapshot().sectionIdentifiers[section].title
-  }
 }
 
 public enum HomeState {
@@ -140,7 +136,7 @@ public final class HomeViewController: BaseViewController {
         
         dataSource.apply(snapshot, animatingDifferences: false) {
             self.updateParallaxOffsets()
-            
+            // TODO: Divide animations into two methods
             switch action{
             case .expand(let index):
                 self.homeView.tableView.scrollToRow(
@@ -203,7 +199,7 @@ public final class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.inputs.didSelectItem(at: indexPath.row, in: indexPath.section)
+        viewModel.inputs.didSelectItem(at: indexPath.row)
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -224,7 +220,7 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = ContinentHeaderView(frame: CGRect(x: 0, y: 0, width: 100, height: 50))
+        let headerView = ContinentHeaderView()
         let continentItem = dataSource.snapshot().sectionIdentifiers[section]
         headerView.labelTitle.text = continentItem.title
         let action = UIAction { [weak self] _ in
