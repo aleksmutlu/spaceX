@@ -79,16 +79,16 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Detail
     
-    func makeDetailScene(for launch: Country) -> DetailViewController {
-        let detailViewModel = makeDetailViewModel(launch: launch)
+    func makeDetailScene(for country: Country) -> DetailViewController {
+        let detailViewModel = makeDetailViewModel(country: country)
         let detailViewController = DetailViewController(viewModel: detailViewModel)
         return detailViewController
     }
     
-    private func makeDetailViewModel(launch: Country) -> some DetailViewModel {
+    private func makeDetailViewModel(country: Country) -> some DetailViewModel {
         let detailViewModel = DefaultDetailViewModel(
             fetchLaunchUseCase: makeFetchLaunchUseCase(),
-            launch: launch
+            country: country
         )
         return detailViewModel
     }

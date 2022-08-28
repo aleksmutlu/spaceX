@@ -9,5 +9,10 @@ import Foundation
 
 public struct DetailSectionViewModel {
     let sectionTitle: String
-    let detail: String?
+    let detail: String
+    
+    init(sectionTitle: String, detailItems: [String]) {
+        self.sectionTitle = sectionTitle
+        self.detail = detailItems.joined(separator: ", ")
+    }
 }

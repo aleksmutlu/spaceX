@@ -24,14 +24,53 @@ public final class DefaultDetailViewModel: DetailViewModel {
     
     private let detailSectionInput = PublishSubject<[DetailSectionViewModel]>()
     
-    private let fetchLaunchUseCase: FetchCountryUseCase
-    private var launch: Country
+    private let fetchCountryUseCase: FetchCountryUseCase
+    private var country: Country
     
     // MARK: - Life cycle
     
-    public init(fetchLaunchUseCase: FetchCountryUseCase, launch: Country) {
-        self.fetchLaunchUseCase = fetchLaunchUseCase
-        self.launch = launch
+    public init(fetchCountryUseCase: FetchCountryUseCase, country: Country) {
+        self.fetchCountryUseCase = fetchCountryUseCase
+        self.country = country
+    }
+    
+    // MARK: - Helpers
+    
+    private func fetchCountryDetail(by countryCode: String) {
+        fetchCountryUseCase.execute(countryCode: country.code) { [weak self] result in
+            guard let self = self else { return }
+            
+            switch result {
+            case .success(let countryDetails):
+                let sectionViewModels = self.generateSecionViewModels(from: countryDetails)
+                self.detailSectionInput.onNext(sectionViewModels)
+            case .failure(let error):
+                self.detailSectionInput.onNext([])
+            }
+        }
+    }
+    
+    private func generateSecionViewModels(
+        from countryDetails: CountryDetails
+    ) -> [DetailSectionViewModel] {
+        var sectionViewModels = [DetailSectionViewModel]()
+        if !countryDetails.languages.isEmpty {
+            sectionViewModels.append(
+                DetailSectionViewModel( // TODO: Test
+                    sectionTitle: "Languages",
+                    detailItems: countryDetails.languages
+                )
+            )
+        }
+        if !countryDetails.states.isEmpty {
+            sectionViewModels.append(
+                DetailSectionViewModel(
+                    sectionTitle: "States",
+                    detailItems: countryDetails.states
+                )
+            )
+        }
+        return sectionViewModels
     }
 }
 
@@ -44,31 +83,7 @@ public protocol DetailViewModelInputs {
 extension DefaultDetailViewModel: DetailViewModelInputs {
     
     public func viewDidLoad() {
-        fetchLaunchUseCase.execute(countryCode: launch.code) { [weak self] result in
-            switch result {
-            case .success(let countryDetails):
-                var sectionViewModels = [DetailSectionViewModel]()
-                if !countryDetails.languages.isEmpty {
-                    sectionViewModels.append(
-                        DetailSectionViewModel(
-                            sectionTitle: "Languages",
-                            detail: countryDetails.languages.joined(separator: ", ")
-                        )
-                    )
-                }
-                if !countryDetails.states.isEmpty {
-                    sectionViewModels.append(
-                        DetailSectionViewModel(
-                            sectionTitle: "States",
-                            detail: countryDetails.states.joined(separator: ", ")
-                        )
-                    )
-                }
-                self?.detailSectionInput.onNext(sectionViewModels)
-            case .failure(let error):
-                self?.detailSectionInput.onNext([])
-            }
-        }
+        fetchCountryDetail(by: country.code)
     }
 }
 
@@ -82,7 +97,7 @@ public protocol DetailViewModelOutputs {
 extension DefaultDetailViewModel: DetailViewModelOutputs {
     
     public var headerData: CountryListItemViewModel {
-        CountryListItemViewModel(launch: launch)
+        CountryListItemViewModel(launch: country)
     }
     
     public var detailSection: Observable<[DetailSectionViewModel]> {
