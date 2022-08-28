@@ -52,7 +52,7 @@
 		593158DC28B4EBA9000D2DCC /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158DB28B4EBA9000D2DCC /* BaseViewController.swift */; };
 		593158DE28B4F0DA000D2DCC /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158DD28B4F0DA000D2DCC /* DetailViewController.swift */; };
 		593158E028B4F0FB000D2DCC /* DetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158DF28B4F0FB000D2DCC /* DetailViewModel.swift */; };
-		5998C96E28BA04B400D2BA58 /* LaunchModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96D28BA04B400D2BA58 /* LaunchModalTransition.swift */; };
+		5998C96E28BA04B400D2BA58 /* DetailModalTransition.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5998C96D28BA04B400D2BA58 /* DetailModalTransition.swift */; };
 		59FDB2A028BA17B200D1AF33 /* SectionHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FDB29F28BA17B200D1AF33 /* SectionHeaderView.xib */; };
 		59FDB2A228BA17B900D1AF33 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59FDB2A128BA17B900D1AF33 /* SectionHeaderView.swift */; };
 		59FDB2A528BA1B0200D1AF33 /* DetailSectionView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 59FDB2A428BA1B0200D1AF33 /* DetailSectionView.xib */; };
@@ -110,7 +110,7 @@
 		593158DB28B4EBA9000D2DCC /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		593158DD28B4F0DA000D2DCC /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
 		593158DF28B4F0FB000D2DCC /* DetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewModel.swift; sourceTree = "<group>"; };
-		5998C96D28BA04B400D2BA58 /* LaunchModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchModalTransition.swift; sourceTree = "<group>"; };
+		5998C96D28BA04B400D2BA58 /* DetailModalTransition.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailModalTransition.swift; sourceTree = "<group>"; };
 		59FDB29F28BA17B200D1AF33 /* SectionHeaderView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SectionHeaderView.xib; sourceTree = "<group>"; };
 		59FDB2A128BA17B900D1AF33 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		59FDB2A428BA1B0200D1AF33 /* DetailSectionView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailSectionView.xib; sourceTree = "<group>"; };
@@ -395,7 +395,7 @@
 		5998C96C28BA048800D2BA58 /* Transitions */ = {
 			isa = PBXGroup;
 			children = (
-				5998C96D28BA04B400D2BA58 /* LaunchModalTransition.swift */,
+				5998C96D28BA04B400D2BA58 /* DetailModalTransition.swift */,
 			);
 			path = Transitions;
 			sourceTree = "<group>";
@@ -557,7 +557,7 @@
 				5902A65C28B92A390074087A /* MainCoordinator.swift in Sources */,
 				5930677628B6ACBB004913B7 /* UIColor+Extensions.swift in Sources */,
 				593158E028B4F0FB000D2DCC /* DetailViewModel.swift in Sources */,
-				5998C96E28BA04B400D2BA58 /* LaunchModalTransition.swift in Sources */,
+				5998C96E28BA04B400D2BA58 /* DetailModalTransition.swift in Sources */,
 				5902A65428B907890074087A /* UIView+Extensions.swift in Sources */,
 				5902A65F28B92CA80074087A /* Coordinator.swift in Sources */,
 				593158DC28B4EBA9000D2DCC /* BaseViewController.swift in Sources */,

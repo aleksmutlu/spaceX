@@ -11,7 +11,7 @@ import RxCocoa
 import RxSwift
 
 public enum HomeViewCoordinatorActions {
-    case select(launch: Country)
+    case select(country: Country)
 }
 
 public protocol HomeViewModel: AnyObject {
@@ -124,14 +124,14 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         }
         
         // TODO: Unnecessary Reactivity
-        navigationBarTitleInput.onNext("SpaceX Launches")
+        navigationBarTitleInput.onNext("World")
 
         stateInput.onNext(.idle)
     }
     
     public func didSelectItem(at index: Int) { // TODO: Rename this
         let country = countries[index]
-        onCoordinatorActionTrigger(.select(launch: country))
+        onCoordinatorActionTrigger(.select(country: country))
     }
     
     public func expandTapped(at index: Int) {
@@ -152,8 +152,6 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
             let continent = continents[index]
             fetchCountries(of: continent.code, index: index)
         }
-        
-        print("expand at \(index)")
     }
     
     public func refetchTapped() {

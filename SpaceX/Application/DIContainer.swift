@@ -13,8 +13,8 @@ import UIKit
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
 final class DIContainer: MainCoordinatorDependencies {
     
-    private lazy var remoteCountryDataStore: RemoteCountryDataStore = {
-        GraphQLCountryDataStore()
+    private lazy var remoteCountryDataStore: RemoteWorldDataStore = {
+        GraphQLWorldDataStore()
     }()
     
     // MARK: - Coordinator
@@ -30,7 +30,7 @@ final class DIContainer: MainCoordinatorDependencies {
     // MARK: - Repository
     
     func makeWorldRepository() -> some WorldRepository {
-        let worldRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteCountryDataStore)
+        let worldRepository = DefaultWorldRepository(remoteWorldDataStore: remoteCountryDataStore)
         return worldRepository
     }
     

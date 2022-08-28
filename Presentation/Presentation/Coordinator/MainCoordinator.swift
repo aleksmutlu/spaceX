@@ -37,8 +37,8 @@ public final class MainCoordinator: Coordinator {
     private func showHome() {
         let homeViewController = dependencies.makeHomeScene { [weak self] action in
             switch action {
-            case .select(let launch):
-                self?.showDetail(of: launch)
+            case .select(let country):
+                self?.showDetail(of: country)
             }
         }
         navigationController.viewControllers = [homeViewController]

@@ -1,5 +1,5 @@
 //
-//  LaunchModalTransition.swift
+//  DetailModalTransition.swift
 //  Presentation
 //
 //  Created by Aleks Mutlu on 27.08.2022.
@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-final class LaunchModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
+final class DetailModalTransition: NSObject, UIViewControllerAnimatedTransitioning {
     
     func transitionDuration(
         using transitionContext: UIViewControllerContextTransitioning?

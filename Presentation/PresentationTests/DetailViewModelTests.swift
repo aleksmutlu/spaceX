@@ -24,21 +24,21 @@ private class SectionViewModelSpy {
 }
 
 final class DetailViewModelTests: XCTestCase {
-    var fetchLaunchUseCase: MockFetchCountryUseCase!
+    var fetchCountryUseCase: MockFetchCountryUseCase!
     var country: Country!
     var sut: DefaultDetailViewModel!
     
     override func setUp() {
-        fetchLaunchUseCase = MockFetchCountryUseCase()
+        fetchCountryUseCase = MockFetchCountryUseCase()
         country = Country.stub
         sut = DefaultDetailViewModel(
-            fetchCountryUseCase: fetchLaunchUseCase,
+            fetchCountryUseCase: fetchCountryUseCase,
             country: country
         )
     }
     
     override func tearDown() {
-        fetchLaunchUseCase = nil
+        fetchCountryUseCase = nil
         country = nil
         sut = nil
     }
@@ -51,7 +51,7 @@ final class DetailViewModelTests: XCTestCase {
         let states = ["Istanbul"]
         let languages = ["Turkish"]
         let countryDetail = CountryDetails(states: states, languages: languages)
-        fetchLaunchUseCase.countryDetailResponse = countryDetail
+        fetchCountryUseCase.countryDetailResponse = countryDetail
         let spy = SectionViewModelSpy(sut.outputs.detailSection)
         
         // When
@@ -61,8 +61,8 @@ final class DetailViewModelTests: XCTestCase {
         // Then
         
         XCTAssertTrue(
-            fetchLaunchUseCase.isExecutionComplete,
-            "🚨 fetchLaunchUseCase case is not executed"
+            fetchCountryUseCase.isExecutionComplete,
+            "🚨 fetchCountryUseCase case is not executed"
         )
         
         XCTAssertTrue(spy.values.count == 2, "🚨 Expected 2 sections as an output")
@@ -73,7 +73,7 @@ final class DetailViewModelTests: XCTestCase {
         // Given
         
         let countryDetail = CountryDetails(states: [], languages: [])
-        fetchLaunchUseCase.countryDetailResponse = countryDetail
+        fetchCountryUseCase.countryDetailResponse = countryDetail
         let spy = SectionViewModelSpy(sut.outputs.detailSection)
         
         // When
@@ -83,8 +83,8 @@ final class DetailViewModelTests: XCTestCase {
         // Then
         
         XCTAssertTrue(
-            fetchLaunchUseCase.isExecutionComplete,
-            "🚨 fetchLaunchUseCase case is not executed"
+            fetchCountryUseCase.isExecutionComplete,
+            "🚨 fetchCountryUseCase case is not executed"
         )
         
         XCTAssertTrue(spy.values.isEmpty, "🚨 Expected 0 section as an output")
@@ -96,7 +96,7 @@ final class DetailViewModelTests: XCTestCase {
         let states = ["Istanbul"]
         let languages = ["Turkish"]
         let countryDetail = CountryDetails(states: states, languages: languages)
-        fetchLaunchUseCase.countryDetailResponse = countryDetail
+        fetchCountryUseCase.countryDetailResponse = countryDetail
         let spy = SectionViewModelSpy(sut.outputs.detailSection)
         
         // When
@@ -106,8 +106,8 @@ final class DetailViewModelTests: XCTestCase {
         // Then
         
         XCTAssertTrue(
-            fetchLaunchUseCase.isExecutionComplete,
-            "🚨 fetchLaunchUseCase case is not executed"
+            fetchCountryUseCase.isExecutionComplete,
+            "🚨 fetchCountryUseCase case is not executed"
         )
         
         XCTAssertTrue(spy.values.count == 2, "🚨 Expected 2 sections as an output")

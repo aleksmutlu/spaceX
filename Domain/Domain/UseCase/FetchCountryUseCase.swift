@@ -25,8 +25,8 @@ public final class DefaultFetchCountryUseCase: FetchCountryUseCase {
     ) {
         worldRepository.fetchCountry(by: countryCode) { result in
             switch result {
-            case .success(let launch):
-                onCompletion(.success(launch))
+            case .success(let countryDetails):
+                onCompletion(.success(countryDetails))
             case .failure(let error):
                 onCompletion(.failure(error))
             }

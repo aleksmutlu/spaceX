@@ -240,6 +240,6 @@ extension HomeViewController: UIViewControllerTransitioningDelegate {
     }
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return LaunchModalTransition()
+        return DetailModalTransition()
     }
 }

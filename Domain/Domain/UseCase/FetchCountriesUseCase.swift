@@ -22,8 +22,8 @@ public final class DefaultFetchCountriesUseCase: FetchCountriesUseCase {
     public func execute(continentCode: String, onCompletion: @escaping (Result<[Country], Error>) -> Void) {
         worldRepository.fetchCountries(by: continentCode) { result in
             switch result {
-            case .success(let launches):
-                onCompletion(.success(launches))
+            case .success(let countries):
+                onCompletion(.success(countries))
             case .failure(let error):
                 onCompletion(.failure(error))
             }
