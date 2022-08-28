@@ -57,8 +57,6 @@ public final class HomeViewController: BaseViewController {
         bindViewModel()
         
         viewModel.inputs.viewDidLoad()
-        
-        navigationController?.transitioningDelegate = self
     }
     
     // MARK: - Setup
@@ -230,16 +228,5 @@ extension HomeViewController: UITableViewDelegate {
         headerView.buttonExpand.addAction(action, for: .touchUpInside)
         headerView.layer.zPosition = CGFloat(section) * 0.1
         return headerView
-    }
-}
-
-extension HomeViewController: UIViewControllerTransitioningDelegate {
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return nil
-    }
-    
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return DetailModalTransition()
     }
 }
