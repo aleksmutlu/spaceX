@@ -10,7 +10,6 @@ import UIKit
 enum ContinentHeaderViewState {
     case collapsed
     case expanded
-    case loading
     
     var image: UIImage? {
         switch self {
@@ -18,8 +17,6 @@ enum ContinentHeaderViewState {
             return UIImage(systemName: "arrow.up.circle")
         case .expanded:
             return UIImage(systemName: "arrow.down.circle.fill")
-        case .loading:
-            return nil
         }
     }
 }
@@ -47,8 +44,6 @@ final class ContinentHeaderView: NibView {
             labelTitle.font = .systemFont(ofSize: 20, weight: .black)
             buttonExpand.configuration?.image = state.image
             contentView.backgroundColor = Theme.contentBackgroundColor
-        case .loading:
-            break
         }
     }
 }

@@ -8,17 +8,6 @@
 import UIKit
 import RxSwift
 
-// TODO: move
-class GenericTableDataSource: UITableViewDiffableDataSource<ContinentListItemViewModel, CountryListItemViewModel> {
-  init(tableView: UITableView) {
-    super.init(tableView: tableView) { tableView, indexPath, item in
-        let cell = tableView.dequeueCell(typed: CountryTableViewCell.self, indexPath: indexPath)
-        cell.populate(with: item)
-      return cell
-    }
-  }
-}
-
 public typealias DisplayContinentsData = (viewModels: [ContinentListItemViewModel], activeSectionIndex: Int?)
 
 public enum HomeHUDAction {
@@ -38,7 +27,7 @@ public final class HomeViewController: BaseViewController {
     // MARK: - Properties
     
     private let viewModel: HomeViewModel
-    private var dataSource: GenericTableDataSource!
+    private var dataSource: ContinentsDataSource!
     
     // MARK: - Life cycle
     
@@ -63,7 +52,7 @@ public final class HomeViewController: BaseViewController {
         
         setNavigationBarUp()
         
-        dataSource = GenericTableDataSource(tableView: homeView.tableView)
+        dataSource = ContinentsDataSource(tableView: homeView.tableView)
         
         bindViewModel()
         
