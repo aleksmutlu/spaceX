@@ -19,17 +19,12 @@ class GenericTableDataSource: UITableViewDiffableDataSource<ContinentListItemVie
   }
 }
 
-public enum HomeState {
+public typealias DisplayContinentsData = (viewModels: [ContinentListItemViewModel], activeSectionIndex: Int?)
+
+public enum HomeHUDAction {
     case idle
-    case loading
-    case loadMore
-    case display(continents: [ContinentListItemViewModel], action: DisplayAction)
-    case error(title: String)
-    
-    public enum DisplayAction {
-        case expand(index: Int)
-        case collapse
-    }
+    case showLoading
+    case showError(title: String)
 }
 
 private let parallaxSpeed: CGFloat = 10
@@ -66,6 +61,8 @@ public final class HomeViewController: BaseViewController {
         
         setTableViewUp()
         
+        setNavigationBarUp()
+        
         dataSource = GenericTableDataSource(tableView: homeView.tableView)
         
         bindViewModel()
@@ -78,15 +75,18 @@ public final class HomeViewController: BaseViewController {
     // MARK: - Setup
     
     private func bindViewModel() {
-        viewModel.outputs.state
+        viewModel.outputs.hudAction
             .observe(on: MainScheduler.instance)
             .bind { [weak self] state in
-                self?.updateUI(for: state)
+                self?.handleHUDActions(for: state)
             }
             .disposed(by: disposeBag)
         
-        viewModel.outputs.navigationBarTitle?
-            .bind(to: navigationItem.rx.title)
+        viewModel.outputs.displayContinents
+            .observe(on: MainScheduler.instance)
+            .bind { [weak self] viewModels, activeSectionIndex in
+                self?.display(continents: viewModels, activeSectionIndex: activeSectionIndex)
+            }
             .disposed(by: disposeBag)
         
         homeView.errorView.buttonRetry.rx.tap.asObservable()
@@ -101,19 +101,19 @@ public final class HomeViewController: BaseViewController {
         homeView.tableView.delegate = self
     }
     
+    private func setNavigationBarUp() {
+        navigationItem.title = viewModel.outputs.navigationBarTitle
+    }
+    
     // MARK: - Helpers
     
-    private func updateUI(for state: HomeState) {
+    private func handleHUDActions(for state: HomeHUDAction) {
         switch state {
         case .idle:
             displayIdle()
-        case .loading:
-            fatalError()
-        case .loadMore:
-            fatalError()
-        case .display(let continents, let action):
-            display(continents: continents, action: action)
-        case .error(let title):
+        case .showLoading:
+            displayLoading()
+        case .showError(let title):
             displayError(with: title)
         }
     }
@@ -121,11 +121,18 @@ public final class HomeViewController: BaseViewController {
     private func displayIdle() {
         homeView.errorView.isHidden = true
         homeView.tableView.isHidden = false
+        homeView.activityIndicator.stopAnimating()
+    }
+    
+    private func displayLoading() {
+        homeView.activityIndicator.startAnimating()
+        homeView.errorView.isHidden = true
+        homeView.tableView.isHidden = true
     }
     
     private func display(
         continents: [ContinentListItemViewModel],
-        action: HomeState.DisplayAction
+        activeSectionIndex: Int?
     ) {
         var snapshot = NSDiffableDataSourceSnapshot<ContinentListItemViewModel, CountryListItemViewModel>()
         
@@ -136,30 +143,10 @@ public final class HomeViewController: BaseViewController {
         
         dataSource.apply(snapshot, animatingDifferences: false) {
             self.updateParallaxOffsets()
-            // TODO: Divide animations into two methods
-            switch action{
-            case .expand(let index):
-                self.homeView.tableView.scrollToRow(
-                    at: IndexPath(row: 0, section: index),
-                    at: .top,
-                    animated: false
-                )
-                
-                self.homeView.tableView.visibleCells.enumerated().forEach { (offset, cell) in
-                    cell.transform = CGAffineTransform(translationX: 0, y: 120)
-                    UIView.animate(
-                        withDuration: 1,
-                        delay: TimeInterval(offset) * 0.02,
-                        usingSpringWithDamping: 0.85,
-                        initialSpringVelocity: 9,
-                        options: .curveEaseIn,
-                        animations: {
-                            cell.transform = .identity
-                        },
-                        completion: nil
-                    )
-                }
-            case .collapse:
+            
+            if let activeSectionIndex = activeSectionIndex {
+                self.expandSection(at: activeSectionIndex)
+            } else {
                 self.homeView.tableView.fadeIn(in: 0.4)
             }
         }
@@ -170,8 +157,7 @@ public final class HomeViewController: BaseViewController {
         homeView.errorView.isHidden = false
         homeView.fadeIn()
         homeView.tableView.isHidden = true
-        
-        // TODO: Alert
+        homeView.activityIndicator.stopAnimating()
     }
     
     private func updateParallaxOffset(of cell: CountryTableViewCell, by contentOffsetY: CGFloat) {
@@ -192,6 +178,29 @@ public final class HomeViewController: BaseViewController {
             updateParallaxOffset(of: cell, by: contentOffsetY)
         }
     }
+    
+    private func expandSection(at index: Int) {
+        homeView.tableView.scrollToRow(
+            at: IndexPath(row: 0, section: index),
+            at: .top,
+            animated: false
+        )
+        
+        homeView.tableView.visibleCells.enumerated().forEach { (offset, cell) in
+            cell.transform = CGAffineTransform(translationX: 0, y: 120)
+            UIView.animate(
+                withDuration: 1,
+                delay: TimeInterval(offset) * 0.02,
+                usingSpringWithDamping: 0.85,
+                initialSpringVelocity: 9,
+                options: .curveEaseOut,
+                animations: {
+                    cell.transform = .identity
+                },
+                completion: nil
+            )
+        }
+    }
 }
 
 // MARK: - UITableViewDelegate
@@ -199,7 +208,7 @@ public final class HomeViewController: BaseViewController {
 extension HomeViewController: UITableViewDelegate {
     
     public func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        viewModel.inputs.didSelectItem(at: indexPath.row)
+        viewModel.inputs.countryTapped(at: indexPath.row)
     }
     
     public func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -215,7 +224,9 @@ extension HomeViewController: UITableViewDelegate {
         updateParallaxOffset(of: cell, by: tableView.contentOffset.y)
     }
     
-    public func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+    public func tableView(
+        _ tableView: UITableView, heightForHeaderInSection section: Int
+    ) -> CGFloat {
         62
     }
     
@@ -224,7 +235,7 @@ extension HomeViewController: UITableViewDelegate {
         let continentItem = dataSource.snapshot().sectionIdentifiers[section]
         headerView.labelTitle.text = continentItem.title
         let action = UIAction { [weak self] _ in
-            self?.viewModel.inputs.expandTapped(at: section)
+            self?.viewModel.inputs.continentTapped(at: section)
         }
         headerView.update(state: continentItem.state)
         headerView.buttonExpand.addAction(action, for: .touchUpInside)

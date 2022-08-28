@@ -11,7 +11,7 @@ import UIKit
 
 public protocol MainCoordinatorDependencies {
     func makeHomeScene(
-        onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+        onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
     ) -> HomeViewController
     
     func makeDetailScene(for country: Country) -> DetailViewController

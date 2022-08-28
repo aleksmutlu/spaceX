@@ -23,6 +23,8 @@ private class SectionViewModelSpy {
     }
 }
 
+// TODO: Error Test
+
 final class DetailViewModelTests: XCTestCase {
     var fetchCountryUseCase: MockFetchCountryUseCase!
     var country: Country!
@@ -42,8 +44,6 @@ final class DetailViewModelTests: XCTestCase {
         country = nil
         sut = nil
     }
-    
-    // TODO: Test state changes including loading
     
     func testFetchCountryDetailsOnViewDidLoad_TwoSectionResult() {
         // Given

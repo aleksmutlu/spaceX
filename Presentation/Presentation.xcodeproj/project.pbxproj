@@ -31,6 +31,9 @@
 		5923150328BB911700AD2128 /* MockFetchCountryUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923150228BB911700AD2128 /* MockFetchCountryUseCase.swift */; };
 		5923150628BB921600AD2128 /* Country+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923150528BB921600AD2128 /* Country+Stub.swift */; };
 		5923150A28BBA51700AD2128 /* DetailSectionViewModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923150928BBA51700AD2128 /* DetailSectionViewModelTests.swift */; };
+		5923151028BC02FA00AD2128 /* MockFetchContinentsUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923150F28BC02FA00AD2128 /* MockFetchContinentsUseCase.swift */; };
+		5923151228BC038300AD2128 /* MockFetchCountriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923151128BC038300AD2128 /* MockFetchCountriesUseCase.swift */; };
+		5923151428BC0AC600AD2128 /* Continent+Stub.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5923151328BC0AC600AD2128 /* Continent+Stub.swift */; };
 		592AE49728BA1D4500F68B6A /* DetailSectionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592AE49628BA1D4500F68B6A /* DetailSectionViewModel.swift */; };
 		5930673228B54B3B004913B7 /* CountryListItemViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5930673128B54B3B004913B7 /* CountryListItemViewModel.swift */; };
 		5930675728B554D7004913B7 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5930675628B554D7004913B7 /* RxCocoa */; };
@@ -95,6 +98,9 @@
 		5923150228BB911700AD2128 /* MockFetchCountryUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchCountryUseCase.swift; sourceTree = "<group>"; };
 		5923150528BB921600AD2128 /* Country+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Country+Stub.swift"; sourceTree = "<group>"; };
 		5923150928BBA51700AD2128 /* DetailSectionViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionViewModelTests.swift; sourceTree = "<group>"; };
+		5923150F28BC02FA00AD2128 /* MockFetchContinentsUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchContinentsUseCase.swift; sourceTree = "<group>"; };
+		5923151128BC038300AD2128 /* MockFetchCountriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MockFetchCountriesUseCase.swift; sourceTree = "<group>"; };
+		5923151328BC0AC600AD2128 /* Continent+Stub.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Continent+Stub.swift"; sourceTree = "<group>"; };
 		592AE49628BA1D4500F68B6A /* DetailSectionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailSectionViewModel.swift; sourceTree = "<group>"; };
 		5930673128B54B3B004913B7 /* CountryListItemViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CountryListItemViewModel.swift; sourceTree = "<group>"; };
 		5930676528B62C5C004913B7 /* UITableView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Extensions.swift"; sourceTree = "<group>"; };
@@ -332,6 +338,8 @@
 			isa = PBXGroup;
 			children = (
 				5923150228BB911700AD2128 /* MockFetchCountryUseCase.swift */,
+				5923150F28BC02FA00AD2128 /* MockFetchContinentsUseCase.swift */,
+				5923151128BC038300AD2128 /* MockFetchCountriesUseCase.swift */,
 			);
 			path = Mocks;
 			sourceTree = "<group>";
@@ -340,6 +348,7 @@
 			isa = PBXGroup;
 			children = (
 				5923150528BB921600AD2128 /* Country+Stub.swift */,
+				5923151328BC0AC600AD2128 /* Continent+Stub.swift */,
 			);
 			path = Stubs;
 			sourceTree = "<group>";
@@ -584,9 +593,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				592314FC28BB751F00AD2128 /* CountryListItemViewModelTests.swift in Sources */,
+				5923151028BC02FA00AD2128 /* MockFetchContinentsUseCase.swift in Sources */,
 				5923150328BB911700AD2128 /* MockFetchCountryUseCase.swift in Sources */,
+				5923151228BC038300AD2128 /* MockFetchCountriesUseCase.swift in Sources */,
 				5923150628BB921600AD2128 /* Country+Stub.swift in Sources */,
 				592314FE28BB757700AD2128 /* HomeViewModelTests.swift in Sources */,
+				5923151428BC0AC600AD2128 /* Continent+Stub.swift in Sources */,
 				5923150028BB8A0500AD2128 /* DetailViewModelTests.swift in Sources */,
 				5923150A28BBA51700AD2128 /* DetailSectionViewModelTests.swift in Sources */,
 			);

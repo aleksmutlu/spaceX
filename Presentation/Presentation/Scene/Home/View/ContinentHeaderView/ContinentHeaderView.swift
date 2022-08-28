@@ -38,7 +38,6 @@ final class ContinentHeaderView: NibView {
     }
     
     func update(state: ContinentHeaderViewState) {
-        // TODO: FONT
         switch state {
         case .collapsed:
             labelTitle.font = .systemFont(ofSize: 17, weight: .semibold)

@@ -57,7 +57,7 @@ final class DIContainer: MainCoordinatorDependencies {
     // MARK: - Home
 
     func makeHomeScene(
-        onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+        onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
     ) -> HomeViewController {
         let homeViewModel = makeHomeViewModel(onHomeActionTrigger: onHomeActionTrigger)
         let homeViewController = HomeViewController(viewModel: homeViewModel)
@@ -65,7 +65,7 @@ final class DIContainer: MainCoordinatorDependencies {
     }
     
     private func makeHomeViewModel(
-        onHomeActionTrigger: @escaping (HomeViewCoordinatorActions) -> Void
+        onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
     ) -> some HomeViewModel {
         let fetchContinentsUseCase = makeFetchContinentsUseCase()
         let fetchCountriesUseCase = makeFetchCountriesUseCase()

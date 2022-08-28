@@ -40,17 +40,23 @@ public final class DefaultDetailViewModel: DetailViewModel {
     
     private func fetchCountryDetail(by countryCode: String) {
         fetchCountryUseCase.execute(countryCode: country.code) { [weak self] result in
-            guard let self = self else { return }
-            
             switch result {
             case .success(let countryDetails):
-                let sectionViewModels = self.generateSecionViewModels(from: countryDetails)
-                self.detailSectionInput.onNext(sectionViewModels)
-                self.updateHUD(.idle)
+                self?.handleCountyDetails(countryDetails)
             case .failure:
-                self.updateHUD(.showError(title: "Oops! Something went wrong...")) // TODO: Constants?
+                self?.handleError()
             }
         }
+    }
+    
+    private func handleCountyDetails(_ countryDetails: CountryDetails) {
+        let sectionViewModels = generateSecionViewModels(from: countryDetails)
+        detailSectionInput.onNext(sectionViewModels)
+        updateHUD(.idle)
+    }
+    
+    private func handleError() {
+        updateHUD(.showError(title: "Oops! Something went wrong...")) // TODO: Constants?
     }
     
     private func generateSecionViewModels(

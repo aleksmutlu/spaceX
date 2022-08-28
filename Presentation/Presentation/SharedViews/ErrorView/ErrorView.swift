@@ -37,7 +37,7 @@ final class ErrorView: NibView {
     }
     
     private func setLabelTitleUp() {
-        labelTitle.font = .systemFont(ofSize: 15) // TODO: Theme
+        labelTitle.font = .systemFont(ofSize: 15)
         labelTitle.textColor = Theme.secondaryText
     }
     

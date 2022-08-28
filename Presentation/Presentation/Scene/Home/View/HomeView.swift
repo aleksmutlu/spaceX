@@ -43,4 +43,15 @@ final class HomeView: UIView {
         errorView.widthAnchor.constraint(equalTo: widthAnchor).isActive = true
         return errorView
     }()
+    
+    lazy var activityIndicator: UIActivityIndicatorView = {
+        let activityIndicator = UIActivityIndicatorView(style: .medium)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        addSubview(activityIndicator)
+        activityIndicator.centerYAnchor.constraint(equalTo: centerYAnchor).isActive = true
+        activityIndicator.centerXAnchor.constraint(equalTo: centerXAnchor).isActive = true
+        activityIndicator.color = Theme.primaryText
+        activityIndicator.hidesWhenStopped = true
+        return activityIndicator
+    }()
 }
