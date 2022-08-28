@@ -29,28 +29,28 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Repository
     
-    func makeCountryRepository() -> some CountryRepository {
-        let countryRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteCountryDataStore)
-        return countryRepository
+    func makeWorldRepository() -> some WorldRepository {
+        let worldRepository = DefaultLaunchRepository(remoteLaunchDataStore: remoteCountryDataStore)
+        return worldRepository
     }
     
     // MARK: - Use Case
     
     func makeFetchCountriesUseCase() -> some FetchCountriesUseCase {
-        let countryRepository = makeCountryRepository()
-        let fetchCountriesUseCase = DefaultFetchCountriesUseCase(countryRepository: countryRepository)
+        let worldRepository = makeWorldRepository()
+        let fetchCountriesUseCase = DefaultFetchCountriesUseCase(worldRepository: worldRepository)
         return fetchCountriesUseCase
     }
     
     func makeFetchCountryUseCase() -> some FetchCountryUseCase {
-        let countryRepository = makeCountryRepository()
-        let fetchCountryUseCase = DefaultFetchCountryUseCase(countryRepository: countryRepository)
+        let worldRepository = makeWorldRepository()
+        let fetchCountryUseCase = DefaultFetchCountryUseCase(worldRepository: worldRepository)
         return fetchCountryUseCase
     }
     
     func makeFetchContinentsUseCase() -> some FetchContinentsUseCase {
-        let countryRepository = makeCountryRepository()
-        let fetchContinentsUseCase = DefaultFetchContinentsUseCase(countryRepository: countryRepository)
+        let worldRepository = makeWorldRepository()
+        let fetchContinentsUseCase = DefaultFetchContinentsUseCase(worldRepository: worldRepository)
         return fetchContinentsUseCase
     }
     

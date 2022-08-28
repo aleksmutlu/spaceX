@@ -1,5 +1,5 @@
 //
-//  CountryRepository.swift
+//  WorldRepository.swift
 //  Domain
 //
 //  Created by Aleks Mutlu on 23.08.2022.
@@ -7,8 +7,8 @@
 
 import Foundation
 
-public protocol CountryRepository { // TODO: Rename to World Repo
-    func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) // TODO: Move to another repo?
+public protocol WorldRepository {
+    func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) 
     func fetchCountries(
         by continentCode: String,
         onCompletion: @escaping (Result<[Country], Error>) -> Void

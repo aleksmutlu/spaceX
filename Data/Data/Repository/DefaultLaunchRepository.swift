@@ -7,7 +7,7 @@
 
 import Domain
 
-public final class DefaultLaunchRepository: CountryRepository {
+public final class DefaultLaunchRepository: WorldRepository {
     
     private let remoteLaunchDataStore: RemoteCountryDataStore
     
