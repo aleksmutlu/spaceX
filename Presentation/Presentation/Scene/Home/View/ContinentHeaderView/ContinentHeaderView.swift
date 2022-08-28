@@ -23,15 +23,23 @@ enum ContinentHeaderViewState {
 
 final class ContinentHeaderView: NibView {
     
+    // MARK: - Views
+    
     @IBOutlet weak var containerView: UIView!
     @IBOutlet weak var labelTitle: UILabel!
     @IBOutlet weak var buttonExpand: UIButton!
     
+    // MARK: - Setup
+    
     override func setUpViews() {
         super.setUpViews()
         
+        setContainerViewUp()
+    }
+    
+    private func setContainerViewUp() {
         containerView.backgroundColor = Theme.contentBackgroundColor
-        containerView.layer.cornerRadius = 16
+        containerView.layer.cornerRadius = Theme.containerCornerRadius
     }
     
     func update(state: ContinentHeaderViewState) {

@@ -20,8 +20,8 @@ final class CountryHeaderView: NibView {
     
     // MARK: - Life cycle
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
+    override func setUpViews() {
+        super.setUpViews()
         
         setLabelMissionNameUp()
         setLabelRocketNameUp()

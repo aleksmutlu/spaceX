@@ -12,4 +12,6 @@ enum Theme {
     static let contentBackgroundColor = UIColor.fromPresentationBundle(named: "ContentBackground")
     static let primaryText = UIColor.fromPresentationBundle(named: "PrimaryText")
     static let secondaryText = UIColor.fromPresentationBundle(named: "SecondaryText")
+    
+    static let containerCornerRadius: CGFloat = 16
 }
