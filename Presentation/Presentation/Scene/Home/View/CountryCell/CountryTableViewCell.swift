@@ -25,6 +25,7 @@ final class CountryTableViewCell: UITableViewCell {
     private func setHeaderViewUp() {
         headerView.layer.cornerRadius = Theme.containerCornerRadius
         headerView.layer.cornerCurve = .circular
+        headerView.labelCountryName.numberOfLines = 1
     }
 
     // MARK: -
@@ -35,7 +36,5 @@ final class CountryTableViewCell: UITableViewCell {
         headerView.labelCapitalName.text = viewModel.capital
 //        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
         headerView.labelFlag.text = viewModel.flag
-//        headerView.layoutIfNeeded()
-//        aaa.constant = headerView.frame.height
     }
 }
