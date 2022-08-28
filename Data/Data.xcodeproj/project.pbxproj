@@ -135,6 +135,14 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5923151928BC347500AD2128 /* Interface */ = {
+			isa = PBXGroup;
+			children = (
+				593158F028B508E4000D2DCC /* RemoteWorldDataStore.swift */,
+			);
+			path = Interface;
+			sourceTree = "<group>";
+		};
 		5930672C28B5273C004913B7 /* Model */ = {
 			isa = PBXGroup;
 			children = (
@@ -162,7 +170,7 @@
 		593158F428B5092F000D2DCC /* World */ = {
 			isa = PBXGroup;
 			children = (
-				593158F028B508E4000D2DCC /* RemoteWorldDataStore.swift */,
+				5923151928BC347500AD2128 /* Interface */,
 				593158F528B50E79000D2DCC /* RemoteWorldDataStore */,
 			);
 			path = World;
@@ -172,8 +180,6 @@
 			isa = PBXGroup;
 			children = (
 				593158F628B50E94000D2DCC /* GraphQL */,
-				593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */,
-				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
 			);
 			path = RemoteWorldDataStore;
 			sourceTree = "<group>";
@@ -181,6 +187,8 @@
 		593158F628B50E94000D2DCC /* GraphQL */ = {
 			isa = PBXGroup;
 			children = (
+				593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */,
+				5930672F28B53C90004913B7 /* SpaceXAPI+Extensions.swift */,
 				5930672A28B51FA7004913B7 /* Queries.graphql */,
 			);
 			path = GraphQL;

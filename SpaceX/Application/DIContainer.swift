@@ -5,6 +5,7 @@
 //  Created by Aleks Mutlu on 23.08.2022.
 //
 
+import Apollo
 import Data
 import Domain
 import Presentation
@@ -14,7 +15,7 @@ import UIKit
 final class DIContainer: MainCoordinatorDependencies {
     
     private lazy var remoteCountryDataStore: RemoteWorldDataStore = {
-        GraphQLWorldDataStore()
+        GraphQLWorldDataStore(apollo: ApolloClient(url: Constants.apiURL))
     }()
     
     // MARK: - Coordinator

@@ -56,7 +56,7 @@ public final class DefaultDetailViewModel: DetailViewModel {
     }
     
     private func handleError() {
-        updateHUD(.showError(title: "Oops! Something went wrong...")) // TODO: Constants?
+        updateHUD(.showError(title: "Oops! Something went wrong..."))
     }
     
     private func generateSecionViewModels(

@@ -23,8 +23,6 @@ private class SectionViewModelSpy {
     }
 }
 
-// TODO: Error Test
-
 final class DetailViewModelTests: XCTestCase {
     var fetchCountryUseCase: MockFetchCountryUseCase!
     var country: Country!

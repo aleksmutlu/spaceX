@@ -11,15 +11,14 @@ import Foundation
 
 public final class GraphQLWorldDataStore: RemoteWorldDataStore {
     
-    // TODO: inject
-    let cl = ApolloClient(url: URL(string: "https://countries.trevorblades.com/")!)
+    private let apollo: ApolloClient
     
-    public init() {
-        
+    public init(apollo: ApolloClient) {
+        self.apollo = apollo
     }
     
     public func fetchContinents(onCompletion: @escaping (Result<[Continent], Error>) -> Void) {
-        cl.fetch(query: ContinentsQuery(), cachePolicy: .returnCacheDataElseFetch) { result in
+        apollo.fetch(query: ContinentsQuery(), cachePolicy: .returnCacheDataElseFetch) { result in
             switch result {
             case .success(let queryResult):
                 if let continents = queryResult.data?.toDomain() {
@@ -35,13 +34,12 @@ public final class GraphQLWorldDataStore: RemoteWorldDataStore {
         by continentCode: String,
         onCompletion: @escaping (Result<[Country], Error>) -> Void
     ) {
-        cl.fetch(
+        apollo.fetch(
             query: CountriesQuery(code: continentCode),
             cachePolicy: .returnCacheDataElseFetch
         ) { result in
             switch result {
             case .success(let queryResult):
-//                // TODO: Error Handling?
                 if let domain = queryResult.data?.toDomain() {
                     onCompletion(.success(domain))
                 }
@@ -55,7 +53,7 @@ public final class GraphQLWorldDataStore: RemoteWorldDataStore {
         by code: String,
         onCompletion: @escaping (Result<CountryDetails, Error>) -> Void
     ) {
-        cl.fetch(
+        apollo.fetch(
             query: CountryQuery(code: code),
             cachePolicy: .returnCacheDataElseFetch
         ) { result in

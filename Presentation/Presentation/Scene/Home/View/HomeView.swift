@@ -26,7 +26,6 @@ final class HomeView: UIView {
         tableView.separatorStyle = .none
         tableView.registerNibCell(typed: CountryTableViewCell.self)
         addSubview(tableView)
-        // TODO: Move this into an extension?
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true
         tableView.trailingAnchor.constraint(equalTo: trailingAnchor).isActive = true
         tableView.bottomAnchor.constraint(equalTo: bottomAnchor).isActive = true
