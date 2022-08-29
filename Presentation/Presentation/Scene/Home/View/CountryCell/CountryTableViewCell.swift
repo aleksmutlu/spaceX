@@ -34,7 +34,6 @@ final class CountryTableViewCell: UITableViewCell {
         headerView.labelCountryName.text = viewModel.name
         headerView.labelPhoneCode.text = viewModel.phone
         headerView.labelCapitalName.text = viewModel.capital
-//        headerView.imageViewPatch.kf.setImage(with: viewModel.patchImageURL)
         headerView.labelFlag.text = viewModel.flag
     }
 }

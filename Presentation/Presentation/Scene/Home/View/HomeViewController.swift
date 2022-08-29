@@ -17,6 +17,7 @@ public enum HomeHUDAction {
 }
 
 private let parallaxSpeed: CGFloat = 10
+private let sectionHeaderHeight: CGFloat = 62
 
 public final class HomeViewController: BaseViewController {
     
@@ -172,6 +173,8 @@ public final class HomeViewController: BaseViewController {
             at: .top,
             animated: false
         )
+        let offset = homeView.tableView.contentOffset
+        homeView.tableView.setContentOffset(CGPoint(x: 0, y: offset.y + 4), animated: false)
         
         homeView.tableView.visibleCells.enumerated().forEach { (offset, cell) in
             cell.transform = CGAffineTransform(translationX: 0, y: 120)
@@ -212,9 +215,10 @@ extension HomeViewController: UITableViewDelegate {
     }
     
     public func tableView(
-        _ tableView: UITableView, heightForHeaderInSection section: Int
+        _ tableView: UITableView,
+        heightForHeaderInSection section: Int
     ) -> CGFloat {
-        62
+        sectionHeaderHeight
     }
     
     public func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -226,7 +230,6 @@ extension HomeViewController: UITableViewDelegate {
         }
         headerView.update(state: continentItem.state)
         headerView.buttonExpand.addAction(action, for: .touchUpInside)
-        headerView.layer.zPosition = CGFloat(section) * 0.1
         return headerView
     }
 }

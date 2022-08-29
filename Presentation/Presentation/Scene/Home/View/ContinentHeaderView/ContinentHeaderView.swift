@@ -47,11 +47,9 @@ final class ContinentHeaderView: NibView {
         case .collapsed:
             labelTitle.font = .systemFont(ofSize: 17, weight: .semibold)
             buttonExpand.configuration?.image = state.image
-            contentView.backgroundColor = .clear
         case .expanded:
             labelTitle.font = .systemFont(ofSize: 20, weight: .black)
             buttonExpand.configuration?.image = state.image
-            contentView.backgroundColor = Theme.contentBackgroundColor
         }
     }
 }

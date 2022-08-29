@@ -154,6 +154,7 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
     }
     
     public func continentTapped(at index: Int) {
+        print(index)
         if let openSectionIndex = activeSectionIndex {
             if openSectionIndex == index { // Close
                 collapseSection(at: index)
