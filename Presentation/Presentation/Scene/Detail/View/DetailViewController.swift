@@ -57,7 +57,7 @@ public final class DetailViewController: BaseViewController {
         
         viewModel.outputs.headerData
             .observe(on: MainScheduler.instance)
-            .bind { [weak self ] viewModel in
+            .bind { [weak self] viewModel in
                 self?.populateHeaderView(with: viewModel)
             }
             .disposed(by: disposeBag)
@@ -69,7 +69,7 @@ public final class DetailViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        detailView.errorView.buttonRetry.rx.tap.asObservable()
+        detailView.errorView.buttonRetry.rx.tap
             .bind { [weak self] in
                 self?.viewModel.inputs.refetchTapped()
             }
@@ -96,17 +96,14 @@ public final class DetailViewController: BaseViewController {
         detailView.headerView.labelPhoneCode.text = viewModel.phone
         detailView.headerView.labelCapitalName.text = viewModel.capital
         detailView.headerView.labelFlag.text = viewModel.flag
-//        detailView.headerView.imageViewPatch.kf.setImage(
-//            with: viewModel.outputs.headerData.patchImageURL
-//        )
     }
     
     private func populateDetailSections(with viewModels: [DetailSectionViewModel]) {
         for viewModel in viewModels {
             let detailSectionView = DetailSectionView()
             detailSectionView.translatesAutoresizingMaskIntoConstraints = false
-            detailSectionView.popuplate(with: viewModel)
             detailView.stackViewDetailSections.addArrangedSubview(detailSectionView)
+            detailSectionView.popuplate(with: viewModel)
         }
     }
 }

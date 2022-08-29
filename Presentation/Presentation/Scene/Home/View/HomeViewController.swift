@@ -77,7 +77,7 @@ public final class HomeViewController: BaseViewController {
             }
             .disposed(by: disposeBag)
         
-        homeView.errorView.buttonRetry.rx.tap.asObservable()
+        homeView.errorView.buttonRetry.rx.tap
             .bind { [weak self] in
                 self?.viewModel.inputs.refetchTapped()
             }
