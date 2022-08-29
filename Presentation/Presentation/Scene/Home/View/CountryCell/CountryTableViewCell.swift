@@ -5,7 +5,6 @@
 //  Created by Aleks Mutlu on 24.08.2022.
 //
 
-import Kingfisher
 import UIKit
 
 final class CountryTableViewCell: UITableViewCell {
