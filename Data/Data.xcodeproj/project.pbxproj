@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		5916BCE028B3FC5C00F51AF6 /* Data.docc in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCDF28B3FC5C00F51AF6 /* Data.docc */; };
 		5916BCE628B3FC5C00F51AF6 /* Data.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BCDB28B3FC5C00F51AF6 /* Data.framework */; };
 		5916BCEB28B3FC5C00F51AF6 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCEA28B3FC5C00F51AF6 /* DataTests.swift */; };
 		5916BCEC28B3FC5C00F51AF6 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 5916BCDE28B3FC5C00F51AF6 /* Data.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -51,7 +50,6 @@
 /* Begin PBXFileReference section */
 		5916BCDB28B3FC5C00F51AF6 /* Data.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Data.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BCDE28B3FC5C00F51AF6 /* Data.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Data.h; sourceTree = "<group>"; };
-		5916BCDF28B3FC5C00F51AF6 /* Data.docc */ = {isa = PBXFileReference; lastKnownFileType = folder.documentationcatalog; path = Data.docc; sourceTree = "<group>"; };
 		5916BCE528B3FC5C00F51AF6 /* DataTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DataTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		5916BCEA28B3FC5C00F51AF6 /* DataTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataTests.swift; sourceTree = "<group>"; };
 		5916BD0628B403C500F51AF6 /* Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -113,7 +111,6 @@
 				593158EC28B50821000D2DCC /* Repository */,
 				593158ED28B5082C000D2DCC /* DataStore */,
 				5916BCDE28B3FC5C00F51AF6 /* Data.h */,
-				5916BCDF28B3FC5C00F51AF6 /* Data.docc */,
 			);
 			path = Data;
 			sourceTree = "<group>";
@@ -351,7 +348,6 @@
 				593158F328B5090F000D2DCC /* GraphQLCountryDataStore.swift in Sources */,
 				593158EF28B5085B000D2DCC /* DefaultWorldRepository.swift in Sources */,
 				593158F128B508E4000D2DCC /* RemoteWorldDataStore.swift in Sources */,
-				5916BCE028B3FC5C00F51AF6 /* Data.docc in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
