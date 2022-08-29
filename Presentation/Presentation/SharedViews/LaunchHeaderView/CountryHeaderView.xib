@@ -32,7 +32,7 @@
                             <rect key="frame" x="0.0" y="0.0" width="414" height="100"/>
                             <subviews>
                                 <imageView userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="staticmap" translatesAutoresizingMaskIntoConstraints="NO" id="MFk-lS-LkF">
-                                    <rect key="frame" x="0.0" y="-20" width="400" height="186"/>
+                                    <rect key="frame" x="0.0" y="-20" width="500" height="186"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 </imageView>
                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Wxg-RZ-uYT">
@@ -140,7 +140,7 @@
         </view>
     </objects>
     <resources>
-        <image name="staticmap" width="200" height="100"/>
+        <image name="staticmap" width="1000" height="497"/>
         <systemColor name="systemBackgroundColor">
             <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
         </systemColor>

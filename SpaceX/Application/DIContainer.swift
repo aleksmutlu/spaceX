@@ -14,8 +14,10 @@ import UIKit
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
 final class DIContainer: MainCoordinatorDependencies {
     
+    private let appConfiguration = AppConfiguration()
+    
     private lazy var remoteCountryDataStore: RemoteWorldDataStore = {
-        GraphQLWorldDataStore(apollo: ApolloClient(url: Constants.apiURL))
+        GraphQLWorldDataStore(apollo: ApolloClient(url: appConfiguration.apiURL))
     }()
     
     // MARK: - Coordinator
