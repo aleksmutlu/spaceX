@@ -22,7 +22,7 @@ final class CountryHeaderView: NibView {
     
     override func setUpViews() {
         super.setUpViews()
-        
+    
         setLabelMissionNameUp()
         setLabelRocketNameUp()
         setContentViewUp()
