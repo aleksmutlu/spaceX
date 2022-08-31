@@ -9,6 +9,7 @@ import Apollo
 import Data
 import Domain
 import Presentation
+import SwiftUI
 import UIKit
 
 ///  Dependency Injection Container is responsible to contain long lived dependencies and factory methods.
@@ -16,7 +17,7 @@ final class DIContainer: MainCoordinatorDependencies {
     
     private let appConfiguration = AppConfiguration()
     
-    private lazy var remoteCountryDataStore: RemoteWorldDataStore = {
+    private lazy var remoteCountryDataStore: some RemoteWorldDataStore = {
         GraphQLWorldDataStore(apollo: ApolloClient(url: appConfiguration.apiURL))
     }()
     
@@ -82,10 +83,19 @@ final class DIContainer: MainCoordinatorDependencies {
     
     // MARK: - Detail
     
-    func makeDetailScene(for country: Country) -> DetailViewController {
-        let detailViewModel = makeDetailViewModel(country: country)
-        let detailViewController = DetailViewController(viewModel: detailViewModel)
-        return detailViewController
+    func makeDetailScene(for country: Country) -> UIViewController {
+        switch appConfiguration.activeUIFramework {
+        case .uiKit:
+            let detailViewModel = makeDetailViewModel(country: country)
+            let detailViewController = DetailViewController(viewModel: detailViewModel)
+            return detailViewController
+        case .swfitUI:
+            let detailViewModel = makeDetailViewModel(country: country)
+            let wrapperDetailViewModel = makeDetailViewModelWrapper(for: detailViewModel)
+            let detailView = DetailSwiftUIView(viewModel: wrapperDetailViewModel)
+            let hostingController = UIHostingController(rootView: detailView)
+            return hostingController
+        }
     }
     
     private func makeDetailViewModel(country: Country) -> some DetailViewModel {
@@ -93,6 +103,13 @@ final class DIContainer: MainCoordinatorDependencies {
             fetchCountryUseCase: makeFetchCountryUseCase(),
             country: country
         )
+        return detailViewModel
+    }
+    
+    private func makeDetailViewModelWrapper(
+        for detailViewModel: DetailViewModel
+    ) -> DetailViewModelWrapper {
+        let detailViewModel = DetailViewModelWrapper(viewModel: detailViewModel)
         return detailViewModel
     }
 }

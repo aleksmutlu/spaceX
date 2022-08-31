@@ -15,4 +15,11 @@ struct AppConfiguration {
             return URL(string: "https://countries.trevorblades.com/")! // Production URL
         #endif
     }()
+    
+    enum ActiveUIFramework {
+        case uiKit
+        case swfitUI
+    }
+    
+    let activeUIFramework: ActiveUIFramework = .swfitUI
 }
