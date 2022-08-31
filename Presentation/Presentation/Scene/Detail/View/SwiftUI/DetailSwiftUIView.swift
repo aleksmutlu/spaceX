@@ -47,6 +47,12 @@ public struct DetailSwiftUIView: View {
 struct DetailSwiftUIView_Previews: PreviewProvider {
     static var previews: some View {
         let viewModel = DetailViewModelWrapper(viewModel: nil)
+        viewModel.header = CountryListItemViewModel(
+            name: "Turkey",
+            capital: "Ankara",
+            flag: "🇹🇷",
+            phone: "+90"
+        )
         viewModel.sections = [
             .init(sectionTitle: "Languages", detailItems: ["Turkish"]),
             .init(sectionTitle: "States", detailItems: ["Istanbul", "Ankara"])
