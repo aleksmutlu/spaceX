@@ -11,6 +11,15 @@ enum ContinentHeaderViewState {
     case collapsed
     case expanded
     
+    var imageStringName: String {
+        switch self {
+        case .collapsed:
+            return "arrow.up.circle"
+        case .expanded:
+            return "arrow.down.circle.fill"
+        }
+    }
+    
     var image: UIImage? {
         switch self {
         case .collapsed:

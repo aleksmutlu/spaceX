@@ -24,7 +24,6 @@ struct CountrySummaryView: View {
                     .resizable()
                     .scaledToFill()
                     .frame(maxWidth: .infinity, maxHeight: imageHeight)
-                    .aspectRatio(375 / 100, contentMode: .fit)
                     .clipped()
                 if let flag = country.flag {
                     HStack {
@@ -77,7 +76,7 @@ extension Color {
 struct CountrySummaryView_Previews: PreviewProvider {
     static var previews: some View {
         CountrySummaryView(
-            imageHeight: 100,
+            imageHeight: 116,
             country: CountryListItemViewModel(
                 name: "Turkey",
                 capital: "Ankara",

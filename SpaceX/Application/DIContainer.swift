@@ -62,10 +62,21 @@ final class DIContainer: MainCoordinatorDependencies {
 
     func makeHomeScene(
         onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
-    ) -> HomeViewController {
-        let homeViewModel = makeHomeViewModel(onHomeActionTrigger: onHomeActionTrigger)
-        let homeViewController = HomeViewController(viewModel: homeViewModel)
-        return homeViewController
+    ) -> UIViewController {
+        switch appConfiguration.activeUIFramework {
+        case .uiKit:
+            let homeViewModel = makeHomeViewModel(onHomeActionTrigger: onHomeActionTrigger)
+            let homeViewController = HomeViewController(viewModel: homeViewModel)
+            return homeViewController
+        case .swfitUI:
+            let homeViewModelWrapper = makeHomeViewModelWrapper(
+                onHomeActionTrigger: onHomeActionTrigger
+            )
+            let homeView = HomeSwiftUIView(viewModel: homeViewModelWrapper)
+            let hostingController = UIHostingController(rootView: homeView)
+            return hostingController
+        }
+        
     }
     
     private func makeHomeViewModel(
@@ -81,6 +92,14 @@ final class DIContainer: MainCoordinatorDependencies {
         return homeViewModel
     }
     
+    private func makeHomeViewModelWrapper(
+        onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
+    ) -> HomeViewModelWrapper {
+        let viewModel = makeHomeViewModel(onHomeActionTrigger: onHomeActionTrigger)
+        let wrapper = HomeViewModelWrapper(viewModel: viewModel)
+        return wrapper
+    }
+    
     // MARK: - Detail
     
     func makeDetailScene(for country: Country) -> UIViewController {
@@ -90,8 +109,7 @@ final class DIContainer: MainCoordinatorDependencies {
             let detailViewController = DetailViewController(viewModel: detailViewModel)
             return detailViewController
         case .swfitUI:
-            let detailViewModel = makeDetailViewModel(country: country)
-            let wrapperDetailViewModel = makeDetailViewModelWrapper(for: detailViewModel)
+            let wrapperDetailViewModel = makeDetailViewModelWrapper(country: country)
             let detailView = DetailSwiftUIView(viewModel: wrapperDetailViewModel)
             let hostingController = UIHostingController(rootView: detailView)
             return hostingController
@@ -106,10 +124,9 @@ final class DIContainer: MainCoordinatorDependencies {
         return detailViewModel
     }
     
-    private func makeDetailViewModelWrapper(
-        for detailViewModel: DetailViewModel
-    ) -> DetailViewModelWrapper {
-        let detailViewModel = DetailViewModelWrapper(viewModel: detailViewModel)
-        return detailViewModel
+    private func makeDetailViewModelWrapper(country: Country) -> DetailViewModelWrapper {
+        let viewModel = makeDetailViewModel(country: country)
+        let wrapper = DetailViewModelWrapper(viewModel: viewModel)
+        return wrapper
     }
 }

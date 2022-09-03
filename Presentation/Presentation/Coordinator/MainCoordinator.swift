@@ -12,7 +12,7 @@ import UIKit
 public protocol MainCoordinatorDependencies {
     func makeHomeScene(
         onHomeActionTrigger: @escaping (HomeSceneCoordinatorActions) -> Void
-    ) -> HomeViewController
+    ) -> UIViewController
     
     func makeDetailScene(for country: Country) -> UIViewController
 }
