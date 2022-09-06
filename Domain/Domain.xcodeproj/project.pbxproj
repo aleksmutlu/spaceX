@@ -17,6 +17,7 @@
 		593158E528B5049F000D2DCC /* FetchCountriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E428B5049F000D2DCC /* FetchCountriesUseCase.swift */; };
 		593158E828B50502000D2DCC /* WorldRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158E728B50502000D2DCC /* WorldRepository.swift */; };
 		593158EB28B5062F000D2DCC /* Continent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158EA28B5062F000D2DCC /* Continent.swift */; };
+		598258EC28C6579400083336 /* SearchCountriesUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598258EB28C6579400083336 /* SearchCountriesUseCase.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -41,6 +42,7 @@
 		593158E428B5049F000D2DCC /* FetchCountriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchCountriesUseCase.swift; sourceTree = "<group>"; };
 		593158E728B50502000D2DCC /* WorldRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorldRepository.swift; sourceTree = "<group>"; };
 		593158EA28B5062F000D2DCC /* Continent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Continent.swift; sourceTree = "<group>"; };
+		598258EB28C6579400083336 /* SearchCountriesUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchCountriesUseCase.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 				593158E428B5049F000D2DCC /* FetchCountriesUseCase.swift */,
 				592AE49828BA2ED300F68B6A /* FetchCountryUseCase.swift */,
 				592314EB28BA82B900AD2128 /* FetchContinentsUseCase.swift */,
+				598258EB28C6579400083336 /* SearchCountriesUseCase.swift */,
 			);
 			path = UseCase;
 			sourceTree = "<group>";
@@ -238,6 +241,7 @@
 			files = (
 				5923150C28BBC9E600AD2128 /* Country.swift in Sources */,
 				5923150E28BBC9F200AD2128 /* CountryDetails.swift in Sources */,
+				598258EC28C6579400083336 /* SearchCountriesUseCase.swift in Sources */,
 				593158E828B50502000D2DCC /* WorldRepository.swift in Sources */,
 				593158EB28B5062F000D2DCC /* Continent.swift in Sources */,
 				592314EC28BA82B900AD2128 /* FetchContinentsUseCase.swift in Sources */,

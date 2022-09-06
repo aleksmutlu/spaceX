@@ -21,5 +21,5 @@ struct AppConfiguration {
         case swfitUI
     }
     
-    let activeUIFramework: ActiveUIFramework = .swfitUI
+    let activeUIFramework: ActiveUIFramework = .uiKit
 }

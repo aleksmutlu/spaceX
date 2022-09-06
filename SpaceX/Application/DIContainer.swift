@@ -58,6 +58,12 @@ final class DIContainer: MainCoordinatorDependencies {
         return fetchContinentsUseCase
     }
     
+    func makeSearchCountriesUseCase() -> some SearchCountriesUseCase {
+        let worldRepository = makeWorldRepository()
+        let searchCountriesUseCase = DefaultSearchCountriesUseCase(worldRepository: worldRepository)
+        return searchCountriesUseCase
+    }
+    
     // MARK: - Home
 
     func makeHomeScene(
@@ -84,9 +90,11 @@ final class DIContainer: MainCoordinatorDependencies {
     ) -> some HomeViewModel {
         let fetchContinentsUseCase = makeFetchContinentsUseCase()
         let fetchCountriesUseCase = makeFetchCountriesUseCase()
+        let searchCountriesUseCase = makeSearchCountriesUseCase()
         let homeViewModel = DefaultHomeViewModel(
             fetchContinentsUseCase: fetchContinentsUseCase,
             fetchCountriesUseCase: fetchCountriesUseCase,
+            searchCountriesUseCase: searchCountriesUseCase,
             onCoordinatorActionTrigger: onHomeActionTrigger
         )
         return homeViewModel

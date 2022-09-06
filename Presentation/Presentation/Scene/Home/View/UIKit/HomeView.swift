@@ -18,12 +18,19 @@ final class HomeView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    lazy var searchBar: UISearchBar = {
+        let searchBar = UISearchBar()
+        searchBar.translatesAutoresizingMaskIntoConstraints = false
+        return searchBar
+    }()
 
     lazy var tableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.backgroundColor = .clear
         tableView.separatorStyle = .none
+        tableView.keyboardDismissMode = .onDrag
         tableView.registerNibCell(typed: CountryTableViewCell.self)
         addSubview(tableView)
         tableView.leadingAnchor.constraint(equalTo: leadingAnchor).isActive = true

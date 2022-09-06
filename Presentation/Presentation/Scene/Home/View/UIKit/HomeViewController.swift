@@ -28,13 +28,15 @@ public final class HomeViewController: BaseViewController {
     // MARK: - Properties
     
     private let viewModel: HomeViewModel
-    private var dataSource: ContinentsDataSource!
+    private let dataSource: ContinentsDataSource
+    private let searchController = UISearchController(searchResultsController: nil)
+    
     
     // MARK: - Life cycle
     
     public init(viewModel: HomeViewModel) {
         self.viewModel = viewModel
-        
+        dataSource = ContinentsDataSource(tableView: homeView.tableView)
         super.init(nibName: nil, bundle: nil)
     }
     
@@ -50,10 +52,8 @@ public final class HomeViewController: BaseViewController {
         super.viewDidLoad()
         
         setTableViewUp()
-        
         setNavigationBarUp()
-        
-        dataSource = ContinentsDataSource(tableView: homeView.tableView)
+        setSearchControllerUp()
         
         bindViewModel()
         
@@ -82,6 +82,26 @@ public final class HomeViewController: BaseViewController {
                 self?.viewModel.inputs.refetchTapped()
             }
             .disposed(by: disposeBag)
+        
+        searchController.searchBar.rx.text
+            .distinctUntilChanged()
+            .debounce(.milliseconds(500), scheduler: MainScheduler.instance)
+            .bind { [weak self] text in
+                self?.viewModel.inputs.search(currencyCode: text)
+            }
+            .disposed(by: disposeBag)
+        
+        searchController.rx.willPresent
+            .bind { [weak self] in
+                self?.viewModel.inputs.willBeginSearch()
+            }
+            .disposed(by: disposeBag)
+        
+        searchController.rx.willDismiss
+            .bind { [weak self] in
+                self?.viewModel.inputs.willEndSearch()
+            }
+            .disposed(by: disposeBag)
     }
     
     private func setTableViewUp() {
@@ -91,6 +111,12 @@ public final class HomeViewController: BaseViewController {
     
     private func setNavigationBarUp() {
         navigationItem.title = viewModel.outputs.navigationBarTitle
+        navigationItem.searchController = searchController
+        navigationItem.hidesSearchBarWhenScrolling = false
+    }
+    
+    private func setSearchControllerUp() {
+        searchController.searchBar.placeholder = viewModel.outputs.searchBarPlaceholder
     }
     
     // MARK: - Helpers
@@ -168,6 +194,7 @@ public final class HomeViewController: BaseViewController {
     }
     
     private func expandSection(at index: Int) {
+        guard homeView.tableView.visibleCells.count > 0 else { return }
         homeView.tableView.scrollToRow(
             at: IndexPath(row: 0, section: index),
             at: .top,

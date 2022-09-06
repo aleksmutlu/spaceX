@@ -47,4 +47,16 @@ extension HomeViewModelWrapper: HomeViewModelInputs {
     public func refetchTapped() {
         viewModel?.inputs.refetchTapped()
     }
+    
+    public func search(currencyCode: String?) {
+        
+    }
+
+    public func willEndSearch() {
+        
+    }
+    
+    public func willBeginSearch() {
+        
+    }
 }

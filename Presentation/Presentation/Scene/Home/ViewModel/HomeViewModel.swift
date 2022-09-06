@@ -21,30 +21,40 @@ public protocol HomeViewModel: AnyObject {
 
 public final class DefaultHomeViewModel: HomeViewModel {
     
+    enum State {
+        case countries
+        case search
+    }
+    
     // MARK: - Properties
     
     public var inputs: HomeViewModelInputs { self }
     public var outputs: HomeViewModelOutputs { self }
     
+    private let disposeBag = DisposeBag()
     private let displayContinentsInput = PublishSubject<DisplayContinentsData>()
     private let hudActionInput = BehaviorSubject<HomeHUDAction>(value: .idle)
     
     private let fetchContinentsUseCase: FetchContinentsUseCase
     private let fetchCountriesUseCase: FetchCountriesUseCase
+    private let searchCountriesUseCase: SearchCountriesUseCase
     
     private var continents: [Continent] = []
     private var countries: [Country] = []
     private let onCoordinatorActionTrigger: ((HomeSceneCoordinatorActions) -> Void)?
     
+    private var currentState: State = .countries
     private var activeSectionIndex: Int? = nil
     
     public init(
         fetchContinentsUseCase: FetchContinentsUseCase,
         fetchCountriesUseCase: FetchCountriesUseCase,
+        searchCountriesUseCase: SearchCountriesUseCase,
         onCoordinatorActionTrigger: ((HomeSceneCoordinatorActions) -> Void)?
     ) {
         self.fetchContinentsUseCase = fetchContinentsUseCase
         self.fetchCountriesUseCase = fetchCountriesUseCase
+        self.searchCountriesUseCase = searchCountriesUseCase
         self.onCoordinatorActionTrigger = onCoordinatorActionTrigger
     }
     
@@ -113,6 +123,32 @@ public final class DefaultHomeViewModel: HomeViewModel {
         displayContinentsInput.onNext((viewModels, activeSectionIndex))
     }
     
+    private func searchCountries(by currencyCode: String) {
+        let upperCaseCurrencyCode = currencyCode.uppercased()
+        searchCountriesUseCase.execute(currencyCode: upperCaseCurrencyCode)
+            .subscribe { [weak self] countries in
+                self?.handleSearch(countries)
+            } onFailure: { [weak self] _ in
+                self?.handleError()
+            }
+            .disposed(by: disposeBag)
+    }
+    
+    private func handleSearch(_ countries: [Country]) {
+        self.countries = countries
+        hudActionInput.onNext(.idle)
+        
+        let viewModels = countries.map(CountryListItemViewModel.init)
+        let contintents = [
+            ContinentListItemViewModel(
+                title: "Results (\(countries.count))",
+                state: .info,
+                countryListItems: viewModels
+            )
+        ]
+        displayContinentsInput.onNext((contintents, 0))
+    }
+    
     private func handleError() {
         activeSectionIndex = nil
         hudActionInput.onNext(.showError(title: "Oops! Something went wrong..."))
@@ -139,6 +175,9 @@ public protocol HomeViewModelInputs {
     func countryTapped(at index: Int)
     func continentTapped(at index: Int)
     func refetchTapped()
+    func search(currencyCode: String?)
+    func willBeginSearch()
+    func willEndSearch()
 }
 
 extension DefaultHomeViewModel: HomeViewModelInputs {
@@ -169,18 +208,46 @@ extension DefaultHomeViewModel: HomeViewModelInputs {
         hudActionInput.onNext(.showLoading)
         fetchContinents()
     }
+    
+    public func search(currencyCode: String?) {
+        guard currentState == .search else {
+            return
+        }
+        guard let currencyCode = currencyCode, !currencyCode.isEmpty else {
+            countries = []
+            displayContinentsInput.onNext(([], nil))
+            return
+        }
+        
+        searchCountries(by: currencyCode)
+    }
+    
+    public func willBeginSearch() {
+        currentState = .search
+        activeSectionIndex = nil
+        countries = []
+        displayContinentsInput.onNext(([], nil))
+    }
+    
+    public func willEndSearch() {
+        currentState = .countries
+        countries = []
+        fetchContinents()
+    }
 }
 
 // MARK: - HomeViewModelOutputs
 
 public protocol HomeViewModelOutputs {
     var navigationBarTitle: String { get }
+    var searchBarPlaceholder: String { get }
     var displayContinents: Observable<DisplayContinentsData> { get }
     var hudAction: Observable<HomeHUDAction> { get }
 }
 
 extension DefaultHomeViewModel: HomeViewModelOutputs {
     public var navigationBarTitle: String { "World 🌏" }
+    public var searchBarPlaceholder: String { "Search by currency (i.e EUR, TRY)" }
     public var displayContinents: Observable<DisplayContinentsData> {
         displayContinentsInput.asObservable()
     }

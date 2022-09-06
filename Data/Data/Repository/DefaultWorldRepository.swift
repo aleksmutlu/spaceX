@@ -6,6 +6,7 @@
 //
 
 import Domain
+import RxSwift
 
 public final class DefaultWorldRepository: WorldRepository {
     
@@ -52,5 +53,9 @@ public final class DefaultWorldRepository: WorldRepository {
                 onCompletion(.failure(error))
             }
         }
+    }
+    
+    public func searchCountries(by currencyCode: String) -> Single<[Country]> {
+        remoteWorldDataStore.searchCountries(by: currencyCode)
     }
 }

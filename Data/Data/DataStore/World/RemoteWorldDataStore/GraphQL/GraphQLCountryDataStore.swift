@@ -8,6 +8,7 @@
 import Apollo
 import Domain
 import Foundation
+import RxSwift
 
 public final class GraphQLWorldDataStore: RemoteWorldDataStore {
     
@@ -65,6 +66,25 @@ public final class GraphQLWorldDataStore: RemoteWorldDataStore {
             case .failure(let error):
                 onCompletion(.failure(error))
             }
+        }
+    }
+    
+    public func searchCountries(by currencyCode: String) -> Single<[Country]> {
+        return Single.create { single in
+            self.apollo.fetch(
+                query: SearchCountriesByCurrencyQuery(currency: currencyCode)
+            ) { result in
+                switch result {
+                case .success(let countries):
+                    if let domain = countries.data?.toDomain() {
+                        single(.success(domain))
+                    }
+                case .failure(let error):
+                    single(.failure(error))
+                }
+            }
+            
+            return Disposables.create()
         }
     }
 }

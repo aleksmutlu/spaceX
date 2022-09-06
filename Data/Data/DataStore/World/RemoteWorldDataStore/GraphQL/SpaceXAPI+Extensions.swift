@@ -51,3 +51,19 @@ extension CountriesQuery.Data.Country {
         Domain.Country(code: code, name: name, capital: capital, emoji: emoji, phone: phone)
     }
 }
+
+// MARK: - SearchCountries
+
+extension SearchCountriesByCurrencyQuery.Data {
+    
+    func toDomain() -> [Domain.Country] {
+        countries.map { $0.toDomain() }
+    }
+}
+
+extension SearchCountriesByCurrencyQuery.Data.Country {
+    
+    func toDomain() -> Domain.Country {
+        Domain.Country(code: code, name: name, capital: capital, emoji: emoji, phone: phone)
+    }
+}

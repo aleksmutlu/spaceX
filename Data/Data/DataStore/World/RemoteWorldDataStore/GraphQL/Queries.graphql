@@ -19,6 +19,20 @@ query Countries($code:String) {
   }
 }
 
+query SearchCountriesByCurrency($currency:String) {
+  countries(filter: {
+    currency: {
+      eq: $currency
+    }
+  }) {
+    code
+    name
+    capital
+    emoji
+    phone
+  }
+}
+
 query Country($code:ID!) {
   country(code: $code) {
     languages {

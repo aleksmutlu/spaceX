@@ -22,6 +22,9 @@
 		593158F128B508E4000D2DCC /* RemoteWorldDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F028B508E4000D2DCC /* RemoteWorldDataStore.swift */; };
 		593158F328B5090F000D2DCC /* GraphQLCountryDataStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 593158F228B5090F000D2DCC /* GraphQLCountryDataStore.swift */; };
 		5931590D28B51887000D2DCC /* schema.json in Resources */ = {isa = PBXBuildFile; fileRef = 5931590C28B51887000D2DCC /* schema.json */; };
+		598258EF28C6727D00083336 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 598258EE28C6727D00083336 /* RxSwift */; };
+		598258F428C6739B00083336 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 598258F328C6739B00083336 /* RxCocoa */; };
+		598258F828C6739B00083336 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 598258F728C6739B00083336 /* RxSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -67,11 +70,14 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				598258EF28C6727D00083336 /* RxSwift in Frameworks */,
+				598258F828C6739B00083336 /* RxSwift in Frameworks */,
 				5930672528B51F44004913B7 /* ApolloAPI in Frameworks */,
 				5930672928B51F44004913B7 /* ApolloUtils in Frameworks */,
 				5916BD0728B403C500F51AF6 /* Domain.framework in Frameworks */,
 				5930672328B51F44004913B7 /* Apollo in Frameworks */,
 				5930672728B51F44004913B7 /* ApolloCodegenLib in Frameworks */,
+				598258F428C6739B00083336 /* RxCocoa in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -235,6 +241,9 @@
 				5930672428B51F44004913B7 /* ApolloAPI */,
 				5930672628B51F44004913B7 /* ApolloCodegenLib */,
 				5930672828B51F44004913B7 /* ApolloUtils */,
+				598258EE28C6727D00083336 /* RxSwift */,
+				598258F328C6739B00083336 /* RxCocoa */,
+				598258F728C6739B00083336 /* RxSwift */,
 			);
 			productName = Data;
 			productReference = 5916BCDB28B3FC5C00F51AF6 /* Data.framework */;
@@ -287,6 +296,8 @@
 			mainGroup = 5916BCD128B3FC5C00F51AF6;
 			packageReferences = (
 				5930672128B51F44004913B7 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				598258ED28C6727D00083336 /* XCRemoteSwiftPackageReference "RxSwift" */,
+				598258F028C6739B00083336 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 5916BCDC28B3FC5C00F51AF6 /* Products */;
 			projectDirPath = "";
@@ -621,6 +632,22 @@
 				kind = branch;
 			};
 		};
+		598258ED28C6727D00083336 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
+		598258F028C6739B00083336 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -643,6 +670,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 5930672128B51F44004913B7 /* XCRemoteSwiftPackageReference "apollo-ios" */;
 			productName = ApolloUtils;
+		};
+		598258EE28C6727D00083336 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 598258ED28C6727D00083336 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
+		598258F328C6739B00083336 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 598258ED28C6727D00083336 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		598258F728C6739B00083336 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 598258ED28C6727D00083336 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
