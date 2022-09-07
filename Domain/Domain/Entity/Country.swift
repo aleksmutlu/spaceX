@@ -6,6 +6,8 @@
 //
 
 import Foundation
+import RxRelay
+import RxSwift
 
 public struct Country {
     public let code: String
@@ -13,6 +15,7 @@ public struct Country {
     public let capital: String?
     public let emoji: String?
     public let phone: String?
+    public let temperature: BehaviorRelay<Int>
     
     public init(code: String, name: String, capital: String?, emoji: String?, phone: String?) {
         self.code = code
@@ -20,5 +23,6 @@ public struct Country {
         self.capital = capital
         self.emoji = emoji
         self.phone = phone
+        temperature = .init(value: 0)
     }
 }

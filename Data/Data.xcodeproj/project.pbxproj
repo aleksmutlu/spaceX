@@ -11,6 +11,9 @@
 		5916BCEB28B3FC5C00F51AF6 /* DataTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5916BCEA28B3FC5C00F51AF6 /* DataTests.swift */; };
 		5916BCEC28B3FC5C00F51AF6 /* Data.h in Headers */ = {isa = PBXBuildFile; fileRef = 5916BCDE28B3FC5C00F51AF6 /* Data.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		5916BD0728B403C500F51AF6 /* Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5916BD0628B403C500F51AF6 /* Domain.framework */; };
+		5923A58E28C86AC500BA4CF1 /* RxCocoa in Frameworks */ = {isa = PBXBuildFile; productRef = 5923A58D28C86AC500BA4CF1 /* RxCocoa */; };
+		5923A59028C86AC500BA4CF1 /* RxRelay in Frameworks */ = {isa = PBXBuildFile; productRef = 5923A58F28C86AC500BA4CF1 /* RxRelay */; };
+		5923A59228C86AC500BA4CF1 /* RxSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 5923A59128C86AC500BA4CF1 /* RxSwift */; };
 		5930672328B51F44004913B7 /* Apollo in Frameworks */ = {isa = PBXBuildFile; productRef = 5930672228B51F44004913B7 /* Apollo */; };
 		5930672528B51F44004913B7 /* ApolloAPI in Frameworks */ = {isa = PBXBuildFile; productRef = 5930672428B51F44004913B7 /* ApolloAPI */; };
 		5930672728B51F44004913B7 /* ApolloCodegenLib in Frameworks */ = {isa = PBXBuildFile; productRef = 5930672628B51F44004913B7 /* ApolloCodegenLib */; };
@@ -67,10 +70,13 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5923A58E28C86AC500BA4CF1 /* RxCocoa in Frameworks */,
 				5930672528B51F44004913B7 /* ApolloAPI in Frameworks */,
+				5923A59028C86AC500BA4CF1 /* RxRelay in Frameworks */,
 				5930672928B51F44004913B7 /* ApolloUtils in Frameworks */,
 				5916BD0728B403C500F51AF6 /* Domain.framework in Frameworks */,
 				5930672328B51F44004913B7 /* Apollo in Frameworks */,
+				5923A59228C86AC500BA4CF1 /* RxSwift in Frameworks */,
 				5930672728B51F44004913B7 /* ApolloCodegenLib in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -235,6 +241,9 @@
 				5930672428B51F44004913B7 /* ApolloAPI */,
 				5930672628B51F44004913B7 /* ApolloCodegenLib */,
 				5930672828B51F44004913B7 /* ApolloUtils */,
+				5923A58D28C86AC500BA4CF1 /* RxCocoa */,
+				5923A58F28C86AC500BA4CF1 /* RxRelay */,
+				5923A59128C86AC500BA4CF1 /* RxSwift */,
 			);
 			productName = Data;
 			productReference = 5916BCDB28B3FC5C00F51AF6 /* Data.framework */;
@@ -287,6 +296,7 @@
 			mainGroup = 5916BCD128B3FC5C00F51AF6;
 			packageReferences = (
 				5930672128B51F44004913B7 /* XCRemoteSwiftPackageReference "apollo-ios" */,
+				5923A58C28C86AC500BA4CF1 /* XCRemoteSwiftPackageReference "RxSwift" */,
 			);
 			productRefGroup = 5916BCDC28B3FC5C00F51AF6 /* Products */;
 			projectDirPath = "";
@@ -613,6 +623,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		5923A58C28C86AC500BA4CF1 /* XCRemoteSwiftPackageReference "RxSwift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/ReactiveX/RxSwift";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		5930672128B51F44004913B7 /* XCRemoteSwiftPackageReference "apollo-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/apollographql/apollo-ios.git";
@@ -624,6 +642,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		5923A58D28C86AC500BA4CF1 /* RxCocoa */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5923A58C28C86AC500BA4CF1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxCocoa;
+		};
+		5923A58F28C86AC500BA4CF1 /* RxRelay */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5923A58C28C86AC500BA4CF1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxRelay;
+		};
+		5923A59128C86AC500BA4CF1 /* RxSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 5923A58C28C86AC500BA4CF1 /* XCRemoteSwiftPackageReference "RxSwift" */;
+			productName = RxSwift;
+		};
 		5930672228B51F44004913B7 /* Apollo */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 5930672128B51F44004913B7 /* XCRemoteSwiftPackageReference "apollo-ios" */;

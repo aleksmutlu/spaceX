@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import RxSwift
 
 final class CountryTableViewCell: UITableViewCell {
 
@@ -13,12 +14,20 @@ final class CountryTableViewCell: UITableViewCell {
     
     @IBOutlet weak var headerView: CountryHeaderView!
     
+    private var disposeBag = DisposeBag()
+    
     // MARK: - Life cycle
     
     override func awakeFromNib() {
         super.awakeFromNib()
         
         setHeaderViewUp()
+    }
+    
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        
+        disposeBag = DisposeBag()
     }
     
     private func setHeaderViewUp() {
@@ -34,5 +43,10 @@ final class CountryTableViewCell: UITableViewCell {
         headerView.labelPhoneCode.text = viewModel.phone
         headerView.labelCapitalName.text = viewModel.capital
         headerView.labelFlag.text = viewModel.flag
+        viewModel.temperature
+            .map { "\($0)" }
+            .asDriver(onErrorJustReturn: "-")
+            .drive(headerView.labelPhoneCode.rx.text)
+            .disposed(by: disposeBag)
     }
 }

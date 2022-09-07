@@ -96,6 +96,11 @@ public final class DetailViewController: BaseViewController {
         detailView.headerView.labelPhoneCode.text = viewModel.phone
         detailView.headerView.labelCapitalName.text = viewModel.capital
         detailView.headerView.labelFlag.text = viewModel.flag
+        viewModel.temperature
+            .map { "\($0)" }
+            .asDriver(onErrorJustReturn: "-")
+            .drive(detailView.headerView.labelPhoneCode.rx.text)
+            .disposed(by: disposeBag)
     }
     
     private func populateDetailSections(with viewModels: [DetailSectionViewModel]) {
